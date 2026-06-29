@@ -1,0 +1,500 @@
+IMPORTANT:
+
+I have uploaded a UI reference image.
+
+Treat this image as the SINGLE SOURCE OF TRUTH.
+
+I DO NOT want inspiration.
+I DO NOT want your own design.
+I DO NOT want a redesign.
+I DO NOT want a simplified version.
+I DO NOT want creative changes.
+
+Your ONLY goal is to recreate this dashboard as close to the reference as technically possible.
+
+======================================================
+PIXEL PERFECT REQUIREMENTS
+======================================================
+
+The final webpage should look 98-100% identical to the uploaded image.
+
+Match EVERYTHING:
+
+• Overall layout
+• Exact spacing
+• Exact card sizes
+• Exact margins
+• Exact padding
+• Exact border radius
+• Exact typography
+• Exact shadows
+• Exact gradients
+• Exact glow effects
+• Exact colors
+• Exact icon placement
+• Exact alignment
+• Exact proportions
+• Exact navbar
+• Exact sidebar
+• Exact widgets
+• Exact table
+• Exact hero section
+• Exact footer
+• Exact graph placement
+
+Do NOT redesign anything.
+
+If something exists in the image,
+it MUST exist in the website.
+
+======================================================
+GENERAL STYLE
+======================================================
+
+Modern SaaS Dashboard
+
+Luxury
+
+Dark Theme
+
+Premium
+
+Minimal
+
+Glassmorphism
+
+Neon Purple UI
+
+Soft Blue Glow
+
+Cyber aesthetic
+
+Apple-level polish
+
+Perfect spacing
+
+Very high quality.
+
+======================================================
+BACKGROUND
+======================================================
+
+Use a very dark navy background.
+
+Not black.
+
+Background should contain:
+
+soft radial gradients
+
+very subtle purple glow
+
+subtle blue glow
+
+depth
+
+ambient lighting
+
+======================================================
+LEFT SIDEBAR
+======================================================
+
+Exactly like the image.
+
+Width approximately 250px.
+
+Rounded container.
+
+Soft border.
+
+Dark glass background.
+
+Menu items:
+
+Dashboard
+
+Price Compare
+
+Price History
+
+Stock Tracker
+
+Coupons
+
+Watchlist
+
+AI Assistant
+
+Notifications
+
+Settings
+
+Dashboard must be highlighted with purple gradient.
+
+Icons exactly aligned.
+
+Logo on top.
+
+Upgrade card at bottom.
+
+Purple upgrade button.
+
+======================================================
+TOP NAVBAR
+======================================================
+
+Exactly same.
+
+Contains:
+
+Large search bar
+
+Purple search button
+
+Add to Watchlist button
+
+User avatar
+
+Username
+
+Pro badge
+
+Settings icon
+
+Everything aligned exactly.
+
+======================================================
+HERO SECTION
+======================================================
+
+Large rounded rectangle.
+
+Left side:
+
+Huge title
+
+AI Shopping,
+
+Smarter Savings.
+
+Use white + purple typography.
+
+Subtitle exactly below.
+
+Right side:
+
+Floating shopping cart
+
+Neon glowing platform
+
+Floating store logos
+
+Soft particles
+
+Purple lighting
+
+Blue glow
+
+Everything centered.
+
+======================================================
+AI RECOMMENDATION CARD
+======================================================
+
+Top right card.
+
+Rounded.
+
+Glass effect.
+
+Contains:
+
+AI Recommendation title
+
+Best Time To Buy
+
+Green text
+
+Confidence progress bar
+
+Bullet reasons
+
+Large glowing AI Brain illustration
+
+Purple glow below brain.
+
+======================================================
+MAIN PRODUCT CARD
+======================================================
+
+Exactly like image.
+
+Product image
+
+MacBook title
+
+Ratings
+
+Tags
+
+Track Price button
+
+Wishlist icon
+
+Below that:
+
+Beautiful comparison table.
+
+Stores:
+
+Amazon
+
+Flipkart
+
+Reliance Digital
+
+Croma
+
+Vijay Sales
+
+Columns:
+
+Store
+
+Price
+
+Delivery
+
+Rating
+
+Stock
+
+Best Offer
+
+Action Button
+
+Purple "View Deal" buttons.
+
+Perfect spacing.
+
+Perfect borders.
+
+======================================================
+BOTTOM ANALYTICS CARDS
+======================================================
+
+Five analytics cards.
+
+Average Price
+
+Lowest Price
+
+Price Drop Alert
+
+Stock Status
+
+Delivery Comparison
+
+Each card:
+
+Rounded
+
+Dark glass
+
+Purple border glow
+
+Icon
+
+Title
+
+Value
+
+Small description
+
+======================================================
+PRICE HISTORY CARD
+======================================================
+
+Exactly like reference.
+
+Purple line graph.
+
+Tabs:
+
+7D
+
+30D
+
+3M
+
+6M
+
+1Y
+
+Large current price.
+
+Green savings.
+
+Tooltip.
+
+======================================================
+COUPON CARD
+======================================================
+
+Exactly same.
+
+Coupon rows.
+
+Colored coupon tags.
+
+Purple Apply button.
+
+Rounded cards.
+
+======================================================
+BOTTOM FEATURE BAR
+======================================================
+
+Exactly same.
+
+Contains multiple feature icons.
+
+Purple icons.
+
+Centered text.
+
+Even spacing.
+
+======================================================
+TYPOGRAPHY
+======================================================
+
+Use Inter.
+
+Large headings.
+
+Medium labels.
+
+Small descriptions.
+
+Perfect hierarchy.
+
+======================================================
+COLOR PALETTE
+======================================================
+
+Background
+
+#060913
+
+Cards
+
+#0d1222
+
+Borders
+
+rgba(255,255,255,0.08)
+
+Purple
+
+#7C4DFF
+
+Glow
+
+#9D6CFF
+
+Accent
+
+#6F3CFF
+
+Text
+
+White
+
+Secondary
+
+#B7B9C9
+
+Green
+
+#37D67A
+
+======================================================
+EFFECTS
+======================================================
+
+Soft glassmorphism
+
+Backdrop blur
+
+Soft shadows
+
+Purple ambient glow
+
+Blue ambient glow
+
+Floating hover animation
+
+Card hover
+
+Button hover
+
+Smooth transitions
+
+======================================================
+RESPONSIVE
+======================================================
+
+Desktop first.
+
+Looks exactly like screenshot at 1920px.
+
+Tablet support.
+
+Mobile support.
+
+======================================================
+TECH STACK
+======================================================
+
+React
+
+TypeScript
+
+Vite
+
+Tailwind CSS
+
+Framer Motion
+
+Lucide React Icons
+
+Recharts (for graph)
+
+Fully componentized.
+
+======================================================
+STRICT RULES
+======================================================
+
+DO NOT redesign.
+
+DO NOT simplify.
+
+DO NOT replace sections.
+
+DO NOT remove widgets.
+
+DO NOT change spacing.
+
+DO NOT change colors.
+
+DO NOT use your own imagination.
+
+The uploaded image is the design specification.
+
+Recreate it as accurately as possible, down to spacing, proportions, shadows, gradients, and alignment.
+
+If something is unclear, estimate it visually while staying as faithful as possible to the uploaded reference.
+
+The final result should look like a premium production-ready SaaS dashboard that is visually indistinguishable from the uploaded design.

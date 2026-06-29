@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "ShopIntel AI Dashboard"
+version = "1.0.0"
+id = "artifacts/shopintel"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25433
+
+[services.development]
+run = "pnpm --filter @workspace/shopintel run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/shopintel", "run", "build" ]
+publicDir = "artifacts/shopintel/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25433"
+BASE_PATH = "/"

@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --font-sans: 'Inter', sans-serif;
+  --color-background: #060913;
+  --color-card: #0d1222;
+  --color-border: rgba(255,255,255,0.08);
+  --color-purple: #7C4DFF;
+  --color-purple-glow: #9D6CFF;
+  --color-purple-accent: #6F3CFF;
+  --color-green: #37D67A;
+  --color-text-secondary: #B7B9C9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #060913;
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 77, 255, 0.4);
+  border-radius: 2px;
+}
+
+.glass {
+  background: rgba(13, 18, 34, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass-light {
+  background: rgba(20, 28, 50, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.purple-glow {
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.3), 0 0 60px rgba(124, 77, 255, 0.1);
+}
+
+.purple-glow-sm {
+  box-shadow: 0 0 10px rgba(124, 77, 255, 0.2);
+}
+
+.card-hover {
+  transition: all 0.2s ease;
+}
+.card-hover:hover {
+  border-color: rgba(124, 77, 255, 0.3);
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-slow {
+  animation: float 4s ease-in-out infinite;
+}
+
+.float-delayed {
+  animation: float 3.5s ease-in-out infinite 0.5s;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 77, 255, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(124, 77, 255, 0.8); }
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%);
+}
+
+.gradient-purple-subtle {
+  background: linear-gradient(135deg, rgba(124, 77, 255, 0.2) 0%, rgba(111, 60, 255, 0.1) 100%);
+}
+
+.sidebar-item-active {
+  background: linear-gradient(135deg, rgba(124, 77, 255, 0.35) 0%, rgba(111, 60, 255, 0.2) 100%);
+  border: 1px solid rgba(124, 77, 255, 0.4);
+}
+
+.tag {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #B7B9C9;
+}
+
+.view-deal-btn {
+  background: linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%);
+  transition: all 0.2s;
+}
+.view-deal-btn:hover {
+  box-shadow: 0 0 16px rgba(124, 77, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #7C4DFF 0%, #9D6CFF 100%);
+  border-radius: 99px;
+}
+
+.store-logo-amazon { color: #FF9900; }
+.store-logo-flipkart { color: #2874F0; }
+.store-logo-reliance { color: #E31E24; }
+.store-logo-croma { color: #00A63E; }
+.store-logo-vijay { color: #F5A623; }
+
+.coupon-tag-hdfc { background: rgba(29, 135, 219, 0.15); border-color: rgba(29, 135, 219, 0.3); color: #4EB5FF; }
+.coupon-tag-super { background: rgba(247, 148, 29, 0.15); border-color: rgba(247, 148, 29, 0.3); color: #F79420; }
+.coupon-tag-sbi { background: rgba(55, 214, 122, 0.15); border-color: rgba(55, 214, 122, 0.3); color: #37D67A; }
+
+.bg-main {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(124, 77, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(30, 80, 200, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(124, 77, 255, 0.04) 0%, transparent 70%),
+    #060913;
+}
+
+.hero-bg {
+  background: linear-gradient(135deg, rgba(20, 10, 60, 0.9) 0%, rgba(10, 15, 40, 0.95) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  right: 100px;
+  width: 300px;
+  height: 80px;
+  background: radial-gradient(ellipse, rgba(124, 77, 255, 0.5) 0%, transparent 70%);
+  filter: blur(20px);
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(30, 60, 180, 0.15) 0%, transparent 70%);
+  filter: blur(30px);
+}
+
+.neon-platform {
+  position: absolute;
+  bottom: 20px;
+  right: 80px;
+  width: 200px;
+  height: 30px;
+  background: rgba(124, 77, 255, 0.3);
+  filter: blur(10px);
+  border-radius: 50%;
+}
+
+.analytics-card {
+  background: rgba(13, 18, 34, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.analytics-card:hover {
+  border-color: rgba(124, 77, 255, 0.3);
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.1);
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
