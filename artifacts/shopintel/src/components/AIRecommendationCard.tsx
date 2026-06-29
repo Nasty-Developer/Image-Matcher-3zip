@@ -4,63 +4,102 @@ import { Sparkles, Brain } from "lucide-react";
 export default function AIRecommendationCard() {
   return (
     <div
-      className="rounded-2xl p-4 relative overflow-hidden"
       style={{
-        background: "rgba(13,18,34,0.9)",
+        borderRadius: 14,
+        background: "rgba(11,15,30,0.92)",
         border: "1px solid rgba(255,255,255,0.08)",
+        padding: "14px 14px 14px 14px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Subtle top glow */}
+      <div
+        style={{
+          position: "absolute",
+          top: -20,
+          right: -10,
+          width: 120,
+          height: 80,
+          background: "radial-gradient(ellipse, rgba(124,77,255,0.15) 0%, transparent 70%)",
+          filter: "blur(16px)",
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Header */}
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center gap-1.5 mb-2.5">
         <div
-          className="w-7 h-7 rounded-lg flex items-center justify-center"
-          style={{ background: "rgba(124,77,255,0.2)" }}
+          style={{
+            width: 26,
+            height: 26,
+            borderRadius: 8,
+            background: "rgba(124,77,255,0.18)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
         >
-          <Sparkles size={14} style={{ color: "#9D6CFF" }} />
+          <Sparkles size={13} style={{ color: "#9D6CFF" }} />
         </div>
-        <span className="font-semibold text-white text-[13px]">AI Recommendation</span>
+        <span style={{ fontWeight: 600, color: "white", fontSize: 12.5 }}>AI Recommendation</span>
       </div>
 
-      {/* Main content row */}
-      <div className="flex gap-3">
+      {/* Content row */}
+      <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
         {/* Left info */}
-        <div className="flex-1">
-          <div className="text-[11px] mb-1" style={{ color: "#B7B9C9" }}>Best Time to Buy</div>
-          <div className="font-black text-white text-[22px] leading-tight mb-3">Wait 3 Days</div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 10.5, color: "#7B7E9A", marginBottom: 2 }}>Best Time to Buy</div>
+          <div style={{ fontSize: 22, fontWeight: 900, color: "white", lineHeight: 1.1, marginBottom: 10 }}>
+            Wait 3 Days
+          </div>
 
-          <div className="mb-1">
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-[11px]" style={{ color: "#B7B9C9" }}>Confidence</span>
-            </div>
-            <div className="font-bold text-white text-[18px] mb-1.5">91%</div>
+          <div style={{ marginBottom: 10 }}>
+            <div style={{ fontSize: 10.5, color: "#7B7E9A", marginBottom: 2 }}>Confidence</div>
+            <div style={{ fontSize: 20, fontWeight: 900, color: "white", marginBottom: 5 }}>91%</div>
             <div
-              className="w-full rounded-full"
-              style={{ height: 5, background: "rgba(255,255,255,0.08)" }}
+              style={{
+                height: 5,
+                borderRadius: 99,
+                background: "rgba(255,255,255,0.08)",
+                overflow: "hidden",
+              }}
             >
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "91%" }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="progress-bar h-full rounded-full"
+                transition={{ duration: 1, delay: 0.4 }}
+                style={{
+                  height: "100%",
+                  borderRadius: 99,
+                  background: "linear-gradient(90deg, #7C4DFF 0%, #9D6CFF 100%)",
+                }}
               />
             </div>
           </div>
 
-          <div className="mt-3">
-            <div className="text-[11px] font-medium mb-1.5" style={{ color: "#B7B9C9" }}>Why?</div>
-            <ul className="flex flex-col gap-1">
+          <div>
+            <div style={{ fontSize: 10.5, fontWeight: 600, color: "#7B7E9A", marginBottom: 5 }}>Why?</div>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 3 }}>
               {[
                 "Price may drop by ₹2,300",
                 "Big Billion Days in 3 days",
                 "Seller usually lowers price",
                 "Stock is stable",
               ].map((r) => (
-                <li key={r} className="flex items-start gap-1.5">
+                <li key={r} style={{ display: "flex", alignItems: "flex-start", gap: 5 }}>
                   <span
-                    className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "#9D6CFF" }}
+                    style={{
+                      width: 5,
+                      height: 5,
+                      borderRadius: "50%",
+                      background: "#7C4DFF",
+                      flexShrink: 0,
+                      marginTop: 3,
+                    }}
                   />
-                  <span className="text-[11px]" style={{ color: "#B7B9C9" }}>{r}</span>
+                  <span style={{ fontSize: 10.5, color: "#B7B9C9" }}>{r}</span>
                 </li>
               ))}
             </ul>
@@ -68,35 +107,36 @@ export default function AIRecommendationCard() {
         </div>
 
         {/* Brain illustration */}
-        <div className="flex flex-col items-center justify-center" style={{ width: 90 }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 4 }}>
           <motion.div
             animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             style={{ position: "relative" }}
           >
             <div
               style={{
-                width: 80,
-                height: 80,
+                width: 72,
+                height: 72,
                 borderRadius: "50%",
-                background: "rgba(124,77,255,0.15)",
+                background: "rgba(124,77,255,0.1)",
+                border: "1px solid rgba(124,77,255,0.25)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                border: "1px solid rgba(124,77,255,0.3)",
-                boxShadow: "0 0 30px rgba(124,77,255,0.3)",
+                boxShadow: "0 0 24px rgba(124,77,255,0.25)",
               }}
             >
-              <Brain size={44} style={{ color: "#9D6CFF" }} />
+              <Brain size={38} style={{ color: "#9D6CFF" }} />
             </div>
+            {/* Glow below */}
             <div
               style={{
                 position: "absolute",
-                bottom: -10,
+                bottom: -8,
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: 60,
-                height: 14,
+                width: 50,
+                height: 12,
                 background: "rgba(124,77,255,0.5)",
                 filter: "blur(8px)",
                 borderRadius: "50%",

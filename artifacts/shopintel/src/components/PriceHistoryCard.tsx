@@ -2,34 +2,26 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { TrendingDown, BarChart2 } from "lucide-react";
 import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
 
 const data7D = [
-  { date: "10 May", price: 93000 },
-  { date: "17 May", price: 91500 },
-  { date: "24 May", price: 92000 },
-  { date: "31 May", price: 90500 },
+  { date: "10 May", price: 93800 },
+  { date: "17 May", price: 92400 },
+  { date: "24 May", price: 93200 },
+  { date: "31 May", price: 91500 },
   { date: "7 Jun", price: 89990 },
 ];
-
 const data30D = [
-  { date: "May 1", price: 94000 },
-  { date: "May 7", price: 92500 },
-  { date: "May 14", price: 91000 },
-  { date: "May 21", price: 92200 },
-  { date: "May 28", price: 90300 },
+  { date: "May 1", price: 94200 },
+  { date: "May 10", price: 92600 },
+  { date: "May 17", price: 91200 },
+  { date: "May 24", price: 92800 },
+  { date: "May 31", price: 90800 },
   { date: "Jun 7", price: 89990 },
 ];
-
 const data3M = [
-  { date: "Apr", price: 95000 },
+  { date: "Apr", price: 95500 },
   { date: "May", price: 92000 },
   { date: "Jun", price: 89990 },
 ];
@@ -44,19 +36,19 @@ const dataMap: Record<string, typeof data7D> = {
 };
 
 const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
+  if (active && payload?.length) {
     return (
       <div
         style={{
-          background: "rgba(13,18,34,0.95)",
-          border: "1px solid rgba(124,77,255,0.3)",
+          background: "rgba(11,15,30,0.97)",
+          border: "1px solid rgba(124,77,255,0.4)",
           borderRadius: 8,
-          padding: "6px 10px",
-          fontSize: 11,
+          padding: "5px 9px",
+          fontSize: 10,
           color: "white",
         }}
       >
-        <div style={{ color: "#B7B9C9" }}>{label}</div>
+        <div style={{ color: "#7B7E9A", marginBottom: 1 }}>{label}</div>
         <div style={{ fontWeight: 700 }}>₹{payload[0].value.toLocaleString()}</div>
       </div>
     );
@@ -67,46 +59,68 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default function PriceHistoryCard() {
   const [activeTab, setActiveTab] = useState("7D");
   const chartData = dataMap[activeTab];
+  const prices = chartData.map((d) => d.price);
+  const minP = Math.min(...prices);
+  const maxP = Math.max(...prices);
+  const pad = Math.round((maxP - minP) * 0.4);
 
   return (
     <div
-      className="rounded-2xl p-4"
       style={{
-        background: "rgba(13,18,34,0.9)",
+        borderRadius: 14,
+        background: "rgba(11,15,30,0.92)",
         border: "1px solid rgba(255,255,255,0.08)",
+        padding: "12px",
+        overflow: "hidden",
       }}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
+      {/* Header row — single line */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 8,
+          gap: 6,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
           <div
-            className="w-6 h-6 rounded-md flex items-center justify-center"
-            style={{ background: "rgba(124,77,255,0.2)" }}
+            style={{
+              width: 22,
+              height: 22,
+              borderRadius: 6,
+              background: "rgba(124,77,255,0.18)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <BarChart2 size={13} style={{ color: "#9D6CFF" }} />
+            <BarChart2 size={11} style={{ color: "#9D6CFF" }} />
           </div>
-          <span className="font-semibold text-white text-[13px]">Price History</span>
+          <span style={{ fontWeight: 600, color: "white", fontSize: 12, whiteSpace: "nowrap" }}>
+            Price History
+          </span>
         </div>
         {/* Tabs */}
-        <div className="flex gap-0.5">
+        <div style={{ display: "flex", gap: 1 }}>
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className="px-2 py-1 rounded text-[10px] font-medium transition-all"
-              style={
-                activeTab === tab
-                  ? {
-                      background: "rgba(124,77,255,0.25)",
-                      color: "#9D6CFF",
-                      border: "1px solid rgba(124,77,255,0.3)",
-                    }
-                  : {
-                      color: "#7B7E9A",
-                      background: "transparent",
-                      border: "1px solid transparent",
-                    }
-              }
+              style={{
+                padding: "2px 6px",
+                borderRadius: 5,
+                fontSize: 9.5,
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "all 0.15s",
+                border: activeTab === tab
+                  ? "1px solid rgba(124,77,255,0.4)"
+                  : "1px solid transparent",
+                background: activeTab === tab ? "rgba(124,77,255,0.22)" : "transparent",
+                color: activeTab === tab ? "#9D6CFF" : "#5A5D75",
+              }}
             >
               {tab}
             </button>
@@ -114,40 +128,51 @@ export default function PriceHistoryCard() {
         </div>
       </div>
 
-      {/* Price display */}
-      <div className="flex items-end justify-between mb-1">
+      {/* Price + change */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          marginBottom: 6,
+        }}
+      >
         <div>
-          <div className="font-black text-white text-[24px] leading-tight">₹89,990</div>
-          <div className="text-[10px]" style={{ color: "#7B7E9A" }}>Current Price</div>
+          <div style={{ fontSize: 21, fontWeight: 900, color: "white", lineHeight: 1 }}>
+            ₹89,990
+          </div>
+          <div style={{ fontSize: 9.5, color: "#4A4D65", marginTop: 2 }}>Current Price</div>
         </div>
-        <div className="flex items-center gap-1" style={{ color: "#37D67A" }}>
-          <TrendingDown size={13} />
-          <span className="text-[12px] font-semibold">₹2,300 (2.5%)</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 2, color: "#37D67A" }}>
+          <TrendingDown size={11} />
+          <span style={{ fontSize: 10.5, fontWeight: 600 }}>₹2,300 (2.5%)</span>
         </div>
       </div>
 
       {/* Chart */}
-      <div style={{ height: 120, marginTop: 8 }}>
+      <div style={{ height: 108 }}>
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={chartData} margin={{ top: 5, right: 5, bottom: 0, left: -30 }}>
+          <AreaChart data={chartData} margin={{ top: 4, right: 2, bottom: 0, left: -26 }}>
             <defs>
               <linearGradient id="purpleGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#7C4DFF" stopOpacity={0.3} />
+                <stop offset="5%" stopColor="#7C4DFF" stopOpacity={0.35} />
                 <stop offset="95%" stopColor="#7C4DFF" stopOpacity={0.0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+            <CartesianGrid strokeDasharray="2 4" stroke="rgba(255,255,255,0.04)" vertical={false} />
             <XAxis
               dataKey="date"
-              tick={{ fontSize: 9, fill: "#7B7E9A" }}
+              tick={{ fontSize: 8, fill: "#4A4D65" }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 9, fill: "#7B7E9A" }}
+              domain={[minP - pad, maxP + pad]}
+              tick={{ fontSize: 8, fill: "#4A4D65" }}
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`}
+              tickFormatter={(v) => `₹${Math.round(v / 1000)}k`}
+              tickCount={4}
             />
             <Tooltip content={<CustomTooltip />} />
             <Area
@@ -157,7 +182,7 @@ export default function PriceHistoryCard() {
               strokeWidth={2}
               fill="url(#purpleGrad)"
               dot={false}
-              activeDot={{ r: 4, fill: "#9D6CFF", stroke: "white", strokeWidth: 1 }}
+              activeDot={{ r: 3.5, fill: "#9D6CFF", stroke: "white", strokeWidth: 1.5 }}
             />
           </AreaChart>
         </ResponsiveContainer>

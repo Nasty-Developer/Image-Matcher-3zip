@@ -4,17 +4,23 @@ import { Ticket } from "lucide-react";
 const coupons = [
   {
     code: "HDFC10",
-    tagClass: "coupon-tag-hdfc",
+    bg: "rgba(29,135,219,0.12)",
+    border: "rgba(29,135,219,0.3)",
+    color: "#4EB5FF",
     description: "10% Instant Discount up to ₹1,500 on HDFC Cards",
   },
   {
     code: "SUPER2000",
-    tagClass: "coupon-tag-super",
+    bg: "rgba(247,148,29,0.12)",
+    border: "rgba(247,148,29,0.3)",
+    color: "#F79420",
     description: "Flat ₹2,000 Off on orders above ₹50,000",
   },
   {
     code: "SBI1500",
-    tagClass: "coupon-tag-sbi",
+    bg: "rgba(55,214,122,0.12)",
+    border: "rgba(55,214,122,0.3)",
+    color: "#37D67A",
     description: "₹1,500 Off on SBI Credit Card Transactions",
   },
 ];
@@ -22,57 +28,87 @@ const coupons = [
 export default function CouponCard() {
   return (
     <div
-      className="rounded-2xl p-4"
       style={{
-        background: "rgba(13,18,34,0.9)",
+        borderRadius: 14,
+        background: "rgba(11,15,30,0.92)",
         border: "1px solid rgba(255,255,255,0.08)",
+        padding: "13px 13px",
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
           <div
-            className="w-6 h-6 rounded-md flex items-center justify-center"
-            style={{ background: "rgba(124,77,255,0.2)" }}
+            style={{
+              width: 24,
+              height: 24,
+              borderRadius: 7,
+              background: "rgba(124,77,255,0.18)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Ticket size={13} style={{ color: "#9D6CFF" }} />
+            <Ticket size={12} style={{ color: "#9D6CFF" }} />
           </div>
-          <span className="font-semibold text-white text-[13px]">Coupon Finder</span>
+          <span style={{ fontWeight: 600, color: "white", fontSize: 12.5 }}>Coupon Finder</span>
         </div>
-        <span className="text-[11px] cursor-pointer" style={{ color: "#9D6CFF" }}>
-          View All
-        </span>
+        <span style={{ fontSize: 11, color: "#9D6CFF", cursor: "pointer" }}>View All</span>
       </div>
 
       {/* Coupon list */}
-      <div className="flex flex-col gap-2">
+      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
         {coupons.map((c, i) => (
           <motion.div
             key={c.code}
-            initial={{ opacity: 0, x: 10 }}
+            initial={{ opacity: 0, x: 8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.08 }}
-            className="flex items-center gap-3 p-2.5 rounded-xl"
             style={{
-              background: "rgba(20,28,50,0.5)",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 10px",
+              borderRadius: 10,
+              background: "rgba(15,20,38,0.6)",
               border: "1px solid rgba(255,255,255,0.06)",
             }}
           >
+            {/* Code tag */}
             <div
-              className={`px-2 py-1 rounded-lg border text-[10px] font-bold flex-shrink-0 ${c.tagClass}`}
-              style={{ minWidth: 64, textAlign: "center" }}
+              style={{
+                padding: "3px 8px",
+                borderRadius: 7,
+                background: c.bg,
+                border: `1px solid ${c.border}`,
+                color: c.color,
+                fontSize: 10,
+                fontWeight: 700,
+                flexShrink: 0,
+                minWidth: 62,
+                textAlign: "center",
+              }}
             >
               {c.code}
             </div>
-            <div className="flex-1 text-[11px]" style={{ color: "#B7B9C9" }}>
+            {/* Description */}
+            <div style={{ flex: 1, fontSize: 10.5, color: "#B7B9C9", lineHeight: 1.35 }}>
               {c.description}
             </div>
+            {/* Apply button */}
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              className="flex-shrink-0 px-3 py-1.5 rounded-lg text-white text-[11px] font-semibold"
               style={{
+                padding: "5px 10px",
+                borderRadius: 7,
                 background: "linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%)",
+                color: "white",
+                fontSize: 10.5,
+                fontWeight: 600,
+                flexShrink: 0,
+                cursor: "pointer",
+                border: "none",
               }}
             >
               Apply

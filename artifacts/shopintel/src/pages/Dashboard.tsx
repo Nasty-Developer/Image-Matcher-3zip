@@ -10,27 +10,44 @@ import FeatureBar from "../components/FeatureBar";
 
 export default function Dashboard() {
   return (
-    <div className="bg-main min-h-screen flex" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div
+      className="min-h-screen flex"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+        background:
+          "radial-gradient(ellipse 80% 50% at 20% 10%, rgba(124,77,255,0.07) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30,60,200,0.05) 0%, transparent 60%), #060913",
+        minHeight: "100vh",
+      }}
+    >
       <Sidebar />
-      <div className="flex-1 flex flex-col min-w-0 ml-[260px]">
+      {/* Main area offset by sidebar */}
+      <div
+        className="flex flex-col min-w-0"
+        style={{ marginLeft: 165, flex: 1 }}
+      >
         <Navbar />
-        <div className="flex-1 p-4 pt-3 overflow-auto">
-          {/* Main grid */}
-          <div className="flex gap-4">
+        <div
+          className="flex-1 overflow-auto"
+          style={{ padding: "12px 14px 12px 14px" }}
+        >
+          {/* Two-column layout: center + right */}
+          <div className="flex gap-3">
             {/* Center column */}
-            <div className="flex-1 flex flex-col gap-4 min-w-0">
+            <div className="flex flex-col gap-3 min-w-0" style={{ flex: 1 }}>
               <HeroSection />
               <ProductCard />
               <AnalyticsCards />
             </div>
             {/* Right column */}
-            <div className="flex flex-col gap-4" style={{ width: 270 }}>
+            <div className="flex flex-col gap-3 flex-shrink-0" style={{ width: 262 }}>
               <AIRecommendationCard />
               <PriceHistoryCard />
               <CouponCard />
             </div>
           </div>
-          <FeatureBar />
+          <div className="mt-3">
+            <FeatureBar />
+          </div>
         </div>
       </div>
     </div>

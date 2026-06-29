@@ -1,130 +1,131 @@
 import { motion } from "framer-motion";
-import { TrendingDown, TrendingUp, Bell, Package, Truck } from "lucide-react";
-
-const cards = [
-  {
-    icon: TrendingDown,
-    iconColor: "#9D6CFF",
-    iconBg: "rgba(124,77,255,0.15)",
-    title: "Average Price",
-    value: "₹90,474",
-    desc: "▼ ₹1,750 (1.9%)",
-    descColor: "#37D67A",
-    sub: "vs last 30 days",
-  },
-  {
-    icon: TrendingDown,
-    iconColor: "#F5A623",
-    iconBg: "rgba(245,166,35,0.15)",
-    title: "Lowest Price",
-    value: "₹87,990",
-    desc: "Flipkart",
-    descColor: "#B7B9C9",
-    sub: "",
-    badge: "🏆",
-  },
-  {
-    icon: Bell,
-    iconColor: "#37D67A",
-    iconBg: "rgba(55,214,122,0.15)",
-    title: "Price Drop Alert",
-    value: "",
-    desc: "Get notified when price drops",
-    descColor: "#B7B9C9",
-    toggle: true,
-  },
-  {
-    icon: Package,
-    iconColor: "#4EB5FF",
-    iconBg: "rgba(78,181,255,0.15)",
-    title: "Stock Status",
-    value: "",
-    desc: "All Stores",
-    descColor: "#B7B9C9",
-    sub: "In Stock",
-    subColor: "#37D67A",
-  },
-  {
-    icon: Truck,
-    iconColor: "#FF6B9D",
-    iconBg: "rgba(255,107,157,0.15)",
-    title: "Delivery Comparison",
-    value: "",
-    desc: "Fastest Delivery",
-    descColor: "#B7B9C9",
-    sub: "Tomorrow",
-    subColor: "white",
-    lightning: true,
-  },
-];
+import { TrendingDown, Bell, Package, Truck } from "lucide-react";
 
 export default function AnalyticsCards() {
   return (
-    <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
-      {cards.map((card, i) => (
-        <motion.div
-          key={card.title}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.06 }}
-          className="analytics-card"
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 10 }}>
+      {/* Average Price */}
+      <CardWrap delay={0}>
+        <div style={iconBox("rgba(124,77,255,0.15)")}>
+          <TrendingDown size={16} style={{ color: "#9D6CFF" }} />
+        </div>
+        <CardLabel>Average Price</CardLabel>
+        <CardValue>₹90,474</CardValue>
+        <div style={{ fontSize: 11, color: "#37D67A" }}>▼ ₹1,750 (1.9%)</div>
+        <div style={{ fontSize: 10.5, color: "#4A4D65" }}>vs last 30 days</div>
+      </CardWrap>
+
+      {/* Lowest Price */}
+      <CardWrap delay={0.05}>
+        <div style={iconBox("rgba(245,166,35,0.15)")}>
+          <span style={{ fontSize: 16, lineHeight: 1 }}>🏆</span>
+        </div>
+        <CardLabel>Lowest Price</CardLabel>
+        <CardValue>₹87,990</CardValue>
+        <div style={{ fontSize: 11, color: "#B7B9C9" }}>Flipkart</div>
+      </CardWrap>
+
+      {/* Price Drop Alert */}
+      <CardWrap delay={0.10}>
+        <div style={iconBox("rgba(55,214,122,0.15)")}>
+          <Bell size={15} style={{ color: "#37D67A" }} />
+        </div>
+        <CardLabel>Price Drop Alert</CardLabel>
+        <div style={{ fontSize: 10.5, color: "#8385A0", marginBottom: 8, lineHeight: 1.45 }}>
+          Get notified when<br />price drops
+        </div>
+        <div
+          style={{
+            width: 38,
+            height: 20,
+            borderRadius: 99,
+            background: "linear-gradient(90deg, #7C4DFF, #9D6CFF)",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 3px",
+            cursor: "pointer",
+          }}
         >
-          {/* Icon + title row */}
-          <div className="flex items-center gap-2 mb-2">
-            <div
-              className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ background: card.iconBg }}
-            >
-              <card.icon size={16} style={{ color: card.iconColor }} />
-            </div>
-            {card.badge && (
-              <span style={{ fontSize: 16 }}>{card.badge}</span>
-            )}
-          </div>
+          <div
+            style={{
+              width: 14,
+              height: 14,
+              borderRadius: "50%",
+              background: "white",
+              marginLeft: "auto",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
+            }}
+          />
+        </div>
+      </CardWrap>
 
-          <div className="text-[11px] font-medium mb-1" style={{ color: "#B7B9C9" }}>
-            {card.title}
-          </div>
+      {/* Stock Status */}
+      <CardWrap delay={0.15}>
+        <div style={iconBox("rgba(78,181,255,0.15)")}>
+          <Package size={15} style={{ color: "#4EB5FF" }} />
+        </div>
+        <CardLabel>Stock Status</CardLabel>
+        <div style={{ fontSize: 11, color: "#8385A0", marginBottom: 2 }}>All Stores</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#37D67A" }}>In Stock</div>
+      </CardWrap>
 
-          {card.value && (
-            <div className="font-black text-white text-[18px] leading-tight mb-1">
-              {card.value}
-            </div>
-          )}
+      {/* Delivery Comparison */}
+      <CardWrap delay={0.20}>
+        <div style={iconBox("rgba(255,107,157,0.15)")}>
+          <Truck size={15} style={{ color: "#FF6B9D" }} />
+        </div>
+        <CardLabel>Delivery Comparison</CardLabel>
+        <div style={{ fontSize: 11, color: "#8385A0", marginBottom: 2 }}>Fastest Delivery</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "white" }}>Tomorrow ⚡</div>
+      </CardWrap>
+    </div>
+  );
+}
 
-          {card.toggle ? (
-            <div>
-              <div className="text-[11px] mb-2" style={{ color: "#B7B9C9" }}>{card.desc}</div>
-              <div
-                className="w-10 h-5 rounded-full flex items-center px-1 cursor-pointer"
-                style={{
-                  background: "linear-gradient(90deg, #7C4DFF 0%, #9D6CFF 100%)",
-                }}
-              >
-                <div
-                  className="w-3.5 h-3.5 rounded-full bg-white ml-auto"
-                  style={{ boxShadow: "0 0 4px rgba(0,0,0,0.3)" }}
-                />
-              </div>
-            </div>
-          ) : (
-            <div>
-              <div className="text-[11px]" style={{ color: card.descColor }}>{card.desc}</div>
-              {card.sub && (
-                <div
-                  className="font-semibold text-[12px] mt-0.5 flex items-center gap-1"
-                  style={{ color: card.subColor || "white" }}
-                >
-                  {card.sub}
-                  {card.lightning && (
-                    <span style={{ color: "#F5A623", fontSize: 12 }}>⚡</span>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-        </motion.div>
-      ))}
+function iconBox(bg: string): React.CSSProperties {
+  return {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    background: bg,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 9,
+    flexShrink: 0,
+  };
+}
+
+function CardWrap({ children, delay }: { children: React.ReactNode; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.35 }}
+      style={{
+        borderRadius: 13,
+        background: "rgba(11,15,30,0.92)",
+        border: "1px solid rgba(255,255,255,0.07)",
+        padding: "13px 12px",
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function CardLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ fontSize: 10.5, color: "#7B7E9A", marginBottom: 4, fontWeight: 500 }}>
+      {children}
+    </div>
+  );
+}
+
+function CardValue({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ fontSize: 19, fontWeight: 900, color: "white", lineHeight: 1.1, marginBottom: 3 }}>
+      {children}
     </div>
   );
 }

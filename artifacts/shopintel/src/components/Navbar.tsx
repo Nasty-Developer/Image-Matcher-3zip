@@ -1,93 +1,110 @@
 import { motion } from "framer-motion";
-import { Search, Plus, Settings, Star } from "lucide-react";
+import { Search, Settings, Star } from "lucide-react";
 
 export default function Navbar() {
   return (
     <header
-      className="flex items-center gap-4 px-5 py-3 sticky top-0 z-50"
+      className="flex items-center gap-3 px-4"
       style={{
-        background: "rgba(6, 9, 19, 0.85)",
+        height: 56,
+        background: "rgba(6, 9, 19, 0.9)",
         backdropFilter: "blur(20px)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
+        flexShrink: 0,
       }}
     >
       {/* Search bar */}
-      <div className="flex-1 flex items-center gap-2 max-w-xl">
-        <div
-          className="flex-1 flex items-center gap-3 px-4 rounded-xl"
-          style={{
-            background: "rgba(20,28,50,0.8)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            height: 42,
-          }}
-        >
-          <Search size={16} style={{ color: "#7B7E9A" }} />
-          <input
-            type="text"
-            placeholder="Search for any product..."
-            className="bg-transparent flex-1 text-[13.5px] outline-none"
-            style={{ color: "#B7B9C9" }}
-          />
-        </div>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center rounded-xl px-4 h-[42px]"
-          style={{
-            background: "linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%)",
-            boxShadow: "0 0 14px rgba(124,77,255,0.35)",
-          }}
-        >
-          <Search size={17} className="text-white" />
-        </motion.button>
+      <div
+        className="flex items-center gap-2.5 flex-1 px-4"
+        style={{
+          background: "rgba(15,20,40,0.8)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 10,
+          height: 38,
+          maxWidth: 480,
+        }}
+      >
+        <Search size={14} style={{ color: "#5A5D75", flexShrink: 0 }} />
+        <input
+          type="text"
+          placeholder="Search for any product..."
+          className="bg-transparent flex-1 outline-none"
+          style={{ fontSize: 13, color: "#B7B9C9" }}
+        />
       </div>
+
+      {/* Purple search button */}
+      <motion.button
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
+        className="flex items-center justify-center rounded-xl flex-shrink-0"
+        style={{
+          width: 38,
+          height: 38,
+          background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
+          boxShadow: "0 0 14px rgba(124,77,255,0.4)",
+        }}
+      >
+        <Search size={16} className="text-white" />
+      </motion.button>
+
+      {/* Divider */}
+      <div style={{ width: 1, height: 22, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
 
       {/* Add to Watchlist */}
       <motion.button
         whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="flex items-center gap-2 px-4 py-2 rounded-xl text-white text-[13px] font-medium"
+        whileTap={{ scale: 0.97 }}
+        className="flex items-center gap-1.5 px-3 flex-shrink-0 rounded-xl text-white"
         style={{
-          background: "rgba(20,28,50,0.8)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          height: 42,
+          background: "rgba(15,20,40,0.8)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          height: 38,
+          fontSize: 12.5,
+          fontWeight: 500,
         }}
       >
-        <Star size={14} style={{ color: "#9D6CFF" }} />
+        <Star size={13} style={{ color: "#9D6CFF" }} />
         Add to Watchlist
       </motion.button>
 
-      {/* User info */}
-      <div className="flex items-center gap-3">
+      {/* Divider */}
+      <div style={{ width: 1, height: 22, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
+
+      {/* User section */}
+      <div className="flex items-center gap-2 flex-shrink-0">
         <div
-          className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm overflow-hidden"
+          className="rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
           style={{
+            width: 34,
+            height: 34,
             background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
             border: "2px solid rgba(124,77,255,0.5)",
+            fontSize: 13,
           }}
         >
           A
         </div>
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-white text-[13px] font-medium">Hi, Aryan</span>
-            <span
-              className="px-2 py-0.5 rounded-md text-[10px] font-bold text-white"
-              style={{
-                background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-              }}
-            >
-              Pro
-            </span>
-          </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-white font-medium" style={{ fontSize: 13 }}>Hi, Aryan</span>
+          <span
+            className="text-white font-bold"
+            style={{
+              background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
+              padding: "2px 7px",
+              borderRadius: 6,
+              fontSize: 10,
+            }}
+          >
+            Pro
+          </span>
         </div>
         <motion.button
           whileHover={{ rotate: 45 }}
           transition={{ duration: 0.2 }}
-          className="ml-1"
-          style={{ color: "#7B7E9A" }}
+          style={{ color: "#5A5D75" }}
         >
-          <Settings size={18} />
+          <Settings size={16} />
         </motion.button>
       </div>
     </header>

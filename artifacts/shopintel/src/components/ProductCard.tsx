@@ -3,221 +3,297 @@ import { TrendingUp, Heart, Star } from "lucide-react";
 
 const stores = [
   {
-    name: "amazon",
     logo: "amazon",
+    displayName: "amazon",
     price: "₹89,990",
     original: "₹1,14,900",
     discount: "21% OFF",
     delivery: "Tomorrow",
-    deliveryFree: true,
     rating: 4.6,
     reviews: "12.4K",
-    stock: true,
     offer: "₹2,000 Off on HDFC Cards",
     color: "#FF9900",
+    fontStyle: { fontWeight: 800, fontSize: 14, fontFamily: "Georgia, serif" },
   },
   {
-    name: "Flipkart",
     logo: "flipkart",
+    displayName: "Flipkart",
     price: "₹87,990",
     original: "₹1,14,900",
     discount: "23% OFF",
     delivery: "2 Days",
-    deliveryFree: true,
     rating: 4.5,
     reviews: "8.7K",
-    stock: true,
     offer: "₹3,000 Off with Flipkart Axis Card",
     color: "#2874F0",
+    fontStyle: { fontWeight: 800, fontSize: 13.5 },
   },
   {
-    name: "Reliance Digital",
     logo: "reliance",
+    displayName: "Reliance Digital",
     price: "₹90,900",
     original: "₹1,18,900",
     discount: "20% OFF",
     delivery: "Tomorrow",
-    deliveryFree: true,
     rating: 4.4,
     reviews: "2.1K",
-    stock: true,
     offer: "₹2,500 Off on ICICI Cards",
     color: "#E31E24",
+    fontStyle: { fontWeight: 700, fontSize: 11 },
   },
   {
-    name: "croma",
     logo: "croma",
+    displayName: "croma",
     price: "₹91,900",
     original: "₹1,19,000",
     discount: "19% OFF",
     delivery: "2 Days",
-    deliveryFree: true,
     rating: 4.6,
     reviews: "1.3K",
-    stock: true,
     offer: "₹2,000 Cashback on Amazon Pay",
     color: "#00A63E",
+    fontStyle: { fontWeight: 800, fontSize: 13.5 },
   },
   {
-    name: "VIJAY SALES",
     logo: "vijay",
+    displayName: "vijay sales",
     price: "₹92,500",
     original: "₹1,20,000",
     discount: "18% OFF",
     delivery: "3 Days",
-    deliveryFree: true,
     rating: 4.4,
     reviews: "980",
-    stock: true,
     offer: "₹1,500 Off on Yes Bank Cards",
     color: "#F5A623",
+    fontStyle: {
+      fontWeight: 700,
+      fontSize: 11,
+      textTransform: "uppercase" as const,
+      letterSpacing: "0.5px",
+    },
   },
 ];
-
-function StoreNameDisplay({ store }: { store: typeof stores[0] }) {
-  const styles: Record<string, React.CSSProperties> = {
-    amazon: { color: "#FF9900", fontWeight: 800, fontSize: 15, letterSpacing: 0 },
-    flipkart: { color: "#2874F0", fontWeight: 700, fontSize: 14 },
-    reliance: { color: "#E31E24", fontWeight: 700, fontSize: 11 },
-    croma: { color: "#00A63E", fontWeight: 700, fontSize: 14 },
-    vijay: { color: "#F5A623", fontWeight: 700, fontSize: 11 },
-  };
-  return <span style={styles[store.logo] || {}}>{store.name}</span>;
-}
 
 export default function ProductCard() {
   return (
     <div
-      className="rounded-2xl overflow-hidden"
       style={{
-        background: "rgba(13,18,34,0.9)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 14,
+        background: "rgba(11,15,30,0.92)",
+        border: "1px solid rgba(255,255,255,0.07)",
+        overflow: "hidden",
       }}
     >
-      {/* Product header */}
-      <div className="p-4 pb-3 flex items-start gap-4">
-        {/* Product image placeholder */}
+      {/* Product header row */}
+      <div
+        style={{
+          padding: "14px 16px 10px 14px",
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 14,
+        }}
+      >
+        {/* MacBook silhouette image */}
         <div
-          className="rounded-xl flex items-center justify-center flex-shrink-0"
           style={{
             width: 90,
-            height: 80,
-            background: "rgba(20,28,50,0.8)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            height: 78,
+            borderRadius: 12,
+            background: "linear-gradient(135deg, rgba(18,24,48,0.95) 0%, rgba(12,16,36,0.95) 100%)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          <div
-            className="text-[10px] text-center font-bold leading-tight"
-            style={{ color: "#9D6CFF" }}
-          >
-            MacBook<br />Air M2
+          {/* MacBook body */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div
+              style={{
+                width: 58,
+                height: 38,
+                borderRadius: "5px 5px 0 0",
+                background: "linear-gradient(145deg, #2c2c3e 0%, #1a1a2a 100%)",
+                border: "1.5px solid rgba(255,255,255,0.12)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div
+                style={{
+                  width: 46,
+                  height: 28,
+                  borderRadius: 3,
+                  background: "rgba(124,77,255,0.08)",
+                  border: "1px solid rgba(124,77,255,0.15)",
+                }}
+              />
+            </div>
+            <div
+              style={{
+                width: 64,
+                height: 4,
+                background: "linear-gradient(135deg, #3a3a4e, #252535)",
+                borderRadius: "0 0 4px 4px",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderTop: "none",
+              }}
+            />
           </div>
         </div>
 
         {/* Product info */}
-        <div className="flex-1">
-          <div className="flex items-start justify-between">
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+              gap: 10,
+            }}
+          >
             <div>
-              <h2 className="font-bold text-white text-[18px]">Apple MacBook Air M2</h2>
-              <div className="flex items-center gap-1.5 mt-1">
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={12}
-                      fill={i < 5 ? "#F5A623" : "transparent"}
-                      style={{ color: "#F5A623" }}
-                    />
-                  ))}
-                </div>
-                <span className="text-[12px]" style={{ color: "#B7B9C9" }}>4.8</span>
-                <span className="text-[12px]" style={{ color: "#7B7E9A" }}>(2,453)</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-white"
+              <h2
                 style={{
-                  background: "rgba(124,77,255,0.15)",
-                  border: "1px solid rgba(124,77,255,0.3)",
+                  fontWeight: 700,
+                  color: "white",
+                  fontSize: 16,
+                  marginBottom: 4,
+                  whiteSpace: "nowrap",
                 }}
               >
-                <TrendingUp size={13} style={{ color: "#9D6CFF" }} />
+                Apple MacBook Air M2
+              </h2>
+              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <div style={{ display: "flex", gap: 1 }}>
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={11} fill="#F5A623" style={{ color: "#F5A623" }} />
+                  ))}
+                </div>
+                <span style={{ fontSize: 12, color: "#B7B9C9", fontWeight: 600 }}>4.8</span>
+                <span style={{ fontSize: 11, color: "#5A5D75" }}>(2,453)</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 7, flexShrink: 0 }}>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 5,
+                  padding: "5px 11px",
+                  borderRadius: 8,
+                  background: "rgba(124,77,255,0.13)",
+                  border: "1px solid rgba(124,77,255,0.28)",
+                  color: "white",
+                  fontSize: 11.5,
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <TrendingUp size={12} style={{ color: "#9D6CFF" }} />
                 Track Price
               </motion.button>
               <button
-                className="w-8 h-8 rounded-full flex items-center justify-center"
                 style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: "50%",
                   background: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  flexShrink: 0,
                 }}
               >
-                <Heart size={14} style={{ color: "#B7B9C9" }} />
+                <Heart size={13} style={{ color: "#B7B9C9" }} />
               </button>
             </div>
           </div>
 
           {/* Tags */}
-          <div className="flex items-center gap-2 mt-2">
+          <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
             {["M2 Chip", "8GB RAM", "256GB SSD", "13.6-inch"].map((tag) => (
-              <span key={tag} className="tag">{tag}</span>
+              <span
+                key={tag}
+                style={{
+                  padding: "3px 9px",
+                  borderRadius: 6,
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  fontSize: 11,
+                  color: "#B7B9C9",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {tag}
+              </span>
             ))}
           </div>
         </div>
       </div>
 
       {/* Comparison table */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        {/* Table header */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        {/* Header */}
         <div
-          className="grid text-[11px] font-semibold px-4 py-2"
           style={{
-            color: "#7B7E9A",
-            gridTemplateColumns: "140px 130px 100px 90px 90px 1fr 100px",
-            borderBottom: "1px solid rgba(255,255,255,0.05)",
+            display: "grid",
+            gridTemplateColumns: "120px 1fr 90px 95px 78px 1fr 80px",
+            padding: "7px 16px",
+            borderBottom: "1px solid rgba(255,255,255,0.04)",
           }}
         >
-          <span>Store</span>
-          <span>Price</span>
-          <span>Delivery</span>
-          <span>Rating</span>
-          <span>Stock</span>
-          <span>Best Offer</span>
-          <span></span>
+          {["Store", "Price", "Delivery", "Rating", "Stock", "Best Offer", ""].map((h) => (
+            <span key={h + Math.random()} style={{ fontSize: 10.5, color: "#4A4D65", fontWeight: 600 }}>{h}</span>
+          ))}
         </div>
 
-        {/* Table rows */}
+        {/* Rows */}
         {stores.map((store, i) => (
           <motion.div
-            key={store.name}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.05 }}
-            className="grid items-center px-4 py-2.5 hover:bg-white/[0.02] transition-colors"
+            key={store.logo}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: i * 0.04 }}
             style={{
-              gridTemplateColumns: "140px 130px 100px 90px 90px 1fr 100px",
-              borderBottom: i < stores.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+              display: "grid",
+              gridTemplateColumns: "120px 1fr 90px 95px 78px 1fr 80px",
+              padding: "9px 16px",
+              borderBottom:
+                i < stores.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+              alignItems: "center",
             }}
+            className="hover:bg-white/[0.015] transition-colors"
           >
             {/* Store name */}
-            <div className="text-[13px] font-bold">
-              <StoreNameDisplay store={store} />
-            </div>
+            <div style={{ ...store.fontStyle, color: store.color }}>{store.displayName}</div>
 
-            {/* Price */}
-            <div>
-              <span className="font-bold text-white text-[14px]">{store.price}</span>
+            {/* Price — all on one line */}
+            <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "nowrap" }}>
+              <span style={{ fontWeight: 700, color: "white", fontSize: 13, whiteSpace: "nowrap" }}>
+                {store.price}
+              </span>
               <span
-                className="text-[11px] line-through ml-1.5"
-                style={{ color: "#7B7E9A" }}
+                style={{
+                  fontSize: 10,
+                  color: "#4A4D65",
+                  textDecoration: "line-through",
+                  whiteSpace: "nowrap",
+                }}
               >
                 {store.original}
               </span>
               <span
-                className="text-[10px] ml-1 font-semibold"
-                style={{ color: "#37D67A" }}
+                style={{ fontSize: 10, color: "#37D67A", fontWeight: 600, whiteSpace: "nowrap" }}
               >
                 {store.discount}
               </span>
@@ -225,44 +301,43 @@ export default function ProductCard() {
 
             {/* Delivery */}
             <div>
-              <div className="text-[12px] text-white">{store.delivery}</div>
-              {store.deliveryFree && (
-                <div className="text-[10px] font-semibold" style={{ color: "#37D67A" }}>
-                  FREE
-                </div>
-              )}
+              <div style={{ fontSize: 11.5, color: "white", whiteSpace: "nowrap" }}>{store.delivery}</div>
+              <div style={{ fontSize: 10, color: "#37D67A", fontWeight: 600 }}>FREE</div>
             </div>
 
             {/* Rating */}
-            <div className="flex items-center gap-1">
-              <Star size={11} fill="#F5A623" style={{ color: "#F5A623" }} />
-              <span className="text-[12px] text-white font-medium">{store.rating}</span>
-              <span className="text-[10px]" style={{ color: "#7B7E9A" }}>({store.reviews})</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
+              <Star size={10} fill="#F5A623" style={{ color: "#F5A623" }} />
+              <span style={{ fontSize: 11.5, color: "white", fontWeight: 600 }}>{store.rating}</span>
+              <span style={{ fontSize: 10, color: "#4A4D65" }}>({store.reviews})</span>
             </div>
 
             {/* Stock */}
-            <div
-              className="text-[11px] font-semibold"
-              style={{ color: "#37D67A" }}
-            >
-              In Stock
-            </div>
+            <div style={{ fontSize: 11, color: "#37D67A", fontWeight: 600 }}>In Stock</div>
 
             {/* Offer */}
-            <div className="text-[11px] pr-2" style={{ color: "#B7B9C9" }}>
-              {store.offer}
-            </div>
+            <div style={{ fontSize: 10.5, color: "#8385A0", paddingRight: 8 }}>{store.offer}</div>
 
-            {/* Action */}
-            <div>
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="view-deal-btn px-3 py-1.5 rounded-lg text-white text-[12px] font-semibold w-full"
-              >
-                View Deal
-              </motion.button>
-            </div>
+            {/* View Deal */}
+            <motion.button
+              whileHover={{ scale: 1.03, boxShadow: "0 0 14px rgba(124,77,255,0.5)" }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                background: "linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%)",
+                padding: "6px 0",
+                borderRadius: 8,
+                color: "white",
+                fontSize: 11,
+                fontWeight: 600,
+                width: "100%",
+                cursor: "pointer",
+                border: "none",
+                transition: "box-shadow 0.2s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              View Deal
+            </motion.button>
           </motion.div>
         ))}
       </div>
