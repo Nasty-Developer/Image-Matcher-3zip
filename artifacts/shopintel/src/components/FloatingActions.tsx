@@ -2,21 +2,30 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, BarChart2, TrendingDown, Search, Bot, Bookmark } from "lucide-react";
 import { useLocation } from "wouter";
+import { useAuth } from "../context/AuthContext";
 
 interface FloatingActionsProps {
   onOpenSearch: () => void;
+  onOpenAuth?: () => void;
 }
 
-export default function FloatingActions({ onOpenSearch }: FloatingActionsProps) {
+export default function FloatingActions({ onOpenSearch, onOpenAuth }: FloatingActionsProps) {
   const [open, setOpen] = useState(false);
   const [, setLocation] = useLocation();
+  const { isGuest } = useAuth();
 
   const actions = [
     { icon: BarChart2, label: "Compare", onClick: () => setLocation("/price-compare") },
     { icon: TrendingDown, label: "Track Price", onClick: () => setLocation("/price-history") },
     { icon: Search, label: "Search", onClick: () => onOpenSearch() },
     { icon: Bot, label: "Ask AI", onClick: () => setLocation("/ai-assistant") },
-    { icon: Bookmark, label: "Watchlist", onClick: () => setLocation("/watchlist") },
+    { icon: Bookmark, label: "Watchlist", onClick: () => {
+      if (isGuest && onOpenAuth) {
+        onOpenAuth();
+      } else {
+        setLocation("/watchlist");
+      }
+    } },
   ];
 
   return (

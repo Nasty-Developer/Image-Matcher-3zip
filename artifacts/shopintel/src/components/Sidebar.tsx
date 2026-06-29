@@ -165,8 +165,32 @@ function Section({
 }: {
   section: SidebarSection; location: string;
 }) {
-  const [open, setOpen] = useState(section.defaultOpen ?? true);
+  const [open, setOpen] = useState(() => {
+    const saved = localStorage.getItem("shopintel_sidebar_sections");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed[section.id] === 'boolean') {
+          return parsed[section.id];
+        }
+      } catch (e) {}
+    }
+    return section.defaultOpen ?? true;
+  });
   const isCollapsible = section.collapsible ?? false;
+
+  const toggleOpen = () => {
+    setOpen((p: boolean) => {
+      const next = !p;
+      try {
+        const saved = localStorage.getItem("shopintel_sidebar_sections");
+        const parsed = saved ? JSON.parse(saved) : {};
+        parsed[section.id] = next;
+        localStorage.setItem("shopintel_sidebar_sections", JSON.stringify(parsed));
+      } catch (_) { /* ignore storage errors */ }
+      return next;
+    });
+  };
 
   return (
     <div style={{ marginBottom: 4 }}>
@@ -174,7 +198,7 @@ function Section({
         title={section.title}
         collapsible={isCollapsible}
         open={open}
-        onToggle={() => setOpen((p) => !p)}
+        onToggle={toggleOpen}
       />
       <AnimatePresence initial={false}>
         {open && (

@@ -19,9 +19,18 @@ const suggestions = [
 ];
 
 const conversations = [
-  { id: 1, title: "MacBook Price Analysis", time: "Today, 2:30 PM" },
-  { id: 2, title: "Best Deals This Week", time: "Yesterday" },
-  { id: 3, title: "Smartphone Comparison", time: "28 May" },
+  { id: 1, title: "MacBook Price Analysis", time: "Today, 2:30 PM", history: [
+    { id: 101, role: "user" as const, content: "What's the best time to buy MacBook Air M2?", time: "2:29 PM" },
+    { id: 102, role: "assistant" as const, content: "Based on my analysis, the **Apple MacBook Air M2** is currently priced at ₹89,990 on Amazon. 📊\n\n**AI Recommendation:** Wait 3 days! Big Billion Days is approaching and the price is predicted to drop by ₹2,300–₹3,500.", time: "2:30 PM" }
+  ]},
+  { id: 2, title: "Best Deals This Week", time: "Yesterday", history: [
+    { id: 201, role: "user" as const, content: "Find coupons for electronics", time: "Yesterday" },
+    { id: 202, role: "assistant" as const, content: "I found **3 active coupons** for electronics right now! 🎫\n\n• **HDFC10** — 10% off up to ₹1,500\n• **SUPER2000** — Flat ₹2,000 off\n\nUse SUPER2000 + HDFC10 to save up to ₹3,500!", time: "Yesterday" }
+  ]},
+  { id: 3, title: "Smartphone Comparison", time: "28 May", history: [
+    { id: 301, role: "user" as const, content: "Compare iPhone 15 vs Samsung S24", time: "28 May" },
+    { id: 302, role: "assistant" as const, content: "Comparing **iPhone 15** vs **Samsung Galaxy S24 Ultra**: 📱\n\n**AI Pick:** For photography, Samsung wins. For ecosystem & longevity, iPhone is the better investment.", time: "28 May" }
+  ]},
 ];
 
 const getResponse = (msg: string): string => {
@@ -39,13 +48,13 @@ const getResponse = (msg: string): string => {
 };
 
 export default function AIAssistant() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1, role: "assistant",
-      content: "Hi Aryan! 👋 I'm your ShopIntel AI shopping assistant. I can help you find the best deals, predict price drops, compare products across stores, and find working coupons. What would you like to know today?",
-      time: "Just now",
-    },
-  ]);
+  const initialMessage: Message = {
+    id: 1, role: "assistant",
+    content: "Hi Aryan! 👋 I'm your ShopIntel AI shopping assistant. I can help you find the best deals, predict price drops, compare products across stores, and find working coupons. What would you like to know today?",
+    time: "Just now",
+  };
+
+  const [messages, setMessages] = useState<Message[]>([initialMessage]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEnd = useRef<HTMLDivElement>(null);
@@ -73,6 +82,19 @@ export default function AIAssistant() {
     }, 1200);
   };
 
+  const handleNewChat = () => {
+    setMessages([initialMessage]);
+    setInput("");
+  };
+
+  const loadConversation = (id: number) => {
+    const convo = conversations.find(c => c.id === id);
+    if (convo) {
+      setMessages(convo.history);
+      setInput("");
+    }
+  };
+
   return (
     <PageTransition>
       <PageHeader
@@ -92,6 +114,7 @@ export default function AIAssistant() {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
+            onClick={handleNewChat}
             style={{
               width: "100%", display: "flex", alignItems: "center", gap: 7, padding: "8px 12px",
               borderRadius: 10, background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
@@ -109,6 +132,7 @@ export default function AIAssistant() {
           {conversations.map((c) => (
             <div
               key={c.id}
+              onClick={() => loadConversation(c.id)}
               style={{
                 padding: "9px 10px", borderRadius: 9, cursor: "pointer",
                 marginBottom: 4, transition: "background 0.15s",

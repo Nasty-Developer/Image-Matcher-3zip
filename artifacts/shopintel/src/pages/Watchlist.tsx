@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Trash2, TrendingDown, Eye, Star, Bookmark } from "lucide-react";
+import { useLocation } from "wouter";
 import PageTransition from "../components/PageTransition";
 import PageHeader from "../components/PageHeader";
 import { SkeletonCard } from "../components/SkeletonLoader";
@@ -27,6 +28,7 @@ const initialItems = [
 ];
 
 export default function Watchlist() {
+  const [, navigate] = useLocation();
   const [items, setItems] = useState(initialItems);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -190,6 +192,7 @@ export default function Watchlist() {
                       <motion.button
                         whileHover={{ scale: 1.08 }}
                         whileTap={{ scale: 0.94 }}
+                        onClick={() => navigate(`/product/${item.id}`)}
                         style={{
                           width: 34, height: 34, borderRadius: 10,
                           background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.25)",

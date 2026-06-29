@@ -62,11 +62,17 @@ const statusConfig = {
 export default function StockTracker() {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(t);
   }, []);
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    setTimeout(() => setIsRefreshing(false), 1200);
+  };
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase())
@@ -83,18 +89,25 @@ export default function StockTracker() {
         subtitle="Monitor product availability across stores in real-time"
         icon={PackageSearch}
         actions={
-          <motion.button
-            whileHover={{ rotate: 180 }}
-            transition={{ duration: 0.4 }}
-            style={{
-              width: 36, height: 36, borderRadius: 10,
-              background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              cursor: "pointer",
-            }}
-          >
-            <RefreshCw size={14} style={{ color: "#9D6CFF" }} />
-          </motion.button>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {isRefreshing && (
+              <span style={{ fontSize: 11.5, color: "#9D6CFF" }}>Refreshing...</span>
+            )}
+            <motion.button
+              whileHover={{ rotate: 180 }}
+              animate={{ rotate: isRefreshing ? 360 : 0 }}
+              transition={{ duration: 0.4 }}
+              onClick={handleRefresh}
+              style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                cursor: "pointer",
+              }}
+            >
+              <RefreshCw size={14} style={{ color: "#9D6CFF" }} />
+            </motion.button>
+          </div>
         }
       />
 
@@ -146,7 +159,7 @@ export default function StockTracker() {
 
       {/* Product stock cards */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {isLoading ? (
+        {isLoading || isRefreshing ? (
           <>
             <SkeletonCard height={90} />
             <SkeletonCard height={90} />

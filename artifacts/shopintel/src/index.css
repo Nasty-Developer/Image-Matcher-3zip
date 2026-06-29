@@ -295,3 +295,41 @@ input::placeholder {
   100% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0); }
 }
 
+.light-mode {
+  --bg-main: #f0f2f8;
+  --bg-card: #ffffff;
+  --text-primary: #0d0f1e;
+  --text-secondary: #5A5D75;
+}
+.light-mode body {
+  background-color: #f0f2f8;
+  color: #0d0f1e;
+}
+.light-mode .app-shell {
+  background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(124,77,255,0.05) 0%, transparent 60%), 
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30,60,200,0.03) 0%, transparent 60%),
+              #f0f2f8 !important;
+}
+.light-mode .glass,
+.light-mode [style*="rgba(11,15,30"],
+.light-mode [style*="rgba(13,18,34"] {
+  background: rgba(255,255,255,0.9) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  color: #0d0f1e;
+}
+.light-mode [style*="color: white"],
+.light-mode [style*='color: "white"'],
+.light-mode .text-white {
+  color: #0d0f1e !important;
+}
+.light-mode [style*="color: #B7B9C9"],
+.light-mode [style*='color: "#B7B9C9"'],
+.light-mode [style*="color: #8385A0"],
+.light-mode [style*='color: "#8385A0"'] {
+  color: #5A5D75 !important;
+}
+.light-mode [style*="background: #060913"],
+.light-mode [style*='background: "#060913"'] {
+  background: #f0f2f8 !important;
+}
+

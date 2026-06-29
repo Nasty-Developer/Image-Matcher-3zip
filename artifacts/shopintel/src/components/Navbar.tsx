@@ -2,16 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Settings, Star, Bell, ChevronDown, User, LogOut, HelpCircle } from "lucide-react";
 import { useLocation } from "wouter";
+import { useAuth } from "../context/AuthContext";
 
 interface NavbarProps {
   onOpenSearch: () => void;
+  onOpenAuth: () => void;
 }
 
-export default function Navbar({ onOpenSearch }: NavbarProps) {
-  const [query, setQuery] = useState("");
+export default function Navbar({ onOpenSearch, onOpenAuth }: NavbarProps) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [, navigate] = useLocation();
   const profileRef = useRef<HTMLDivElement>(null);
+  const { user, isGuest, signOut } = useAuth();
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -65,7 +67,7 @@ export default function Navbar({ onOpenSearch }: NavbarProps) {
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}
-        onClick={() => navigate("/watchlist")}
+        onClick={() => isGuest ? onOpenAuth() : navigate("/watchlist")}
         className="flex items-center gap-1.5 px-3 flex-shrink-0 rounded-xl"
         style={{
           background: "rgba(15,20,40,0.8)",
@@ -102,48 +104,68 @@ export default function Navbar({ onOpenSearch }: NavbarProps) {
         />
       </motion.button>
 
-      {/* Profile dropdown */}
+      {/* Profile dropdown / Sign In */}
       <div style={{ position: "relative" }} ref={profileRef}>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => setProfileOpen(!profileOpen)}
-        >
-          <div
-            className="rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+        {isGuest ? (
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => navigate("/signin")}
+            className="flex items-center gap-1.5 px-4 rounded-xl"
             style={{
-              width: 34, height: 34,
               background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-              border: "2px solid rgba(124,77,255,0.5)",
+              border: "none",
+              height: 38,
               fontSize: 13,
+              fontWeight: 600,
+              color: "white",
+              cursor: "pointer",
             }}
           >
-            A
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-white font-medium" style={{ fontSize: 13 }}>Hi, Aryan</span>
-            <span
-              className="text-white font-bold"
+            Sign In
+          </motion.button>
+        ) : (
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setProfileOpen(!profileOpen)}
+          >
+            <div
+              className="rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
               style={{
+                width: 34, height: 34,
                 background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-                padding: "2px 7px", borderRadius: 6, fontSize: 10,
+                border: "2px solid rgba(124,77,255,0.5)",
+                fontSize: 13,
               }}
             >
-              Pro
-            </span>
-          </div>
-          <ChevronDown
-            size={14}
-            style={{
-              color: "#5A5D75",
-              transform: profileOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.2s",
-            }}
-          />
-        </motion.div>
+              {user?.avatar || "A"}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-white font-medium" style={{ fontSize: 13 }}>Hi, {user?.name.split(' ')[0] || "User"}</span>
+              <span
+                className="text-white font-bold"
+                style={{
+                  background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
+                  padding: "2px 7px", borderRadius: 6, fontSize: 10,
+                }}
+              >
+                Pro
+              </span>
+            </div>
+            <ChevronDown
+              size={14}
+              style={{
+                color: "#5A5D75",
+                transform: profileOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 0.2s",
+              }}
+            />
+          </motion.div>
+        )}
 
         <AnimatePresence>
-          {profileOpen && (
+          {profileOpen && !isGuest && (
             <motion.div
               initial={{ opacity: 0, y: -6, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -162,38 +184,77 @@ export default function Navbar({ onOpenSearch }: NavbarProps) {
               }}
             >
               <div style={{ padding: "12px 14px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                <div style={{ fontWeight: 600, color: "white", fontSize: 13 }}>Aryan Sharma</div>
-                <div style={{ fontSize: 11, color: "#5A5D75" }}>aryan@shopintel.ai</div>
+                <div style={{ fontWeight: 600, color: "white", fontSize: 13 }}>{user?.name}</div>
+                <div style={{ fontSize: 11, color: "#5A5D75" }}>{user?.email}</div>
               </div>
-              {[
-                { icon: User, label: "My Profile" },
-                { icon: Bell, label: "Notifications", action: () => navigate("/notifications") },
-                { icon: Settings, label: "Settings", action: () => navigate("/settings") },
-                { icon: HelpCircle, label: "Help & Support" },
-              ].map(({ icon: Icon, label, action }) => (
-                <button
-                  key={label}
-                  onClick={() => { action?.(); setProfileOpen(false); }}
-                  className="w-full flex items-center gap-2.5 px-4 transition-colors"
-                  style={{
-                    padding: "9px 14px",
-                    color: "#B7B9C9",
-                    fontSize: 12.5,
-                    cursor: "pointer",
-                    background: "none",
-                    border: "none",
-                    width: "100%",
-                    textAlign: "left",
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.background = "rgba(124,77,255,0.1)")}
-                  onMouseLeave={e => (e.currentTarget.style.background = "none")}
-                >
-                  <Icon size={14} style={{ color: "#7B7E9A" }} />
-                  {label}
-                </button>
-              ))}
+              
+              <button
+                onClick={() => { navigate("/settings"); setProfileOpen(false); }}
+                className="w-full flex items-center gap-2.5 px-4 transition-colors"
+                style={{
+                  padding: "9px 14px", color: "#B7B9C9", fontSize: 12.5,
+                  cursor: "pointer", background: "none", border: "none",
+                  width: "100%", textAlign: "left",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(124,77,255,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "none")}
+              >
+                <User size={14} style={{ color: "#7B7E9A" }} />
+                My Profile
+              </button>
+
+              <button
+                onClick={() => { navigate("/notifications"); setProfileOpen(false); }}
+                className="w-full flex items-center gap-2.5 px-4 transition-colors"
+                style={{
+                  padding: "9px 14px", color: "#B7B9C9", fontSize: 12.5,
+                  cursor: "pointer", background: "none", border: "none",
+                  width: "100%", textAlign: "left",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(124,77,255,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "none")}
+              >
+                <Bell size={14} style={{ color: "#7B7E9A" }} />
+                Notifications
+              </button>
+
+              <button
+                onClick={() => { navigate("/settings"); setProfileOpen(false); }}
+                className="w-full flex items-center gap-2.5 px-4 transition-colors"
+                style={{
+                  padding: "9px 14px", color: "#B7B9C9", fontSize: 12.5,
+                  cursor: "pointer", background: "none", border: "none",
+                  width: "100%", textAlign: "left",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(124,77,255,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "none")}
+              >
+                <Settings size={14} style={{ color: "#7B7E9A" }} />
+                Settings
+              </button>
+
+              <button
+                className="w-full flex items-center gap-2.5 px-4 group relative"
+                style={{
+                  padding: "9px 14px", color: "#8385A0", fontSize: 12.5,
+                  cursor: "not-allowed", background: "none", border: "none",
+                  width: "100%", textAlign: "left", opacity: 0.6
+                }}
+              >
+                <HelpCircle size={14} style={{ color: "#7B7E9A" }} />
+                Help & Support
+                <div className="absolute right-4 bg-[#7C4DFF] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                  Soon
+                </div>
+              </button>
+
               <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
                 <button
+                  onClick={() => {
+                    signOut();
+                    setProfileOpen(false);
+                    navigate("/signin");
+                  }}
                   className="w-full flex items-center gap-2.5"
                   style={{
                     padding: "9px 14px",

@@ -4,6 +4,8 @@ import { AnimatePresence } from "framer-motion";
 import AppLayout from "./layouts/AppLayout";
 import "./index.css";
 import { SkeletonCard } from "./components/SkeletonLoader";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const PriceCompare = React.lazy(() => import("./pages/PriceCompare"));
@@ -15,6 +17,10 @@ const AIAssistant = React.lazy(() => import("./pages/AIAssistant"));
 const Notifications = React.lazy(() => import("./pages/Notifications"));
 const Settings = React.lazy(() => import("./pages/Settings"));
 const ProductDetails = React.lazy(() => import("./pages/ProductDetails"));
+
+const SignIn = React.lazy(() => import("./pages/SignIn"));
+const SignUp = React.lazy(() => import("./pages/SignUp"));
+const ForgotPassword = React.lazy(() => import("./pages/ForgotPassword"));
 
 function Fallback() {
   return (
@@ -28,24 +34,36 @@ function Fallback() {
 
 export default function App() {
   return (
-    <AppLayout>
-      <Suspense fallback={<Fallback />}>
-        <AnimatePresence mode="wait">
+    <ThemeProvider>
+      <AuthProvider>
+        <Suspense fallback={<Fallback />}>
           <Switch>
-            <Route path="/" component={Dashboard} />
-            <Route path="/price-compare" component={PriceCompare} />
-            <Route path="/price-history" component={PriceHistory} />
-            <Route path="/stock-tracker" component={StockTracker} />
-            <Route path="/coupons" component={Coupons} />
-            <Route path="/watchlist" component={Watchlist} />
-            <Route path="/ai-assistant" component={AIAssistant} />
-            <Route path="/notifications" component={Notifications} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/product/:id" component={ProductDetails} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+            
+            <Route>
+              <AppLayout>
+                <AnimatePresence mode="wait">
+                  <Switch>
+                    <Route path="/" component={Dashboard} />
+                    <Route path="/price-compare" component={PriceCompare} />
+                    <Route path="/price-history" component={PriceHistory} />
+                    <Route path="/stock-tracker" component={StockTracker} />
+                    <Route path="/coupons" component={Coupons} />
+                    <Route path="/watchlist" component={Watchlist} />
+                    <Route path="/ai-assistant" component={AIAssistant} />
+                    <Route path="/notifications" component={Notifications} />
+                    <Route path="/settings" component={Settings} />
+                    <Route path="/product/:id" component={ProductDetails} />
+                  </Switch>
+                </AnimatePresence>
+              </AppLayout>
+            </Route>
           </Switch>
-        </AnimatePresence>
-      </Suspense>
-    </AppLayout>
+        </Suspense>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

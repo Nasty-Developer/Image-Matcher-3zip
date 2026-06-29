@@ -3,13 +3,17 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import FloatingActions from "../components/FloatingActions";
 import CommandPalette from "../components/CommandPalette";
+import AuthModal from "../components/AuthModal";
+import { useTheme } from "../context/ThemeContext";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   const [cmdOpen, setCmdOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const { theme } = useTheme();
 
   return (
     <div
-      className="min-h-screen flex"
+      className={`min-h-screen flex app-shell ${theme === 'light' ? 'light-mode' : ''}`}
       style={{
         fontFamily: "'Inter', sans-serif",
         background:
@@ -18,9 +22,10 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       }}
     >
       <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
+      <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} feature="create watchlists" />
       <Sidebar />
       <div className="flex flex-col min-w-0" style={{ marginLeft: 200, flex: 1 }}>
-        <Navbar onOpenSearch={() => setCmdOpen(true)} />
+        <Navbar onOpenSearch={() => setCmdOpen(true)} onOpenAuth={() => setAuthModalOpen(true)} />
         <main
           className="flex-1 overflow-auto"
           style={{ padding: "12px 14px 12px 14px" }}
@@ -28,7 +33,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
       </div>
-      <FloatingActions onOpenSearch={() => setCmdOpen(true)} />
+      <FloatingActions onOpenSearch={() => setCmdOpen(true)} onOpenAuth={() => setAuthModalOpen(true)} />
     </div>
   );
 }

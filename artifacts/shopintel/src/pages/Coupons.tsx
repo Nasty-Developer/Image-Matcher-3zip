@@ -19,6 +19,7 @@ export default function Coupons() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [copied, setCopied] = useState<string | null>(null);
+  const [openingStore, setOpeningStore] = useState<string | null>(null);
 
   const filtered = coupons.filter((c) => {
     const matchSearch = c.code.toLowerCase().includes(search.toLowerCase()) ||
@@ -31,6 +32,22 @@ export default function Coupons() {
     navigator.clipboard.writeText(code);
     setCopied(code);
     setTimeout(() => setCopied(null), 2000);
+  };
+
+  const handleApply = (coupon: typeof coupons[0]) => {
+    setOpeningStore(coupon.code);
+    
+    setTimeout(() => {
+      setOpeningStore(null);
+      let url = "https://google.com";
+      const storeLower = coupon.store.toLowerCase();
+      
+      if (storeLower.includes("amazon")) url = "https://amazon.in";
+      else if (storeLower.includes("flipkart")) url = "https://flipkart.com";
+      else if (storeLower.includes("croma")) url = "https://croma.com";
+      
+      window.open(url, "_blank");
+    }, 1000);
   };
 
   return (
@@ -175,14 +192,25 @@ export default function Coupons() {
                 <motion.button
                   whileHover={{ scale: 1.02, boxShadow: "0 0 14px rgba(124,77,255,0.4)" }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={() => handleApply(coupon)}
+                  disabled={openingStore === coupon.code}
                   style={{
                     flex: 1, padding: "8px 0", borderRadius: 9,
                     background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
                     color: "white", fontSize: 12, fontWeight: 600,
-                    border: "none", cursor: "pointer",
+                    border: "none", cursor: openingStore === coupon.code ? "not-allowed" : "pointer",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                    opacity: openingStore === coupon.code ? 0.8 : 1
                   }}
                 >
-                  Apply Now
+                  {openingStore === coupon.code ? (
+                    <>
+                      <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Opening...
+                    </>
+                  ) : (
+                    "Apply Now"
+                  )}
                 </motion.button>
               </div>
             </div>
