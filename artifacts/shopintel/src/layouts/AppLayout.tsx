@@ -14,7 +14,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       }}
     >
       <Sidebar />
-      <div className="flex flex-col min-w-0" style={{ marginLeft: 165, flex: 1 }}>
+      <div className="flex flex-col min-w-0" style={{ marginLeft: 200, flex: 1 }}>
         <Navbar />
         <main
           className="flex-1 overflow-auto"

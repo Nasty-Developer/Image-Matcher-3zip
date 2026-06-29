@@ -1,0 +1,137 @@
+The sidebar still does not match the premium quality of the reference image.
+
+DO NOT redesign it.
+
+Keep the same layout but refine every detail until it looks like a world-class SaaS dashboard.
+
+==========================
+SIDEBAR IMPROVEMENTS
+==========================
+
+Increase the sidebar width slightly so the content has more breathing room.
+
+Improve spacing between every navigation item.
+
+Align every icon and text perfectly on the same baseline.
+
+Increase left and right padding.
+
+Use consistent vertical spacing.
+
+Navigation items should have the same height.
+
+Icons should have identical sizing.
+
+Text should use the same font weight throughout.
+
+The active Dashboard item should have:
+
+• Premium purple gradient background
+• Soft glass effect
+• Inner glow
+• Outer glow
+• Smooth rounded corners (16-18px)
+• Soft border
+• Smooth hover transition
+
+Inactive items should have:
+
+• Transparent background
+• White text
+• Subtle hover glow
+• Slight lift animation
+
+Sidebar should remain sticky while scrolling.
+
+The ShopIntel AI logo must stay fixed at the top.
+
+The Upgrade to Pro card must always stay pinned to the bottom of the sidebar.
+
+Add more breathing room above and below the Upgrade card.
+
+Improve the Upgrade button:
+
+• Better purple gradient
+• Hover glow
+• Scale animation
+• Premium shadow
+
+The sidebar itself should have:
+
+• Glassmorphism
+• Dark navy background
+• Soft border
+• Ambient purple lighting
+• Very subtle blue glow
+• Depth using layered shadows
+
+==========================
+MICRO INTERACTIONS
+==========================
+
+Every menu item should animate smoothly.
+
+Hover:
+
+• Background fades in
+• Icon slightly scales
+• Text color brightens
+• Cursor pointer
+
+Click:
+
+• Smooth transition
+
+==========================
+NAVIGATION
+==========================
+
+Every sidebar item must work.
+
+Dashboard
+
+Price Compare
+
+Price History
+
+Stock Tracker
+
+Coupons
+
+Watchlist
+
+AI Assistant
+
+Notifications
+
+Settings
+
+Each item should navigate using React Router without page reload.
+
+The active page must always highlight correctly.
+
+==========================
+RESPONSIVE
+==========================
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+The sidebar should collapse beautifully on smaller screens.
+
+==========================
+IMPORTANT
+==========================
+
+Do NOT change the visual design.
+
+Do NOT redesign.
+
+Only polish the sidebar until it looks almost identical to the uploaded reference.
+
+Think like a senior UI engineer recreating a premium Figma design pixel by pixel.
