@@ -1,8 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import FloatingActions from "../components/FloatingActions";
+import CommandPalette from "../components/CommandPalette";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
+  const [cmdOpen, setCmdOpen] = useState(false);
+
   return (
     <div
       className="min-h-screen flex"
@@ -13,9 +17,10 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         minHeight: "100vh",
       }}
     >
+      <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
       <Sidebar />
       <div className="flex flex-col min-w-0" style={{ marginLeft: 200, flex: 1 }}>
-        <Navbar />
+        <Navbar onOpenSearch={() => setCmdOpen(true)} />
         <main
           className="flex-1 overflow-auto"
           style={{ padding: "12px 14px 12px 14px" }}
@@ -23,6 +28,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
       </div>
+      <FloatingActions onOpenSearch={() => setCmdOpen(true)} />
     </div>
   );
 }
+

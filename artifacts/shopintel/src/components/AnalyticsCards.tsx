@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { TrendingDown, Bell, Package, Truck } from "lucide-react";
+import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 
 export default function AnalyticsCards() {
+  const avgPrice = useAnimatedCounter(90474, 1500);
+  const lowestPrice = useAnimatedCounter(87990, 1500);
+
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 10 }}>
       {/* Average Price */}
@@ -10,7 +14,7 @@ export default function AnalyticsCards() {
           <TrendingDown size={16} style={{ color: "#9D6CFF" }} />
         </div>
         <CardLabel>Average Price</CardLabel>
-        <CardValue>₹90,474</CardValue>
+        <CardValue>₹{avgPrice.toLocaleString()}</CardValue>
         <div style={{ fontSize: 11, color: "#37D67A" }}>▼ ₹1,750 (1.9%)</div>
         <div style={{ fontSize: 10.5, color: "#4A4D65" }}>vs last 30 days</div>
       </CardWrap>
@@ -21,9 +25,10 @@ export default function AnalyticsCards() {
           <span style={{ fontSize: 16, lineHeight: 1 }}>🏆</span>
         </div>
         <CardLabel>Lowest Price</CardLabel>
-        <CardValue>₹87,990</CardValue>
+        <CardValue>₹{lowestPrice.toLocaleString()}</CardValue>
         <div style={{ fontSize: 11, color: "#B7B9C9" }}>Flipkart</div>
       </CardWrap>
+
 
       {/* Price Drop Alert */}
       <CardWrap delay={0.10}>

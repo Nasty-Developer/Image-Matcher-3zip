@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Search, Package, RefreshCw, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, PackageSearch, RefreshCw, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
+import { SkeletonCard } from "../components/SkeletonLoader";
 
 const products = [
   {
@@ -59,6 +61,12 @@ const statusConfig = {
 
 export default function StockTracker() {
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(t);
+  }, []);
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase())
@@ -70,26 +78,25 @@ export default function StockTracker() {
 
   return (
     <PageTransition>
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Stock Tracker</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            Real-time stock availability across all major stores
-          </p>
-        </div>
-        <motion.button
-          whileHover={{ rotate: 180 }}
-          transition={{ duration: 0.4 }}
-          style={{
-            width: 36, height: 36, borderRadius: 10,
-            background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            cursor: "pointer",
-          }}
-        >
-          <RefreshCw size={14} style={{ color: "#9D6CFF" }} />
-        </motion.button>
-      </div>
+      <PageHeader
+        title="Stock Tracker"
+        subtitle="Monitor product availability across stores in real-time"
+        icon={PackageSearch}
+        actions={
+          <motion.button
+            whileHover={{ rotate: 180 }}
+            transition={{ duration: 0.4 }}
+            style={{
+              width: 36, height: 36, borderRadius: 10,
+              background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer",
+            }}
+          >
+            <RefreshCw size={14} style={{ color: "#9D6CFF" }} />
+          </motion.button>
+        }
+      />
 
       {/* Summary cards */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 14 }}>
@@ -139,18 +146,39 @@ export default function StockTracker() {
 
       {/* Product stock cards */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {filtered.map((product, pi) => (
+        {isLoading ? (
+          <>
+            <SkeletonCard height={90} />
+            <SkeletonCard height={90} />
+            <SkeletonCard height={90} />
+          </>
+        ) : filtered.length === 0 ? (
           <motion.div
-            key={product.sku}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: pi * 0.07 }}
-            style={{
-              borderRadius: 14, background: "rgba(11,15,30,0.92)",
-              border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden",
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-20 bg-[#0b0f1e]/90 rounded-2xl border border-white/5"
           >
-            {/* Header */}
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+              <PackageSearch size={28} className="text-[#5A5D75]" />
+            </div>
+            <h3 className="text-[16px] font-bold text-white mb-2">No products found</h3>
+            <p className="text-[13px] text-[#7B7E9A] max-w-[280px] text-center">
+              We couldn't find any products matching your search. Try a different term.
+            </p>
+          </motion.div>
+        ) : (
+          filtered.map((product, pi) => (
+            <motion.div
+              key={product.sku}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: pi * 0.07 }}
+              style={{
+                borderRadius: 14, background: "rgba(11,15,30,0.92)",
+                border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden",
+              }}
+            >
+              {/* Header */}
             <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               <div style={{ width: 42, height: 42, borderRadius: 11, fontSize: 20, background: "rgba(124,77,255,0.08)", border: "1px solid rgba(124,77,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {product.image}
@@ -201,7 +229,7 @@ export default function StockTracker() {
               })}
             </div>
           </motion.div>
-        ))}
+        )))}
       </div>
     </PageTransition>
   );

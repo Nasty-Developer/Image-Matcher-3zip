@@ -203,7 +203,8 @@ export default function ProductCard() {
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: "0 0 12px rgba(124,77,255,0.5)" }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => { e.stopPropagation(); }}
+                  className="ripple"
                   style={{
                     background: "linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%)",
                     padding: "6px 0", borderRadius: 8, color: "white", fontSize: 11, fontWeight: 600,
@@ -212,6 +213,7 @@ export default function ProductCard() {
                 >
                   View Deal
                 </motion.button>
+
                 <motion.div
                   animate={{ rotate: isExpanded ? 180 : 0 }}
                   transition={{ duration: 0.2 }}

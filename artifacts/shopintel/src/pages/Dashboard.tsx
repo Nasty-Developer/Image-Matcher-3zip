@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
 import HeroSection from "../components/HeroSection";
 import AIRecommendationCard from "../components/AIRecommendationCard";
@@ -13,15 +14,27 @@ export default function Dashboard() {
       <div className="flex gap-3">
         {/* Center column */}
         <div className="flex flex-col gap-3 min-w-0" style={{ flex: 1 }}>
-          <HeroSection />
-          <ProductCard />
-          <AnalyticsCards />
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+            <HeroSection />
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <ProductCard />
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+            <AnalyticsCards />
+          </motion.div>
         </div>
         {/* Right column */}
         <div className="flex flex-col gap-3 flex-shrink-0" style={{ width: 262 }}>
-          <AIRecommendationCard />
-          <PriceHistoryCard />
-          <CouponCard />
+          <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
+            <AIRecommendationCard />
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
+            <PriceHistoryCard />
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+            <CouponCard />
+          </motion.div>
         </div>
       </div>
       <div className="mt-3">
@@ -30,3 +43,4 @@ export default function Dashboard() {
     </PageTransition>
   );
 }
+

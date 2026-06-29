@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Bot, Sparkles, Clock, Plus } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
 
 interface Message {
   id: number;
@@ -74,7 +75,12 @@ export default function AIAssistant() {
 
   return (
     <PageTransition>
-      <div style={{ display: "flex", gap: 12, height: "calc(100vh - 100px)" }}>
+      <PageHeader
+        title="AI Assistant"
+        subtitle="Your intelligent shopping companion powered by AI"
+        icon={Bot}
+      />
+      <div style={{ display: "flex", gap: 12, height: "calc(100vh - 170px)" }}>
         {/* Left: conversation history */}
         <div
           style={{

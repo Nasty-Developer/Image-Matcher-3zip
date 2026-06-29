@@ -3,7 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Settings, Star, Bell, ChevronDown, User, LogOut, HelpCircle } from "lucide-react";
 import { useLocation } from "wouter";
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenSearch: () => void;
+}
+
+export default function Navbar({ onOpenSearch }: NavbarProps) {
   const [query, setQuery] = useState("");
   const [profileOpen, setProfileOpen] = useState(false);
   const [, navigate] = useLocation();
@@ -19,11 +23,6 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (query.trim()) navigate("/price-compare");
-  };
-
   return (
     <header
       className="flex items-center gap-3 px-4 flex-shrink-0"
@@ -38,9 +37,10 @@ export default function Navbar() {
       }}
     >
       {/* Search */}
-      <form onSubmit={handleSearch} className="flex items-center gap-2.5 flex-1" style={{ maxWidth: 480 }}>
-        <div
-          className="flex items-center gap-2.5 flex-1 px-4"
+      <div className="flex items-center gap-2.5 flex-1" style={{ maxWidth: 480 }}>
+        <button
+          onClick={() => onOpenSearch()}
+          className="flex items-center justify-between flex-1 px-4 outline-none cursor-text"
           style={{
             background: "rgba(15,20,40,0.8)",
             border: "1px solid rgba(255,255,255,0.08)",
@@ -48,38 +48,15 @@ export default function Navbar() {
             height: 38,
           }}
         >
-          <Search size={14} style={{ color: "#5A5D75", flexShrink: 0 }} />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for any product..."
-            className="bg-transparent flex-1 outline-none"
-            style={{ fontSize: 13, color: "#B7B9C9" }}
-          />
-          {query && (
-            <button type="button" onClick={() => setQuery("")}
-              style={{ color: "#4A4D65", fontSize: 14, lineHeight: 1, cursor: "pointer", background: "none", border: "none" }}>
-              ✕
-            </button>
-          )}
-        </div>
-        <motion.button
-          type="submit"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
-          className="flex items-center justify-center rounded-xl flex-shrink-0"
-          style={{
-            width: 38, height: 38,
-            background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-            boxShadow: "0 0 14px rgba(124,77,255,0.4)",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          <Search size={16} className="text-white" />
-        </motion.button>
-      </form>
+          <div className="flex items-center gap-2.5">
+            <Search size={14} style={{ color: "#5A5D75", flexShrink: 0 }} />
+            <span style={{ fontSize: 13, color: "#B7B9C9" }}>Search for any product...</span>
+          </div>
+          <div className="text-[10px] font-bold text-[#5A5D75] bg-white/5 px-1.5 py-0.5 rounded border border-white/5 flex items-center gap-0.5">
+            <span>⌘</span>K
+          </div>
+        </button>
+      </div>
 
       {/* Divider */}
       <div style={{ width: 1, height: 22, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
@@ -103,6 +80,7 @@ export default function Navbar() {
         <Star size={13} style={{ color: "#9D6CFF" }} />
         Add to Watchlist
       </motion.button>
+
 
       {/* Divider */}
       <div style={{ width: 1, height: 22, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
@@ -249,3 +227,4 @@ export default function Navbar() {
     </header>
   );
 }
+

@@ -1,0 +1,114 @@
+Implement a production-ready authentication flow on the frontend without connecting a real backend yet.
+
+Do not redesign the UI.
+
+Keep the existing premium style.
+
+=================================
+AUTHENTICATION FLOW
+=================================
+
+Users should be able to browse the application as guests.
+
+Guest users should have access to:
+
+- Dashboard
+- Price Compare
+- Coupons
+- Price History
+- Product Search
+
+However, features that require saving personal data should require authentication.
+
+=================================
+RESTRICTED FEATURES
+=================================
+
+When a guest tries to:
+
+• Save to Watchlist
+• Track Price
+• Save Search
+• Enable Notifications
+• Favorite Products
+• View Personal History
+
+Show a beautiful authentication modal instead of performing the action.
+
+The modal should explain that signing in is required to save personal data across devices.
+
+=================================
+AUTH PAGES
+=================================
+
+Create professional pages for:
+
+- Sign In
+- Sign Up
+- Forgot Password
+
+Use modern SaaS styling consistent with the application.
+
+=================================
+PROFILE
+=================================
+
+When signed in (mock state for now):
+
+Show profile avatar.
+
+Profile dropdown.
+
+My Profile
+
+Saved Products
+
+History
+
+Settings
+
+Sign Out
+
+=================================
+MOCK AUTH
+=================================
+
+Do not connect to Firebase yet.
+
+Create a mock authentication state using React Context or Zustand.
+
+This should make it easy to replace with Firebase Authentication later.
+
+=================================
+PROTECTED ROUTES
+=================================
+
+Create protected routes for:
+
+Watchlist
+
+Saved Searches
+
+Notifications
+
+Profile
+
+Redirect guests to the Sign In modal when necessary.
+
+=================================
+FUTURE READY
+=================================
+
+Design the architecture so Firebase Authentication can be connected later with minimal code changes.
+
+Do not hardcode authentication logic into components.
+
+Use reusable hooks and context.
+
+=================================
+IMPORTANT
+=================================
+
+The goal is not real authentication yet.
+
+The goal is to create a professional authentication experience and architecture that is ready for backend integration.

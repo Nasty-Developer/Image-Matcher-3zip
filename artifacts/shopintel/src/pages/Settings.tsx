@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Moon, Bell, Globe, Shield, User, CreditCard, Trash2, ChevronRight,
+  Moon, Bell, Globe, Shield, User, CreditCard, Trash2, ChevronRight, Settings as SettingsIcon
 } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
 
 function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
   return (
@@ -86,14 +87,11 @@ export default function Settings() {
 
   return (
     <PageTransition>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Settings</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            Manage your account preferences and notification settings
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title="Settings"
+        subtitle="Manage your account preferences and configurations"
+        icon={SettingsIcon}
+      />
 
       <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
         <div style={{ flex: 1 }}>

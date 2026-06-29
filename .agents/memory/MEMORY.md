@@ -1,0 +1,1 @@
+- [ShopIntel singleton state pattern](shopintel-singleton-state.md) — global overlays (CommandPalette) must live in AppLayout only; pass callbacks down to Navbar/FloatingActions, never re-mount independently.

@@ -1,0 +1,371 @@
+We are entering the FINAL FRONTEND POLISH phase before backend integration.
+
+The UI is already built.
+
+DO NOT redesign the application.
+
+DO NOT replace the existing layout.
+
+DO NOT change the premium dark visual identity.
+
+Instead, transform the current frontend into a production-quality SaaS application that feels like it was designed by a senior product design team.
+
+=================================================
+GOAL
+=================================================
+
+The application should no longer feel like a demo.
+
+It should feel like a real startup product that users would trust immediately.
+
+Every interaction should feel intentional.
+
+Every page should feel complete.
+
+Every component should feel reusable.
+
+Every animation should feel polished.
+
+=================================================
+APPLICATION ARCHITECTURE
+=================================================
+
+Review the entire codebase.
+
+Improve organization.
+
+Refactor repeated code into reusable components.
+
+Keep everything scalable.
+
+Make it easy to add future modules.
+
+Use clean folder architecture.
+
+Separate:
+
+Components
+
+Layouts
+
+Pages
+
+Config
+
+Hooks
+
+Services
+
+Types
+
+Utilities
+
+Animations
+
+=================================================
+SIDEBAR
+=================================================
+
+Keep the design.
+
+Improve polish.
+
+Use a configuration-driven sidebar.
+
+Support unlimited future modules.
+
+Create expandable groups.
+
+Main
+
+AI Tools
+
+Product Tools
+
+User
+
+More
+
+Each section should support collapse/expand.
+
+Each menu item should support:
+
+icon
+
+label
+
+badge
+
+notification count
+
+future nested routes
+
+Add beautiful hover animations.
+
+Active item should have premium glow.
+
+Sticky sidebar.
+
+Smooth transitions.
+
+=================================================
+GLOBAL SEARCH
+=================================================
+
+Upgrade the search experience.
+
+Add:
+
+Recent searches
+
+Popular searches
+
+Trending products
+
+Search suggestions
+
+Keyboard shortcut
+
+CTRL + K
+
+The UI should be ready for backend integration later.
+
+=================================================
+PAGES
+=================================================
+
+Review every page.
+
+Dashboard
+
+Price Compare
+
+Price History
+
+Stock Tracker
+
+Coupons
+
+Watchlist
+
+AI Assistant
+
+Notifications
+
+Settings
+
+Every page should feel complete.
+
+No page should feel empty.
+
+Create beautiful empty states.
+
+Create loading skeletons.
+
+Add professional page headers.
+
+Add descriptions.
+
+Add action buttons.
+
+=================================================
+PRODUCT DETAILS
+=================================================
+
+Prepare a dedicated Product Details page.
+
+Image gallery placeholder
+
+Price history section
+
+Specifications
+
+Coupons
+
+Reviews section placeholder
+
+Related products placeholder
+
+AI recommendation section placeholder
+
+Store comparison placeholder
+
+Do not implement backend yet.
+
+Only build the UI.
+
+=================================================
+COMPARE PAGE
+=================================================
+
+Allow future comparison of multiple products.
+
+Create reusable comparison layout.
+
+Support adding more comparison columns later.
+
+=================================================
+COMMAND PALETTE
+=================================================
+
+Create a beautiful command palette.
+
+Shortcut:
+
+CTRL + K
+
+Allow searching pages.
+
+Allow quick navigation.
+
+Future-ready for product search.
+
+=================================================
+QUICK ACTIONS
+=================================================
+
+Create floating quick actions.
+
+Compare Product
+
+Track Price
+
+Search Product
+
+Ask AI
+
+Create Watchlist
+
+=================================================
+MICRO INTERACTIONS
+=================================================
+
+Improve every interaction.
+
+Hover animations
+
+Button ripple
+
+Card lift
+
+Smooth transitions
+
+Animated counters
+
+Animated charts
+
+Animated progress bars
+
+Loading skeletons
+
+Success animations
+
+Empty state animations
+
+=================================================
+VISUAL POLISH
+=================================================
+
+Improve spacing consistency.
+
+Improve shadows.
+
+Improve gradients.
+
+Improve glassmorphism.
+
+Improve typography hierarchy.
+
+Improve icon alignment.
+
+Improve border radius consistency.
+
+Improve glow effects.
+
+Improve visual depth.
+
+Improve responsiveness.
+
+=================================================
+ACCESSIBILITY
+=================================================
+
+Proper focus states
+
+Keyboard navigation
+
+ARIA labels
+
+Accessible buttons
+
+Semantic HTML
+
+=================================================
+PERFORMANCE
+=================================================
+
+Lazy load pages.
+
+Code splitting.
+
+Memoize expensive components.
+
+Optimize rendering.
+
+Remove unused code.
+
+=================================================
+FUTURE READY
+=================================================
+
+Prepare reusable placeholders for future backend integration.
+
+Product API
+
+Authentication
+
+Watchlist
+
+Coupons
+
+AI
+
+Notifications
+
+Price History
+
+Search
+
+Do not connect them yet.
+
+Only prepare architecture.
+
+=================================================
+FINAL REVIEW
+=================================================
+
+After completing all improvements, perform a full frontend audit.
+
+Look for:
+
+Visual inconsistencies
+
+Spacing issues
+
+Alignment issues
+
+Typography inconsistencies
+
+Component duplication
+
+Responsive bugs
+
+Animation glitches
+
+Accessibility issues
+
+Performance improvements
+
+Fix everything.
+
+The final result should feel like a polished premium SaaS product ready for backend integration and public launch.

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, SlidersHorizontal, ChevronDown, ArrowUpDown,
-  Star, TrendingDown, ExternalLink, Filter,
+  Star, TrendingDown, ExternalLink, Filter, BarChart2
 } from "lucide-react";
+import { useLocation } from "wouter";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
+import { SkeletonCard, SkeletonRow } from "../components/SkeletonLoader";
 
 const products = [
+
   {
     id: 1,
     name: "Apple MacBook Air M2",
@@ -62,6 +66,13 @@ export default function PriceCompare() {
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("Best Price");
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(t);
+  }, []);
 
   const filtered = products.filter((p) => {
     const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
@@ -71,39 +82,24 @@ export default function PriceCompare() {
 
   return (
     <PageTransition>
-      {/* Page header */}
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Price Compare</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            Compare prices across all major stores in real-time
-          </p>
-        </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button
-            style={{
-              display: "flex", alignItems: "center", gap: 6,
-              padding: "7px 14px", borderRadius: 10,
-              background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
-              color: "#9D6CFF", fontSize: 12.5, fontWeight: 500, cursor: "pointer",
-            }}
-          >
-            <Filter size={13} /> Filters
-          </button>
-          <button
-            style={{
-              display: "flex", alignItems: "center", gap: 6,
-              padding: "7px 14px", borderRadius: 10,
-              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
-              color: "#B7B9C9", fontSize: 12.5, fontWeight: 500, cursor: "pointer",
-            }}
-          >
-            <ArrowUpDown size={13} /> {sort} <ChevronDown size={12} />
-          </button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Price Compare" 
+        subtitle="Compare prices across 50+ stores in real-time" 
+        icon={BarChart2} 
+        actions={
+          <div className="flex gap-2">
+            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7C4DFF]/15 border border-[#7C4DFF]/30 text-[#9D6CFF] text-[12px] font-medium hover:bg-[#7C4DFF]/25 transition-colors">
+              <Filter size={13} /> Filters
+            </button>
+            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[#B7B9C9] text-[12px] font-medium hover:bg-white/10 transition-colors">
+              <ArrowUpDown size={13} /> {sort} <ChevronDown size={12} />
+            </button>
+          </div>
+        }
+      />
 
       {/* Search + category filters */}
+
       <div
         style={{
           borderRadius: 14, background: "rgba(11,15,30,0.92)",
@@ -147,57 +143,68 @@ export default function PriceCompare() {
 
       {/* Product cards */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {filtered.map((product, pi) => {
-          const bestPrice = Math.min(...product.stores.map((s) => s.price));
-          const isExpanded = expanded === product.id;
+        {isLoading ? (
+          <SkeletonRow count={4} height={78} />
+        ) : (
+          filtered.map((product, pi) => {
+            const bestPrice = Math.min(...product.stores.map((s) => s.price));
+            const isExpanded = expanded === product.id;
 
-          return (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: pi * 0.06 }}
-              style={{
-                borderRadius: 14, background: "rgba(11,15,30,0.92)",
-                border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden",
-              }}
-            >
-              {/* Header */}
-              <div
+            return (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: pi * 0.06 }}
                 style={{
-                  display: "flex", alignItems: "center", gap: 14,
-                  padding: "14px 16px", cursor: "pointer",
-                  borderBottom: isExpanded ? "1px solid rgba(255,255,255,0.05)" : "none",
+                  borderRadius: 14, background: "rgba(11,15,30,0.92)",
+                  border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden",
                 }}
-                onClick={() => setExpanded(isExpanded ? null : product.id)}
               >
+                {/* Header */}
                 <div
                   style={{
-                    width: 48, height: 48, borderRadius: 12, fontSize: 22,
-                    background: "rgba(124,77,255,0.08)", border: "1px solid rgba(124,77,255,0.15)",
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                    display: "flex", alignItems: "center", gap: 14,
+                    padding: "14px 16px", cursor: "pointer",
+                    borderBottom: isExpanded ? "1px solid rgba(255,255,255,0.05)" : "none",
                   }}
+                  onClick={() => setLocation(`/product/${product.id}`)}
                 >
-                  {product.image}
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, color: "white", fontSize: 14.5 }}>{product.name}</div>
-                  <div style={{ fontSize: 11.5, color: "#7B7E9A", marginTop: 2 }}>
-                    {product.category} · {product.stores.length} stores compared
+                  <div
+                    style={{
+                      width: 48, height: 48, borderRadius: 12, fontSize: 22,
+                      background: "rgba(124,77,255,0.08)", border: "1px solid rgba(124,77,255,0.15)",
+                      display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                    }}
+                  >
+                    {product.image}
                   </div>
-                </div>
-                <div style={{ textAlign: "right", flexShrink: 0 }}>
-                  <div style={{ fontSize: 11, color: "#7B7E9A" }}>Best Price</div>
-                  <div style={{ fontSize: 18, fontWeight: 900, color: "#37D67A" }}>
-                    ₹{bestPrice.toLocaleString()}
+                  <div style={{ flex: 1 }}>
+                    <div className="font-bold text-white text-[14.5px] hover:text-[#9D6CFF] transition-colors">{product.name}</div>
+                    <div style={{ fontSize: 11.5, color: "#7B7E9A", marginTop: 2 }}>
+                      {product.category} · {product.stores.length} stores compared
+                    </div>
                   </div>
+                  <div style={{ textAlign: "right", flexShrink: 0 }}>
+                    <div style={{ fontSize: 11, color: "#7B7E9A" }}>Best Price</div>
+                    <div style={{ fontSize: 18, fontWeight: 900, color: "#37D67A" }}>
+                      ₹{bestPrice.toLocaleString()}
+                    </div>
+                  </div>
+                  <motion.button 
+                    animate={{ rotate: isExpanded ? 180 : 0 }} 
+                    transition={{ duration: 0.2 }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpanded(isExpanded ? null : product.id);
+                    }}
+                    className="ml-2 w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors"
+                  >
+                    <ChevronDown size={16} style={{ color: "#5A5D75" }} />
+                  </motion.button>
                 </div>
-                <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                  <ChevronDown size={16} style={{ color: "#5A5D75" }} />
-                </motion.div>
-              </div>
 
-              {/* Expandable comparison table */}
+                {/* Expandable comparison table */}
               <AnimatePresence>
                 {isExpanded && (
                   <motion.div
@@ -280,7 +287,7 @@ export default function PriceCompare() {
               </AnimatePresence>
             </motion.div>
           );
-        })}
+        }))}
       </div>
     </PageTransition>
   );

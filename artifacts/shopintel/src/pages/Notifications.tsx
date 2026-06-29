@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bell, TrendingDown, Tag, Package, Sparkles, CheckCheck, Trash2 } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
 
 const allNotifications = [
   {
@@ -66,15 +67,12 @@ export default function Notifications() {
   return (
     <PageTransition>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Notifications</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            {unreadCount > 0 ? `${unreadCount} unread notification${unreadCount > 1 ? "s" : ""}` : "All caught up!"}
-          </p>
-        </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          {unreadCount > 0 && (
+      <PageHeader
+        title="Notifications"
+        subtitle={unreadCount > 0 ? `${unreadCount} unread notification${unreadCount > 1 ? "s" : ""}` : "Stay updated on price drops and stock alerts"}
+        icon={Bell}
+        actions={
+          unreadCount > 0 && (
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
@@ -88,9 +86,9 @@ export default function Notifications() {
             >
               <CheckCheck size={13} /> Mark all read
             </motion.button>
-          )}
-        </div>
-      </div>
+          )
+        }
+      />
 
       {/* Filter tabs */}
       <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>

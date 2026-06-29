@@ -219,3 +219,79 @@ input::placeholder {
 .recharts-tooltip-wrapper {
   outline: none;
 }
+
+/* Skeleton Loading */
+.skeleton-glass {
+  background: rgba(13, 18, 34, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Text Gradient for Page Headers */
+.page-header-gradient {
+  background: linear-gradient(to right, #ffffff, #D4C6FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Focus Visible for Accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(124, 77, 255, 0.6);
+  outline-offset: 2px;
+}
+
+/* Ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+.ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Floating button pulse */
+.floating-btn-pulse {
+  animation: floatingBtnPulse 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes floatingBtnPulse {
+  0% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(124, 77, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0); }
+}
+

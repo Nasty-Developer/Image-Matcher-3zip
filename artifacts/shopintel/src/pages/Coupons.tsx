@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, Ticket, Copy, CheckCheck, Tag } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
 
 const categories = ["All", "Credit Card", "UPI", "No Cost EMI", "Cashback", "Seasonal"];
 
@@ -34,17 +35,16 @@ export default function Coupons() {
 
   return (
     <PageTransition>
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Coupon Finder</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            Discover and apply the best coupons across all stores
-          </p>
-        </div>
-        <div style={{ fontSize: 12, color: "#9D6CFF", fontWeight: 600 }}>
-          {filtered.length} coupons available
-        </div>
-      </div>
+      <PageHeader
+        title="Coupons & Deals"
+        subtitle="Discover verified coupons and exclusive deals"
+        icon={Tag}
+        actions={
+          <div style={{ fontSize: 12, color: "#9D6CFF", fontWeight: 600 }}>
+            {filtered.length} coupons available
+          </div>
+        }
+      />
 
       {/* Search + filters */}
       <div

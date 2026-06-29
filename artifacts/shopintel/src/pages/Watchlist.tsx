@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Trash2, TrendingDown, Eye, Star } from "lucide-react";
+import { Heart, Trash2, TrendingDown, Eye, Star, Bookmark } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
+import { SkeletonCard } from "../components/SkeletonLoader";
 
 const initialItems = [
   {
@@ -26,33 +28,47 @@ const initialItems = [
 
 export default function Watchlist() {
   const [items, setItems] = useState(initialItems);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const remove = (id: number) => setItems((prev) => prev.filter((i) => i.id !== id));
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(t);
+  }, []);
+
+  const remove = (id: number) => {
+    // Add success animation logically if needed, UI will handle exit animation
+    setItems((prev) => prev.filter((i) => i.id !== id));
+  };
 
   return (
     <PageTransition>
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Watchlist</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            Track your saved products and get price drop alerts
-          </p>
-        </div>
-        <div
-          style={{
-            display: "flex", alignItems: "center", gap: 6,
-            padding: "6px 14px", borderRadius: 10,
-            background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.25)",
-          }}
-        >
-          <Heart size={13} style={{ color: "#9D6CFF" }} fill="#9D6CFF" />
-          <span style={{ fontSize: 12.5, fontWeight: 600, color: "#9D6CFF" }}>
-            {items.length} item{items.length !== 1 ? "s" : ""}
-          </span>
-        </div>
-      </div>
+      <PageHeader
+        title="My Watchlist"
+        subtitle="Track your saved products and price targets"
+        icon={Bookmark}
+        actions={
+          <div
+            style={{
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "6px 14px", borderRadius: 10,
+              background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.25)",
+            }}
+          >
+            <Heart size={13} style={{ color: "#9D6CFF" }} fill="#9D6CFF" />
+            <span style={{ fontSize: 12.5, fontWeight: 600, color: "#9D6CFF" }}>
+              {items.length} item{items.length !== 1 ? "s" : ""}
+            </span>
+          </div>
+        }
+      />
 
-      {items.length === 0 ? (
+      {isLoading ? (
+        <div className="flex flex-col gap-3">
+          <SkeletonCard height={120} />
+          <SkeletonCard height={120} />
+          <SkeletonCard height={120} />
+        </div>
+      ) : items.length === 0 ? (
         /* Empty state */
         <motion.div
           initial={{ opacity: 0 }}

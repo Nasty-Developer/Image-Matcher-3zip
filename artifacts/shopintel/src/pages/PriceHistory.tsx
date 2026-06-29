@@ -6,6 +6,7 @@ import {
   ResponsiveContainer, ReferenceLine,
 } from "recharts";
 import PageTransition from "../components/PageTransition";
+import PageHeader from "../components/PageHeader";
 
 const allData: Record<string, { date: string; amazon: number; flipkart: number; reliance: number }[]> = {
   "7D": [
@@ -70,14 +71,11 @@ export default function PriceHistory() {
 
   return (
     <PageTransition>
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: "white" }}>Price History</h1>
-          <p style={{ fontSize: 12.5, color: "#7B7E9A", marginTop: 2 }}>
-            Track price trends over time across all stores
-          </p>
-        </div>
-      </div>
+      <PageHeader 
+        title="Price History" 
+        subtitle="Track price movements and set smart alerts" 
+        icon={Clock} 
+      />
 
       <div className="flex gap-3">
         {/* Main chart */}
@@ -162,6 +160,10 @@ export default function PriceHistory() {
                   <Area type="monotone" dataKey="amazon" name="Amazon" stroke="#7C4DFF" strokeWidth={2} fill="url(#g1)" dot={false} activeDot={{ r: 4, fill: "#9D6CFF" }} />
                   <Area type="monotone" dataKey="flipkart" name="Flipkart" stroke="#37D67A" strokeWidth={2} fill="url(#g2)" dot={false} activeDot={{ r: 4, fill: "#37D67A" }} />
                   <Area type="monotone" dataKey="reliance" name="Reliance" stroke="#4EB5FF" strokeWidth={2} fill="url(#g3)" dot={false} activeDot={{ r: 4, fill: "#4EB5FF" }} />
+                  {/* Pulsing dot for latest data point (Amazon for example) */}
+                  <ReferenceLine x={data[data.length - 1].date} stroke="transparent">
+                    <circle cx="100%" cy="50%" r={4} fill="#7C4DFF" className="animate-ping" style={{ transformOrigin: "center" }} />
+                  </ReferenceLine>
                 </AreaChart>
               </ResponsiveContainer>
             </div>
