@@ -1,0 +1,132 @@
+The UI is now in a good state.
+
+Do not redesign anything.
+
+Instead, make the application more scalable for future updates.
+
+I want the sidebar to support expansion so I can easily add new modules later without changing the layout.
+
+Implement the following improvements:
+
+=========================
+EXPANDABLE SIDEBAR SECTIONS
+=========================
+
+Create collapsible groups inside the sidebar.
+
+Example:
+
+🏠 Main
+   • Dashboard
+   • Price Compare
+   • Price History
+
+🤖 AI Tools
+   • AI Assistant
+   • Smart Recommendations
+   • AI Deals (Future)
+
+📦 Product Tools
+   • Stock Tracker
+   • Coupons
+   • Watchlist
+
+👤 User
+   • Notifications
+   • Settings
+
+📁 More (Expandable)
+   • Placeholder 1
+   • Placeholder 2
+   • Placeholder 3
+   • + Add New Module
+
+The "More" section should be collapsible and expandable.
+
+I want to be able to add unlimited new sidebar links in the future without modifying the layout.
+
+=========================
+ADMIN READY
+=========================
+
+Create the sidebar using a configuration array instead of hardcoded menu items.
+
+Example:
+
+const sidebarItems = [
+  {
+    title: "Dashboard",
+    icon: ...,
+    path: "/"
+  }
+]
+
+The UI should automatically render new sidebar items when I add them to the configuration.
+
+=========================
+FUTURE READY
+=========================
+
+Reserve space for future modules like:
+
+Analytics
+
+Reports
+
+Saved Searches
+
+Deal Alerts
+
+Favorites
+
+Price Prediction
+
+Browser Extension
+
+Chrome Extension
+
+Mobile App
+
+Integrations
+
+API Keys
+
+Developer Tools
+
+Affiliate Earnings
+
+Feedback
+
+Help Center
+
+Roadmap
+
+=========================
+QUICK ACTIONS
+=========================
+
+Add a small Quick Actions panel at the bottom of the sidebar.
+
+Examples:
+
++ Add Product
+
++ Compare Products
+
++ New Watchlist
+
++ AI Search
+
+These can be placeholders for now.
+
+=========================
+KEEP THE DESIGN
+=========================
+
+Do not change the visual appearance.
+
+Keep the same premium dark theme.
+
+Keep the same spacing and colors.
+
+Only make the sidebar more modular, scalable, reusable, and future-proof.
