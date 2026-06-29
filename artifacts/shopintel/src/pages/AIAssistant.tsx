@@ -1,0 +1,292 @@
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, Bot, Sparkles, Clock, Plus } from "lucide-react";
+import PageTransition from "../components/PageTransition";
+
+interface Message {
+  id: number;
+  role: "user" | "assistant";
+  content: string;
+  time: string;
+}
+
+const suggestions = [
+  "What's the best time to buy MacBook Air M2?",
+  "Compare iPhone 15 vs Samsung S24",
+  "Find coupons for electronics",
+  "Predict price drop for Sony headphones",
+];
+
+const conversations = [
+  { id: 1, title: "MacBook Price Analysis", time: "Today, 2:30 PM" },
+  { id: 2, title: "Best Deals This Week", time: "Yesterday" },
+  { id: 3, title: "Smartphone Comparison", time: "28 May" },
+];
+
+const getResponse = (msg: string): string => {
+  const lower = msg.toLowerCase();
+  if (lower.includes("macbook") || lower.includes("mac")) {
+    return "Based on my analysis, the **Apple MacBook Air M2** is currently priced at ₹89,990 on Amazon. 📊\n\n**AI Recommendation:** Wait 3 days! Big Billion Days is approaching and the price is predicted to drop by ₹2,300–₹3,500.\n\n**Best deal right now:** Flipkart at ₹87,990 with ₹3,000 off via Axis Bank card.\n\nWould you like me to set a price alert at ₹86,000?";
+  }
+  if (lower.includes("coupon") || lower.includes("deal")) {
+    return "I found **3 active coupons** for electronics right now! 🎫\n\n• **HDFC10** — 10% off up to ₹1,500 on HDFC cards\n• **SUPER2000** — Flat ₹2,000 off on orders above ₹50,000\n• **UPIBACK5** — 5% cashback via UPI (max ₹500)\n\nThe best combo for a purchase above ₹90,000 would be SUPER2000 + HDFC10, saving you up to ₹3,500!";
+  }
+  if (lower.includes("iphone") || lower.includes("samsung") || lower.includes("compare")) {
+    return "Comparing **iPhone 15** vs **Samsung Galaxy S24 Ultra**: 📱\n\n| Feature | iPhone 15 | S24 Ultra |\n|---|---|---|\n| Price | ₹79,900 | ₹1,09,999 |\n| Camera | 48MP | 200MP |\n| Battery | 3,877mAh | 5,000mAh |\n\n**AI Pick:** For photography, Samsung wins. For ecosystem & longevity, iPhone is the better investment.\n\nWant me to track prices for both?";
+  }
+  return "Great question! 🤖 I'm analyzing real-time data across 5+ stores to give you the best recommendation.\n\nHere's what I found:\n• **Best price trend**: Prices are dropping 2–4% this week across major stores\n• **Recommended action**: It's a good time to buy electronics\n• **Top coupon**: Use SUPER2000 for ₹2,000 instant savings\n\nIs there a specific product you'd like me to analyze in detail?";
+};
+
+export default function AIAssistant() {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: 1, role: "assistant",
+      content: "Hi Aryan! 👋 I'm your ShopIntel AI shopping assistant. I can help you find the best deals, predict price drops, compare products across stores, and find working coupons. What would you like to know today?",
+      time: "Just now",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const messagesEnd = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEnd.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const send = (text?: string) => {
+    const content = text ?? input;
+    if (!content.trim()) return;
+    const userMsg: Message = { id: Date.now(), role: "user", content, time: "Just now" };
+    setMessages((prev) => [...prev, userMsg]);
+    setInput("");
+    setLoading(true);
+    setTimeout(() => {
+      const assistantMsg: Message = {
+        id: Date.now() + 1,
+        role: "assistant",
+        content: getResponse(content),
+        time: "Just now",
+      };
+      setMessages((prev) => [...prev, assistantMsg]);
+      setLoading(false);
+    }, 1200);
+  };
+
+  return (
+    <PageTransition>
+      <div style={{ display: "flex", gap: 12, height: "calc(100vh - 100px)" }}>
+        {/* Left: conversation history */}
+        <div
+          style={{
+            width: 220, flexShrink: 0, borderRadius: 14,
+            background: "rgba(11,15,30,0.92)", border: "1px solid rgba(255,255,255,0.07)",
+            display: "flex", flexDirection: "column", padding: "14px 12px",
+          }}
+        >
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              width: "100%", display: "flex", alignItems: "center", gap: 7, padding: "8px 12px",
+              borderRadius: 10, background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
+              color: "white", fontSize: 12.5, fontWeight: 600, cursor: "pointer",
+              border: "none", marginBottom: 14,
+            }}
+          >
+            <Plus size={13} /> New Chat
+          </motion.button>
+
+          <div style={{ fontSize: 10.5, color: "#4A4D65", fontWeight: 600, marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+            Recent
+          </div>
+
+          {conversations.map((c) => (
+            <div
+              key={c.id}
+              style={{
+                padding: "9px 10px", borderRadius: 9, cursor: "pointer",
+                marginBottom: 4, transition: "background 0.15s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
+              onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+            >
+              <div style={{ fontWeight: 500, color: "#B7B9C9", fontSize: 12, marginBottom: 2 }}>{c.title}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <Clock size={9} style={{ color: "#4A4D65" }} />
+                <span style={{ fontSize: 10, color: "#4A4D65" }}>{c.time}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Right: chat */}
+        <div
+          style={{
+            flex: 1, borderRadius: 14,
+            background: "rgba(11,15,30,0.92)", border: "1px solid rgba(255,255,255,0.07)",
+            display: "flex", flexDirection: "column",
+          }}
+        >
+          {/* Header */}
+          <div
+            style={{
+              padding: "14px 18px", borderBottom: "1px solid rgba(255,255,255,0.06)",
+              display: "flex", alignItems: "center", gap: 10,
+            }}
+          >
+            <div
+              style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: "linear-gradient(135deg, rgba(124,77,255,0.3), rgba(111,60,255,0.2))",
+                border: "1px solid rgba(124,77,255,0.4)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                boxShadow: "0 0 18px rgba(124,77,255,0.25)",
+              }}
+            >
+              <Bot size={18} style={{ color: "#9D6CFF" }} />
+            </div>
+            <div>
+              <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>ShopIntel AI</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#37D67A" }} />
+                <span style={{ fontSize: 11, color: "#37D67A" }}>Online · Ready to help</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div style={{ flex: 1, overflowY: "auto", padding: "16px 18px", display: "flex", flexDirection: "column", gap: 12 }}>
+            <AnimatePresence>
+              {messages.map((msg) => (
+                <motion.div
+                  key={msg.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  style={{
+                    display: "flex",
+                    flexDirection: msg.role === "user" ? "row-reverse" : "row",
+                    gap: 10, alignItems: "flex-start",
+                  }}
+                >
+                  {msg.role === "assistant" && (
+                    <div
+                      style={{
+                        width: 30, height: 30, borderRadius: 9, flexShrink: 0,
+                        background: "rgba(124,77,255,0.2)", border: "1px solid rgba(124,77,255,0.35)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                      }}
+                    >
+                      <Sparkles size={14} style={{ color: "#9D6CFF" }} />
+                    </div>
+                  )}
+                  <div style={{ maxWidth: "75%" }}>
+                    <div
+                      style={{
+                        padding: "10px 14px", borderRadius: msg.role === "user" ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
+                        background: msg.role === "user"
+                          ? "linear-gradient(135deg, #7C4DFF, #9D6CFF)"
+                          : "rgba(18,24,46,0.9)",
+                        border: msg.role === "assistant" ? "1px solid rgba(255,255,255,0.07)" : "none",
+                        fontSize: 13, color: "white", lineHeight: 1.65,
+                        whiteSpace: "pre-line",
+                      }}
+                    >
+                      {msg.content}
+                    </div>
+                    <div style={{ fontSize: 10, color: "#4A4D65", marginTop: 4, textAlign: msg.role === "user" ? "right" : "left" }}>
+                      {msg.time}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            {loading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{ display: "flex", gap: 10, alignItems: "flex-start" }}
+              >
+                <div style={{ width: 30, height: 30, borderRadius: 9, background: "rgba(124,77,255,0.2)", border: "1px solid rgba(124,77,255,0.35)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Sparkles size={14} style={{ color: "#9D6CFF" }} />
+                </div>
+                <div style={{ padding: "12px 16px", borderRadius: "14px 14px 14px 4px", background: "rgba(18,24,46,0.9)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", gap: 4 }}>
+                  {[0, 0.2, 0.4].map((d) => (
+                    <motion.div
+                      key={d}
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 0.6, delay: d, repeat: Infinity }}
+                      style={{ width: 7, height: 7, borderRadius: "50%", background: "#7C4DFF" }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+            <div ref={messagesEnd} />
+          </div>
+
+          {/* Suggestions */}
+          {messages.length === 1 && (
+            <div style={{ padding: "0 18px 10px", display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {suggestions.map((s) => (
+                <motion.button
+                  key={s}
+                  whileHover={{ scale: 1.02, borderColor: "rgba(124,77,255,0.5)" }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => send(s)}
+                  style={{
+                    padding: "6px 12px", borderRadius: 8, fontSize: 11.5,
+                    background: "rgba(124,77,255,0.1)", border: "1px solid rgba(124,77,255,0.2)",
+                    color: "#B7B9C9", cursor: "pointer", transition: "border-color 0.15s",
+                  }}
+                >
+                  {s}
+                </motion.button>
+              ))}
+            </div>
+          )}
+
+          {/* Input */}
+          <div
+            style={{
+              padding: "12px 14px",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+              display: "flex", gap: 8,
+            }}
+          >
+            <div
+              style={{
+                flex: 1, display: "flex", alignItems: "center", gap: 10,
+                background: "rgba(15,20,40,0.8)", border: "1px solid rgba(255,255,255,0.09)",
+                borderRadius: 11, padding: "0 14px",
+              }}
+            >
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()}
+                placeholder="Ask about prices, deals, recommendations..."
+                style={{ background: "transparent", outline: "none", flex: 1, fontSize: 13, color: "#B7B9C9", padding: "10px 0" }}
+              />
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.94 }}
+              onClick={() => send()}
+              disabled={loading || !input.trim()}
+              style={{
+                width: 42, height: 42, borderRadius: 11, flexShrink: 0,
+                background: input.trim() ? "linear-gradient(135deg, #7C4DFF, #9D6CFF)" : "rgba(255,255,255,0.06)",
+                border: "none", cursor: input.trim() ? "pointer" : "default",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                transition: "background 0.2s",
+              }}
+            >
+              <Send size={16} style={{ color: input.trim() ? "white" : "#4A4D65" }} />
+            </motion.button>
+          </div>
+        </div>
+      </div>
+    </PageTransition>
+  );
+}

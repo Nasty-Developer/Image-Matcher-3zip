@@ -1,0 +1,239 @@
+The UI is improving, but it still feels like a static demo.
+
+I want this to become a real production-quality SaaS frontend.
+
+DO NOT redesign the visual style.
+
+Keep the same dark premium theme.
+
+Now focus on functionality, navigation, layout polish, and user experience.
+
+=========================
+SIDEBAR
+=========================
+
+The sidebar needs improvement.
+
+• Fix its width and spacing.
+• Improve alignment of icons and labels.
+• Add proper active states.
+• Add hover animations.
+• Add smooth transitions.
+• Sidebar should remain sticky while scrolling.
+• Logo should stay fixed at the top.
+• Upgrade card should always stay at the bottom.
+• The sidebar should look identical to the reference.
+
+Every sidebar item must navigate to its own page.
+
+Create pages for:
+
+Dashboard
+
+Price Compare
+
+Price History
+
+Stock Tracker
+
+Coupons
+
+Watchlist
+
+AI Assistant
+
+Notifications
+
+Settings
+
+Use React Router.
+
+Navigation should be instant without page reload.
+
+=========================
+TOP NAVBAR
+=========================
+
+Search bar must work.
+
+The search input should be functional.
+
+The Add to Watchlist button should navigate to the Watchlist page.
+
+The profile section should open a dropdown menu.
+
+Settings icon should open the Settings page.
+
+=========================
+DASHBOARD
+=========================
+
+Keep this as the homepage.
+
+=========================
+PRICE COMPARE PAGE
+=========================
+
+Create a dedicated page.
+
+Display comparison cards.
+
+Comparison table.
+
+Store filters.
+
+Sorting.
+
+Search.
+
+=========================
+PRICE HISTORY PAGE
+=========================
+
+Dedicated page.
+
+Large interactive chart.
+
+Time filters.
+
+History cards.
+
+=========================
+STOCK TRACKER PAGE
+=========================
+
+Create a dashboard showing stock availability.
+
+Search products.
+
+Status cards.
+
+=========================
+COUPONS PAGE
+=========================
+
+Create a full coupons page.
+
+Coupon cards.
+
+Categories.
+
+Search.
+
+Apply buttons.
+
+=========================
+WATCHLIST PAGE
+=========================
+
+Users can save products.
+
+Display saved products.
+
+Remove items.
+
+Empty state.
+
+=========================
+AI ASSISTANT PAGE
+=========================
+
+Create a chatbot-style layout.
+
+Sidebar conversation history.
+
+Chat input.
+
+Suggestion cards.
+
+Future API ready.
+
+=========================
+NOTIFICATIONS PAGE
+=========================
+
+Notification cards.
+
+Unread badges.
+
+Filters.
+
+=========================
+SETTINGS PAGE
+=========================
+
+Dark mode toggle (UI only).
+
+Notification preferences.
+
+Account section.
+
+Language selector.
+
+=========================
+ANIMATIONS
+=========================
+
+Smooth page transitions.
+
+Hover animations.
+
+Card lift effects.
+
+Button ripple effects.
+
+Animated loading skeletons.
+
+Micro interactions.
+
+=========================
+RESPONSIVE
+=========================
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+=========================
+CODE QUALITY
+=========================
+
+Use reusable React components.
+
+Clean folder structure.
+
+Separate pages.
+
+Separate layouts.
+
+Separate UI components.
+
+No duplicated code.
+
+Use TypeScript.
+
+Use Tailwind CSS.
+
+Use Framer Motion.
+
+Use React Router.
+
+=========================
+IMPORTANT
+=========================
+
+Do NOT use placeholder pages.
+
+Every page should look professionally designed.
+
+Every button should do something.
+
+Every navigation item should work.
+
+Every card should feel interactive.
+
+The application should feel like a premium SaaS product instead of a static dashboard.
