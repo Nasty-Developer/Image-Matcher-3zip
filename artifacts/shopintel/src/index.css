@@ -54,33 +54,44 @@ input::placeholder {
 }
 
 .glass {
-  background: rgba(13, 18, 34, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(11, 15, 30, 0.92);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.04) inset;
 }
 
 .glass-light {
   background: rgba(20, 28, 50, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
 .purple-glow {
-  box-shadow: 0 0 20px rgba(124, 77, 255, 0.3), 0 0 60px rgba(124, 77, 255, 0.1);
+  box-shadow: 0 0 24px rgba(124, 77, 255, 0.35), 0 0 60px rgba(124, 77, 255, 0.12);
 }
 
 .purple-glow-sm {
-  box-shadow: 0 0 10px rgba(124, 77, 255, 0.2);
+  box-shadow: 0 0 12px rgba(124, 77, 255, 0.25);
 }
 
 .card-hover {
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.22s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .card-hover:hover {
-  border-color: rgba(124, 77, 255, 0.3);
-  box-shadow: 0 0 20px rgba(124, 77, 255, 0.15);
+  border-color: rgba(124, 77, 255, 0.28);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25), 0 0 0 1px rgba(124,77,255,0.08);
+  transform: translateY(-2px);
+}
+
+/* Subtle card lift */
+.card-lift {
+  transition: border-color 0.2s ease, box-shadow 0.22s ease, transform 0.2s ease;
+}
+.card-lift:hover {
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   transform: translateY(-1px);
 }
 
@@ -204,16 +215,17 @@ input::placeholder {
 }
 
 .analytics-card {
-  background: rgba(13, 18, 34, 0.9);
+  background: rgba(11, 15, 30, 0.92);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
-  padding: 16px;
-  transition: all 0.2s;
+  padding: 18px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.22s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .analytics-card:hover {
-  border-color: rgba(124, 77, 255, 0.3);
-  box-shadow: 0 0 20px rgba(124, 77, 255, 0.1);
+  border-color: rgba(124, 77, 255, 0.28);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25), 0 0 0 1px rgba(124,77,255,0.08);
+  transform: translateY(-2px);
 }
 
 .recharts-tooltip-wrapper {
@@ -252,8 +264,21 @@ input::placeholder {
 
 /* Focus Visible for Accessibility */
 *:focus-visible {
-  outline: 2px solid rgba(124, 77, 255, 0.6);
+  outline: 2px solid rgba(124, 77, 255, 0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(124, 77, 255, 0.7);
   outline-offset: 2px;
+  border-radius: 8px;
+}
+
+input:focus-visible {
+  outline: none;
+  border-color: rgba(124, 77, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.12);
 }
 
 /* Ripple effect */

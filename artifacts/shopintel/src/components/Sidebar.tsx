@@ -18,8 +18,8 @@ function NavItem({ item, active }: { item: SidebarItem; active: boolean }) {
     <motion.div
       initial={false}
       whileHover={isDisabled ? {} : "hovered"}
-      whileTap={isDisabled ? {} : { scale: 0.975 }}
-      style={{ position: "relative", borderRadius: 10, cursor: isDisabled ? "default" : "pointer", marginBottom: 1 }}
+      whileTap={isDisabled ? {} : { scale: 0.978 }}
+      style={{ position: "relative", borderRadius: 10, cursor: isDisabled ? "default" : "pointer", marginBottom: 2 }}
     >
       {/* Background layer */}
       <motion.div
@@ -40,10 +40,10 @@ function NavItem({ item, active }: { item: SidebarItem; active: boolean }) {
           hovered: {
             background: active
               ? "linear-gradient(135deg, rgba(124,77,255,0.26) 0%, rgba(99,51,255,0.15) 100%)"
-              : "rgba(255,255,255,0.055)",
+              : "rgba(255,255,255,0.06)",
             border: active
               ? "1px solid rgba(139,92,246,0.4)"
-              : "1px solid rgba(255,255,255,0.07)",
+              : "1px solid rgba(255,255,255,0.08)",
           },
         }}
         transition={{ duration: 0.14 }}
@@ -53,7 +53,7 @@ function NavItem({ item, active }: { item: SidebarItem; active: boolean }) {
       {active && (
         <div style={{
           position: "absolute", left: -1, top: "50%", transform: "translateY(-50%)",
-          width: 3, height: 18, borderRadius: "0 3px 3px 0",
+          width: 3, height: 20, borderRadius: "0 3px 3px 0",
           background: "linear-gradient(180deg, #A78BFA, #7C4DFF)",
           boxShadow: "0 0 8px rgba(167,139,250,0.7)",
         }} />
@@ -62,18 +62,18 @@ function NavItem({ item, active }: { item: SidebarItem; active: boolean }) {
       {/* Content */}
       <div style={{
         position: "relative", display: "flex", alignItems: "center",
-        gap: 10, padding: "0 11px", height: 35,
+        gap: 10, padding: "0 12px", height: 38,
       }}>
         <motion.div
           style={{ flexShrink: 0, display: "flex" }}
-          variants={isDisabled ? {} : { hovered: { scale: active ? 1 : 1.12 } }}
+          variants={isDisabled ? {} : { hovered: { scale: active ? 1 : 1.1 } }}
           transition={{ type: "spring", stiffness: 480, damping: 28 }}
         >
           <Icon
-            size={14}
+            size={15}
             strokeWidth={active ? 2.2 : 1.75}
             style={{
-              color: active ? "#A78BFA" : isDisabled ? "#3A3C50" : "#626580",
+              color: active ? "#A78BFA" : isDisabled ? "#3A3C50" : "#606380",
               transition: "color 0.16s ease",
             }}
           />
@@ -135,7 +135,7 @@ function SectionHeader({
       onClick={collapsible ? onToggle : undefined}
       style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        width: "100%", padding: "6px 11px 4px",
+        width: "100%", padding: "8px 12px 5px",
         cursor: collapsible ? "pointer" : "default",
         background: "none", border: "none",
       }}
@@ -193,7 +193,7 @@ function Section({
   };
 
   return (
-    <div style={{ marginBottom: 4 }}>
+    <div style={{ marginBottom: 6 }}>
       <SectionHeader
         title={section.title}
         collapsible={isCollapsible}
@@ -228,31 +228,36 @@ function Section({
 function QuickActions() {
   const [, navigate] = useLocation();
   return (
-    <div style={{ padding: "0 10px 2px" }}>
+    <div style={{ padding: "0 10px 6px" }}>
       <div style={{
         fontSize: 10, fontWeight: 600, color: "#3A3D52",
         letterSpacing: "0.07em", textTransform: "uppercase",
-        padding: "2px 1px 6px",
+        padding: "4px 2px 8px",
       }}>
         Quick Actions
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
         {quickActions.map((qa) => (
           <motion.button
             key={qa.id}
-            whileHover={{ scale: 1.03, background: "rgba(124,77,255,0.12)", borderColor: "rgba(124,77,255,0.28)" }}
+            whileHover={{
+              scale: 1.03,
+              background: "rgba(124,77,255,0.13)",
+              borderColor: "rgba(124,77,255,0.30)",
+              boxShadow: "0 2px 10px rgba(124,77,255,0.12)",
+            }}
             whileTap={{ scale: 0.96 }}
             onClick={() => qa.href && navigate(qa.href)}
             style={{
-              display: "flex", alignItems: "center", gap: 5,
-              padding: "6px 8px", borderRadius: 9,
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              cursor: "pointer", transition: "all 0.15s",
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "8px 9px", borderRadius: 10,
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              cursor: "pointer", transition: "all 0.18s cubic-bezier(0.4,0,0.2,1)",
             }}
           >
-            <qa.icon size={11} style={{ color: "#7C4DFF", flexShrink: 0 }} />
-            <span style={{ fontSize: 10.5, color: "#7B7E9A", fontWeight: 500, textAlign: "left", lineHeight: 1.3 }}>
+            <qa.icon size={12} style={{ color: "#7C4DFF", flexShrink: 0 }} />
+            <span style={{ fontSize: 11, color: "#7B7E9A", fontWeight: 500, textAlign: "left", lineHeight: 1.3 }}>
               {qa.label}
             </span>
           </motion.button>
@@ -268,23 +273,23 @@ export default function Sidebar() {
 
   return (
     <aside style={{
-      position: "fixed", left: 0, top: 0, bottom: 0, width: 200, zIndex: 100,
+      position: "fixed", left: 0, top: 0, bottom: 0, width: 208, zIndex: 100,
       display: "flex", flexDirection: "column",
       background: [
         "radial-gradient(ellipse 120% 60% at 50% 0%, rgba(124,77,255,0.07) 0%, transparent 70%)",
         "radial-gradient(ellipse 80% 40% at 0% 100%, rgba(30,40,180,0.05) 0%, transparent 60%)",
-        "rgba(7,9,20,0.97)",
+        "rgba(7,9,20,0.98)",
       ].join(", "),
       backdropFilter: "blur(28px) saturate(160%)",
       WebkitBackdropFilter: "blur(28px) saturate(160%)",
-      borderRight: "1px solid rgba(255,255,255,0.065)",
-      boxShadow: "1px 0 0 0 rgba(124,77,255,0.06), 4px 0 24px rgba(0,0,0,0.28)",
+      borderRight: "1px solid rgba(255,255,255,0.07)",
+      boxShadow: "1px 0 0 0 rgba(124,77,255,0.06), 6px 0 28px rgba(0,0,0,0.3)",
     }}>
 
       {/* ── Logo ── */}
       <div style={{
-        padding: "18px 16px 14px", flexShrink: 0,
-        borderBottom: "1px solid rgba(255,255,255,0.046)",
+        padding: "20px 16px 16px", flexShrink: 0,
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{
@@ -299,7 +304,7 @@ export default function Sidebar() {
             <div style={{ fontSize: 13.5, fontWeight: 700, color: "#F0EEFF", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
               ShopIntel
             </div>
-            <div style={{ fontSize: 10.5, color: "#565870", fontWeight: 450, letterSpacing: "0.01em", marginTop: 1 }}>
+            <div style={{ fontSize: 10.5, color: "#505268", fontWeight: 450, letterSpacing: "0.01em", marginTop: 1 }}>
               AI Shopping Assistant
             </div>
           </div>
@@ -309,7 +314,7 @@ export default function Sidebar() {
       {/* ── Nav sections (scrollable) ── */}
       <nav style={{
         flex: 1, overflowY: "auto", overflowX: "hidden",
-        padding: "10px 10px 6px",
+        padding: "12px 10px 8px",
         scrollbarWidth: "none", msOverflowStyle: "none",
       }}>
         <style>{`nav::-webkit-scrollbar{display:none}`}</style>
@@ -319,52 +324,55 @@ export default function Sidebar() {
       </nav>
 
       {/* ── Quick Actions ── */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.046)", paddingTop: 10, flexShrink: 0 }}>
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 10, flexShrink: 0 }}>
         <QuickActions />
       </div>
 
       {/* ── Upgrade card ── */}
-      <div style={{ padding: "10px 10px 16px", flexShrink: 0 }}>
+      <div style={{ padding: "8px 10px 18px", flexShrink: 0 }}>
         <div style={{
-          borderRadius: 13, padding: "13px 13px 11px",
-          background: "linear-gradient(145deg, rgba(124,77,255,0.16) 0%, rgba(79,42,196,0.09) 100%)",
-          border: "1px solid rgba(139,92,246,0.22)",
-          boxShadow: "0 0 0 1px rgba(255,255,255,0.04) inset",
+          borderRadius: 14, padding: "16px 14px 14px",
+          background: "linear-gradient(145deg, rgba(124,77,255,0.18) 0%, rgba(79,42,196,0.10) 100%)",
+          border: "1px solid rgba(139,92,246,0.26)",
+          boxShadow: "0 0 0 1px rgba(255,255,255,0.05) inset, 0 8px 24px rgba(109,40,217,0.15)",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 9 }}>
             <div style={{
-              width: 22, height: 22, borderRadius: 7,
-              background: "linear-gradient(135deg, rgba(167,139,250,0.25), rgba(124,77,255,0.15))",
-              border: "1px solid rgba(167,139,250,0.25)",
+              width: 28, height: 28, borderRadius: 9,
+              background: "linear-gradient(135deg, rgba(167,139,250,0.3), rgba(124,77,255,0.18))",
+              border: "1px solid rgba(167,139,250,0.3)",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <Sparkles size={11} color="#C4B5FD" />
+              <Sparkles size={13} color="#C4B5FD" />
             </div>
-            <span style={{ fontSize: 12.5, fontWeight: 650, color: "#F0EEFF", letterSpacing: "-0.01em" }}>
+            <span style={{ fontSize: 13, fontWeight: 650, color: "#EDE9FF", letterSpacing: "-0.015em" }}>
               Upgrade to Pro
             </span>
           </div>
-          <p style={{ fontSize: 11.5, color: "#6E7191", lineHeight: 1.55, marginBottom: 10, letterSpacing: "0.005em" }}>
+          <p style={{ fontSize: 11.5, color: "#6E7191", lineHeight: 1.6, marginBottom: 12, letterSpacing: "0.005em" }}>
             Unlock AI price prediction, advanced alerts &amp; unlimited tracking.
           </p>
           <motion.button
-            whileHover={{ scale: 1.025, boxShadow: "0 0 0 1px rgba(167,139,250,0.4) inset, 0 6px 20px rgba(109,40,217,0.55)" }}
+            whileHover={{
+              scale: 1.025,
+              boxShadow: "0 0 0 1px rgba(167,139,250,0.4) inset, 0 8px 24px rgba(109,40,217,0.6)",
+            }}
             whileTap={{ scale: 0.975 }}
             style={{
-              width: "100%", height: 32, borderRadius: 9,
+              width: "100%", height: 36, borderRadius: 10,
               background: "linear-gradient(145deg, #7C4DFF 0%, #5B21B6 100%)",
-              boxShadow: "0 0 0 1px rgba(167,139,250,0.2) inset, 0 3px 12px rgba(109,40,217,0.45), 0 1px 0 rgba(255,255,255,0.12) inset",
+              boxShadow: "0 0 0 1px rgba(167,139,250,0.22) inset, 0 4px 14px rgba(109,40,217,0.5), 0 1px 0 rgba(255,255,255,0.12) inset",
               border: "none", cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
-              fontSize: 11.5, fontWeight: 650, color: "white", letterSpacing: "-0.01em",
-              transition: "box-shadow 0.18s ease",
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+              fontSize: 12, fontWeight: 650, color: "white", letterSpacing: "-0.01em",
+              transition: "box-shadow 0.2s ease",
             }}
           >
-            <Sparkles size={11} color="rgba(255,255,255,0.85)" />
+            <Sparkles size={12} color="rgba(255,255,255,0.9)" />
             Upgrade Now
           </motion.button>
         </div>
-        <div style={{ textAlign: "center", marginTop: 10, fontSize: 11, color: "#33364A", letterSpacing: "0.01em" }}>
+        <div style={{ textAlign: "center", marginTop: 12, fontSize: 11, color: "#2E3148", letterSpacing: "0.01em" }}>
           Why ShopIntel AI?
         </div>
       </div>

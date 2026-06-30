@@ -30,8 +30,8 @@ function Toggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div style={{ marginBottom: 16 }}>
-      <div style={{ fontSize: 11, fontWeight: 700, color: "#4A4D65", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 8 }}>
+    <div style={{ marginBottom: 20 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: "#4A4D65", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 10 }}>
         {title}
       </div>
       <div
@@ -56,15 +56,15 @@ function SettingRow({
   return (
     <div
       style={{
-        display: "flex", alignItems: "center", gap: 12,
-        padding: "13px 16px",
+        display: "flex", alignItems: "center", gap: 14,
+        padding: "15px 18px",
         borderBottom: last ? "none" : "1px solid rgba(255,255,255,0.04)",
       }}
     >
       <div
         style={{
-          width: 34, height: 34, borderRadius: 10, flexShrink: 0,
-          background: `${color}20`, display: "flex", alignItems: "center", justifyContent: "center",
+          width: 36, height: 36, borderRadius: 11, flexShrink: 0,
+          background: `${color}1A`, display: "flex", alignItems: "center", justifyContent: "center",
         }}
       >
         <Icon size={16} style={{ color }} />
@@ -123,7 +123,7 @@ export default function Settings() {
         <div style={{ flex: 1 }}>
           {/* Account */}
           <Section title="Account">
-            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
               <div
                 style={{
                   width: 52, height: 52, borderRadius: "50%",

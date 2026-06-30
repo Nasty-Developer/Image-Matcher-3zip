@@ -7,7 +7,7 @@ export default function AnalyticsCards() {
   const lowestPrice = useAnimatedCounter(87990, 1500);
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 10 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
       {/* Average Price */}
       <CardWrap delay={0}>
         <div style={iconBox("rgba(124,77,255,0.15)")}>
@@ -15,8 +15,8 @@ export default function AnalyticsCards() {
         </div>
         <CardLabel>Average Price</CardLabel>
         <CardValue>₹{avgPrice.toLocaleString()}</CardValue>
-        <div style={{ fontSize: 11, color: "#37D67A" }}>▼ ₹1,750 (1.9%)</div>
-        <div style={{ fontSize: 10.5, color: "#4A4D65" }}>vs last 30 days</div>
+        <div style={{ fontSize: 11, color: "#37D67A", fontWeight: 500 }}>▼ ₹1,750 (1.9%)</div>
+        <div style={{ fontSize: 10.5, color: "#4A4D65", marginTop: 2 }}>vs last 30 days</div>
       </CardWrap>
 
       {/* Lowest Price */}
@@ -26,9 +26,8 @@ export default function AnalyticsCards() {
         </div>
         <CardLabel>Lowest Price</CardLabel>
         <CardValue>₹{lowestPrice.toLocaleString()}</CardValue>
-        <div style={{ fontSize: 11, color: "#B7B9C9" }}>Flipkart</div>
+        <div style={{ fontSize: 11, color: "#B7B9C9", marginTop: 2 }}>Flipkart</div>
       </CardWrap>
-
 
       {/* Price Drop Alert */}
       <CardWrap delay={0.10}>
@@ -36,7 +35,7 @@ export default function AnalyticsCards() {
           <Bell size={15} style={{ color: "#37D67A" }} />
         </div>
         <CardLabel>Price Drop Alert</CardLabel>
-        <div style={{ fontSize: 10.5, color: "#8385A0", marginBottom: 8, lineHeight: 1.45 }}>
+        <div style={{ fontSize: 10.5, color: "#8385A0", marginBottom: 10, lineHeight: 1.5 }}>
           Get notified when<br />price drops
         </div>
         <div
@@ -49,6 +48,7 @@ export default function AnalyticsCards() {
             alignItems: "center",
             padding: "0 3px",
             cursor: "pointer",
+            boxShadow: "0 2px 8px rgba(124,77,255,0.35)",
           }}
         >
           <div
@@ -70,8 +70,8 @@ export default function AnalyticsCards() {
           <Package size={15} style={{ color: "#4EB5FF" }} />
         </div>
         <CardLabel>Stock Status</CardLabel>
-        <div style={{ fontSize: 11, color: "#8385A0", marginBottom: 2 }}>All Stores</div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: "#37D67A" }}>In Stock</div>
+        <div style={{ fontSize: 11, color: "#8385A0", marginTop: 2, marginBottom: 3 }}>All Stores</div>
+        <div style={{ fontSize: 13.5, fontWeight: 700, color: "#37D67A" }}>In Stock</div>
       </CardWrap>
 
       {/* Delivery Comparison */}
@@ -79,9 +79,9 @@ export default function AnalyticsCards() {
         <div style={iconBox("rgba(255,107,157,0.15)")}>
           <Truck size={15} style={{ color: "#FF6B9D" }} />
         </div>
-        <CardLabel>Delivery Comparison</CardLabel>
-        <div style={{ fontSize: 11, color: "#8385A0", marginBottom: 2 }}>Fastest Delivery</div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: "white" }}>Tomorrow ⚡</div>
+        <CardLabel>Fastest Delivery</CardLabel>
+        <div style={{ fontSize: 11, color: "#8385A0", marginTop: 2, marginBottom: 3 }}>Best Option</div>
+        <div style={{ fontSize: 13.5, fontWeight: 700, color: "white" }}>Tomorrow ⚡</div>
       </CardWrap>
     </div>
   );
@@ -89,14 +89,14 @@ export default function AnalyticsCards() {
 
 function iconBox(bg: string): React.CSSProperties {
   return {
-    width: 32,
-    height: 32,
+    width: 34,
+    height: 34,
     borderRadius: 10,
     background: bg,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 9,
+    marginBottom: 11,
     flexShrink: 0,
   };
 }
@@ -107,11 +107,17 @@ function CardWrap({ children, delay }: { children: React.ReactNode; delay: numbe
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.35 }}
+      whileHover={{
+        y: -2,
+        borderColor: "rgba(124,77,255,0.25)",
+        boxShadow: "0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(124,77,255,0.1)",
+      }}
       style={{
-        borderRadius: 13,
+        borderRadius: 14,
         background: "rgba(11,15,30,0.92)",
         border: "1px solid rgba(255,255,255,0.07)",
-        padding: "13px 12px",
+        padding: "16px 14px",
+        transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
       }}
     >
       {children}
@@ -121,7 +127,7 @@ function CardWrap({ children, delay }: { children: React.ReactNode; delay: numbe
 
 function CardLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ fontSize: 10.5, color: "#7B7E9A", marginBottom: 4, fontWeight: 500 }}>
+    <div style={{ fontSize: 10.5, color: "#7B7E9A", marginBottom: 5, fontWeight: 500, letterSpacing: "0.01em" }}>
       {children}
     </div>
   );
@@ -129,7 +135,7 @@ function CardLabel({ children }: { children: React.ReactNode }) {
 
 function CardValue({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ fontSize: 19, fontWeight: 900, color: "white", lineHeight: 1.1, marginBottom: 3 }}>
+    <div style={{ fontSize: 19, fontWeight: 900, color: "white", lineHeight: 1.1, marginBottom: 4 }}>
       {children}
     </div>
   );

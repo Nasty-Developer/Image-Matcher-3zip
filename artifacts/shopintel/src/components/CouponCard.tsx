@@ -27,23 +27,30 @@ const coupons = [
 
 export default function CouponCard() {
   return (
-    <div
+    <motion.div
+      whileHover={{
+        y: -2,
+        borderColor: "rgba(124,77,255,0.25)",
+        boxShadow: "0 10px 28px rgba(0,0,0,0.25), 0 0 0 1px rgba(124,77,255,0.08)",
+      }}
       style={{
         borderRadius: 14,
         background: "rgba(11,15,30,0.92)",
         border: "1px solid rgba(255,255,255,0.08)",
-        padding: "13px 13px",
+        padding: "16px 15px",
+        transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
       }}
     >
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
           <div
             style={{
-              width: 24,
-              height: 24,
-              borderRadius: 7,
+              width: 26,
+              height: 26,
+              borderRadius: 8,
               background: "rgba(124,77,255,0.18)",
+              border: "1px solid rgba(124,77,255,0.18)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -51,27 +58,38 @@ export default function CouponCard() {
           >
             <Ticket size={12} style={{ color: "#9D6CFF" }} />
           </div>
-          <span style={{ fontWeight: 600, color: "white", fontSize: 12.5 }}>Coupon Finder</span>
+          <span style={{ fontWeight: 650, color: "white", fontSize: 13 }}>Coupon Finder</span>
         </div>
-        <span style={{ fontSize: 11, color: "#9D6CFF", cursor: "pointer" }}>View All</span>
+        <span
+          style={{
+            fontSize: 11.5, color: "#9D6CFF", cursor: "pointer", fontWeight: 500,
+            transition: "color 0.15s",
+          }}
+          onMouseEnter={e => (e.currentTarget.style.color = "#C4B5FD")}
+          onMouseLeave={e => (e.currentTarget.style.color = "#9D6CFF")}
+        >
+          View All
+        </span>
       </div>
 
       {/* Coupon list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {coupons.map((c, i) => (
           <motion.div
             key={c.code}
             initial={{ opacity: 0, x: 8 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.08 }}
+            transition={{ delay: i * 0.08, ease: "easeOut" }}
+            whileHover={{ background: "rgba(18,24,44,0.8)", borderColor: "rgba(255,255,255,0.1)" }}
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 8,
-              padding: "8px 10px",
-              borderRadius: 10,
+              gap: 9,
+              padding: "10px 11px",
+              borderRadius: 11,
               background: "rgba(15,20,38,0.6)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.07)",
+              transition: "background 0.15s, border-color 0.15s",
             }}
           >
             {/* Code tag */}
@@ -85,30 +103,32 @@ export default function CouponCard() {
                 fontSize: 10,
                 fontWeight: 700,
                 flexShrink: 0,
-                minWidth: 62,
+                minWidth: 64,
                 textAlign: "center",
+                letterSpacing: "0.02em",
               }}
             >
               {c.code}
             </div>
             {/* Description */}
-            <div style={{ flex: 1, fontSize: 10.5, color: "#B7B9C9", lineHeight: 1.35 }}>
+            <div style={{ flex: 1, fontSize: 10.5, color: "#B7B9C9", lineHeight: 1.4 }}>
               {c.description}
             </div>
             {/* Apply button */}
             <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 12px rgba(124,77,255,0.4)" }}
+              whileTap={{ scale: 0.95 }}
               style={{
-                padding: "5px 10px",
-                borderRadius: 7,
+                padding: "5px 11px",
+                borderRadius: 8,
                 background: "linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%)",
                 color: "white",
-                fontSize: 10.5,
+                fontSize: 11,
                 fontWeight: 600,
                 flexShrink: 0,
                 cursor: "pointer",
                 border: "none",
+                transition: "box-shadow 0.18s",
               }}
             >
               Apply
@@ -116,6 +136,6 @@ export default function CouponCard() {
           </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

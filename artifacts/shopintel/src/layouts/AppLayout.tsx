@@ -24,11 +24,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
       <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} feature="create watchlists" />
       <Sidebar />
-      <div className="flex flex-col min-w-0" style={{ marginLeft: 200, flex: 1 }}>
+      <div className="flex flex-col min-w-0" style={{ marginLeft: 208, flex: 1 }}>
         <Navbar onOpenSearch={() => setCmdOpen(true)} onOpenAuth={() => setAuthModalOpen(true)} />
         <main
           className="flex-1 overflow-auto"
-          style={{ padding: "12px 14px 12px 14px" }}
+          style={{ padding: "22px 22px 28px 22px" }}
         >
           {children}
         </main>

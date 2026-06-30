@@ -1,0 +1,235 @@
+The Light/Dark mode implementation is currently inconsistent.
+
+Some components change theme while others remain in the previous theme, making the application look broken.
+
+Do NOT redesign the application.
+
+Instead, completely refactor the theme system to support true application-wide theming.
+
+====================================================
+GOAL
+====================================================
+
+The ENTIRE application should switch themes together.
+
+No mixed colors.
+
+No partially dark components.
+
+No partially light components.
+
+Everything must transition consistently.
+
+====================================================
+IMPLEMENT A GLOBAL THEME SYSTEM
+====================================================
+
+Create a single global theme provider.
+
+Every component must use the same theme source.
+
+Do NOT hardcode colors inside components.
+
+All colors should come from global design tokens.
+
+====================================================
+CREATE DESIGN TOKENS
+====================================================
+
+Background
+
+Card
+
+Sidebar
+
+Navbar
+
+Border
+
+Primary Text
+
+Secondary Text
+
+Muted Text
+
+Buttons
+
+Hover
+
+Primary Purple
+
+Accent Purple
+
+Success
+
+Warning
+
+Error
+
+Shadows
+
+Glass Background
+
+Glow Colors
+
+Chart Colors
+
+Coupon Colors
+
+Everything should use theme variables instead of hardcoded colors.
+
+====================================================
+DARK MODE
+====================================================
+
+Use premium dark colors.
+
+Dark navy backgrounds.
+
+Purple glow.
+
+Soft borders.
+
+Premium glassmorphism.
+
+White typography.
+
+Everything consistent.
+
+====================================================
+LIGHT MODE
+====================================================
+
+Completely redesign ONLY the color palette.
+
+NOT the layout.
+
+NOT spacing.
+
+NOT typography.
+
+NOT components.
+
+The layout must remain identical.
+
+Use:
+
+White background
+
+Very light gray cards
+
+Soft borders
+
+Dark text
+
+Purple accent
+
+Subtle shadows
+
+Minimal glass effect
+
+Charts should automatically change to light theme.
+
+Coupons should adapt.
+
+Tables should adapt.
+
+Sidebar should become light.
+
+Navbar should become light.
+
+Every popup should become light.
+
+Every modal should become light.
+
+====================================================
+TRANSITIONS
+====================================================
+
+Animate theme switching.
+
+Duration:
+
+200–300ms
+
+Fade colors smoothly.
+
+No flickering.
+
+====================================================
+PERSISTENCE
+====================================================
+
+Save theme selection using localStorage.
+
+When the user refreshes the page, keep the selected theme.
+
+====================================================
+SYSTEM THEME
+====================================================
+
+Detect the operating system theme on first visit.
+
+If no saved preference exists:
+
+Use the system theme.
+
+====================================================
+COMPONENT REVIEW
+====================================================
+
+Review every component.
+
+Dashboard
+
+Sidebar
+
+Navbar
+
+Cards
+
+Buttons
+
+Charts
+
+Coupons
+
+Dropdowns
+
+Tables
+
+Inputs
+
+Search Bar
+
+Notifications
+
+Settings
+
+Authentication Pages
+
+Everything must support both themes.
+
+====================================================
+QUALITY
+====================================================
+
+No mixed colors.
+
+No unreadable text.
+
+No white text on white backgrounds.
+
+No dark text on dark backgrounds.
+
+Maintain accessibility and proper contrast.
+
+====================================================
+IMPORTANT
+====================================================
+
+The application should feel like Notion, Linear, GitHub, or Vercel where both Light Mode and Dark Mode are equally polished.
+
+The Light Theme should not feel like an afterthought.
+
+Both themes should look production-ready.

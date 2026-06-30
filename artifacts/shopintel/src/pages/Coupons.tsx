@@ -67,15 +67,15 @@ export default function Coupons() {
       <div
         style={{
           borderRadius: 14, background: "rgba(11,15,30,0.92)",
-          border: "1px solid rgba(255,255,255,0.07)", padding: "14px",
-          marginBottom: 14,
+          border: "1px solid rgba(255,255,255,0.07)", padding: "16px",
+          marginBottom: 16,
         }}
       >
         <div
           style={{
             display: "flex", alignItems: "center", gap: 10,
-            background: "rgba(15,20,40,0.8)", border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: 10, padding: "0 14px", height: 38, marginBottom: 12,
+            background: "rgba(15,20,40,0.85)", border: "1px solid rgba(255,255,255,0.09)",
+            borderRadius: 11, padding: "0 14px", height: 42, marginBottom: 14,
           }}
         >
           <Search size={14} style={{ color: "#4A4D65" }} />
@@ -106,25 +106,26 @@ export default function Coupons() {
       </div>
 
       {/* Coupon grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 14 }}>
         {filtered.map((coupon, i) => (
           <motion.div
             key={coupon.code}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06 }}
-            whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(0,0,0,0.3)" }}
+            whileHover={{ y: -2, boxShadow: "0 10px 32px rgba(0,0,0,0.3)", borderColor: "rgba(255,255,255,0.12)" }}
             style={{
               borderRadius: 14, background: "rgba(11,15,30,0.92)",
               border: "1px solid rgba(255,255,255,0.07)",
               overflow: "hidden",
+              transition: "border-color 0.2s",
             }}
           >
             {/* Color top stripe */}
             <div
               style={{ height: 4, background: `linear-gradient(90deg, ${coupon.color}, transparent)` }}
             />
-            <div style={{ padding: "14px" }}>
+            <div style={{ padding: "16px" }}>
               {/* Header */}
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 10 }}>
                 <div>
@@ -172,35 +173,37 @@ export default function Coupons() {
                 </div>
               </div>
 
-              <div style={{ display: "flex", gap: 8 }}>
+              <div style={{ display: "flex", gap: 9 }}>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => handleCopy(coupon.code)}
                   style={{
                     flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                    padding: "8px 0", borderRadius: 9,
+                    padding: "9px 0", borderRadius: 9,
                     background: copied === coupon.code ? "rgba(55,214,122,0.2)" : "rgba(255,255,255,0.05)",
                     border: copied === coupon.code ? "1px solid rgba(55,214,122,0.4)" : "1px solid rgba(255,255,255,0.08)",
                     color: copied === coupon.code ? "#37D67A" : "#B7B9C9",
                     fontSize: 12, fontWeight: 500, cursor: "pointer",
+                    transition: "all 0.18s",
                   }}
                 >
                   {copied === coupon.code ? <CheckCheck size={13} /> : <Copy size={13} />}
                   {copied === coupon.code ? "Copied!" : "Copy Code"}
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.02, boxShadow: "0 0 14px rgba(124,77,255,0.4)" }}
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 16px rgba(124,77,255,0.45)" }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => handleApply(coupon)}
                   disabled={openingStore === coupon.code}
                   style={{
-                    flex: 1, padding: "8px 0", borderRadius: 9,
+                    flex: 1, padding: "9px 0", borderRadius: 9,
                     background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
                     color: "white", fontSize: 12, fontWeight: 600,
                     border: "none", cursor: openingStore === coupon.code ? "not-allowed" : "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                    opacity: openingStore === coupon.code ? 0.8 : 1
+                    opacity: openingStore === coupon.code ? 0.8 : 1,
+                    transition: "box-shadow 0.18s",
                   }}
                 >
                   {openingStore === coupon.code ? (

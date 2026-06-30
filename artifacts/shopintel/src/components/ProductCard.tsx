@@ -70,7 +70,7 @@ export default function ProductCard() {
       }}
     >
       {/* Product header */}
-      <div style={{ padding: "14px 16px 10px 14px", display: "flex", alignItems: "flex-start", gap: 14 }}>
+      <div style={{ padding: "18px 18px 14px 16px", display: "flex", alignItems: "flex-start", gap: 16 }}>
         {/* MacBook image */}
         <div
           style={{
@@ -92,7 +92,7 @@ export default function ProductCard() {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 10 }}>
             <div>
-              <h2 style={{ fontWeight: 700, color: "white", fontSize: 16, marginBottom: 4, whiteSpace: "nowrap" }}>
+              <h2 style={{ fontWeight: 700, color: "white", fontSize: 16, marginBottom: 5, whiteSpace: "nowrap" }}>
                 Apple MacBook Air M2
               </h2>
               <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -105,38 +105,42 @@ export default function ProductCard() {
                 <span style={{ fontSize: 11, color: "#5A5D75" }}>(2,453)</span>
               </div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 7, flexShrink: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.03, boxShadow: "0 0 14px rgba(124,77,255,0.25)" }}
                 whileTap={{ scale: 0.97 }}
                 style={{
-                  display: "flex", alignItems: "center", gap: 5, padding: "5px 11px",
-                  borderRadius: 8, background: "rgba(124,77,255,0.13)", border: "1px solid rgba(124,77,255,0.28)",
+                  display: "flex", alignItems: "center", gap: 5, padding: "6px 12px",
+                  borderRadius: 9, background: "rgba(124,77,255,0.13)", border: "1px solid rgba(124,77,255,0.28)",
                   color: "white", fontSize: 11.5, fontWeight: 500, cursor: "pointer", whiteSpace: "nowrap",
+                  transition: "box-shadow 0.18s",
                 }}
               >
                 <TrendingUp size={12} style={{ color: "#9D6CFF" }} />
                 Track Price
               </motion.button>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.08, borderColor: "rgba(255,107,107,0.35)" }}
+                whileTap={{ scale: 0.93 }}
                 style={{
-                  width: 30, height: 30, borderRadius: "50%",
+                  width: 32, height: 32, borderRadius: "50%",
                   background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
-                  display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  cursor: "pointer", flexShrink: 0, transition: "border-color 0.18s",
                 }}
               >
                 <Heart size={13} style={{ color: "#B7B9C9" }} />
-              </button>
+              </motion.button>
             </div>
           </div>
 
           {/* Tags */}
-          <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
             {["M2 Chip", "8GB RAM", "256GB SSD", "13.6-inch"].map((tag) => (
               <span
                 key={tag}
                 style={{
-                  padding: "3px 9px", borderRadius: 6,
+                  padding: "3px 9px", borderRadius: 7,
                   background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
                   fontSize: 11, color: "#B7B9C9", whiteSpace: "nowrap",
                 }}
@@ -155,12 +159,13 @@ export default function ProductCard() {
           style={{
             display: "grid",
             gridTemplateColumns: "120px 1fr 90px 95px 78px 1fr 90px 28px",
-            padding: "7px 16px",
-            borderBottom: "1px solid rgba(255,255,255,0.04)",
+            padding: "9px 18px",
+            borderBottom: "1px solid rgba(255,255,255,0.05)",
+            background: "rgba(255,255,255,0.01)",
           }}
         >
           {["Store", "Price", "Delivery", "Rating", "Stock", "Best Offer", "", ""].map((h, idx) => (
-            <span key={idx} style={{ fontSize: 10.5, color: "#4A4D65", fontWeight: 600 }}>{h}</span>
+            <span key={idx} style={{ fontSize: 10.5, color: "#4A4D65", fontWeight: 600, letterSpacing: "0.03em" }}>{h}</span>
           ))}
         </div>
 
@@ -173,7 +178,7 @@ export default function ProductCard() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "120px 1fr 90px 95px 78px 1fr 90px 28px",
-                  padding: "9px 16px",
+                  padding: "12px 18px",
                   borderBottom: isExpanded ? "none" : (i < stores.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none"),
                   alignItems: "center",
                   cursor: "pointer",
@@ -181,34 +186,35 @@ export default function ProductCard() {
                   transition: "background 0.15s",
                 }}
                 onClick={() => toggle(store.logo)}
-                whileHover={{ background: isExpanded ? "rgba(124,77,255,0.07)" : "rgba(255,255,255,0.015)" }}
+                whileHover={{ background: isExpanded ? "rgba(124,77,255,0.07)" : "rgba(255,255,255,0.018)" }}
               >
                 <div style={{ ...store.fontStyle, color: store.color }}>{store.displayName}</div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "nowrap" }}>
-                  <span style={{ fontWeight: 700, color: "white", fontSize: 13, whiteSpace: "nowrap" }}>₹{store.price.toLocaleString()}</span>
+                  <span style={{ fontWeight: 700, color: "white", fontSize: 13.5, whiteSpace: "nowrap" }}>₹{store.price.toLocaleString()}</span>
                   <span style={{ fontSize: 10, color: "#4A4D65", textDecoration: "line-through", whiteSpace: "nowrap" }}>₹{store.original.toLocaleString()}</span>
-                  <span style={{ fontSize: 10, color: "#37D67A", fontWeight: 600, whiteSpace: "nowrap" }}>{store.discount}</span>
+                  <span style={{ fontSize: 10.5, color: "#37D67A", fontWeight: 600, whiteSpace: "nowrap" }}>{store.discount}</span>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11.5, color: "white", whiteSpace: "nowrap" }}>{store.delivery}</div>
-                  <div style={{ fontSize: 10, color: "#37D67A", fontWeight: 600 }}>FREE</div>
+                  <div style={{ fontSize: 12, color: "white", whiteSpace: "nowrap" }}>{store.delivery}</div>
+                  <div style={{ fontSize: 10.5, color: "#37D67A", fontWeight: 600 }}>FREE</div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
                   <Star size={10} fill="#F5A623" style={{ color: "#F5A623" }} />
-                  <span style={{ fontSize: 11.5, color: "white", fontWeight: 600 }}>{store.rating}</span>
+                  <span style={{ fontSize: 12, color: "white", fontWeight: 600 }}>{store.rating}</span>
                   <span style={{ fontSize: 10, color: "#4A4D65" }}>({store.reviews})</span>
                 </div>
-                <div style={{ fontSize: 11, color: "#37D67A", fontWeight: 600 }}>In Stock</div>
+                <div style={{ fontSize: 11.5, color: "#37D67A", fontWeight: 600 }}>In Stock</div>
                 <div style={{ fontSize: 10.5, color: "#8385A0", paddingRight: 8 }}>{store.offer}</div>
                 <motion.button
-                  whileHover={{ scale: 1.04, boxShadow: "0 0 12px rgba(124,77,255,0.5)" }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.04, boxShadow: "0 0 14px rgba(124,77,255,0.5)" }}
+                  whileTap={{ scale: 0.96 }}
                   onClick={(e) => { e.stopPropagation(); }}
                   className="ripple"
                   style={{
                     background: "linear-gradient(135deg, #7C4DFF 0%, #9D6CFF 100%)",
-                    padding: "6px 0", borderRadius: 8, color: "white", fontSize: 11, fontWeight: 600,
+                    padding: "7px 0", borderRadius: 8, color: "white", fontSize: 11.5, fontWeight: 600,
                     width: "100%", cursor: "pointer", border: "none", whiteSpace: "nowrap",
+                    transition: "box-shadow 0.18s",
                   }}
                 >
                   View Deal
@@ -235,32 +241,32 @@ export default function ProductCard() {
                   >
                     <div
                       style={{
-                        margin: "0 16px 12px 16px",
-                        borderRadius: 11,
+                        margin: "0 16px 14px 16px",
+                        borderRadius: 12,
                         background: "rgba(124,77,255,0.06)",
                         border: "1px solid rgba(124,77,255,0.15)",
-                        padding: "12px 14px",
+                        padding: "14px 16px",
                         display: "grid",
                         gridTemplateColumns: "1fr 1fr 1fr",
-                        gap: 12,
+                        gap: 14,
                       }}
                     >
                       {/* Total Savings */}
                       <div>
-                        <div style={{ fontSize: 10, color: "#5A5D75", marginBottom: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.4px" }}>
+                        <div style={{ fontSize: 10, color: "#5A5D75", marginBottom: 5, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                           Total Savings
                         </div>
                         <div style={{ fontSize: 18, fontWeight: 900, color: "#37D67A" }}>
                           ₹{store.savings.toLocaleString()}
                         </div>
-                        <div style={{ fontSize: 10.5, color: "#37D67A", marginTop: 1 }}>
+                        <div style={{ fontSize: 10.5, color: "#37D67A", marginTop: 2 }}>
                           {Math.round(((store.original - store.price) / store.original) * 100)}% off MRP
                         </div>
                       </div>
 
                       {/* EMI */}
                       <div>
-                        <div style={{ fontSize: 10, color: "#5A5D75", marginBottom: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.4px" }}>
+                        <div style={{ fontSize: 10, color: "#5A5D75", marginBottom: 5, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                           No Cost EMI
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -269,21 +275,21 @@ export default function ProductCard() {
                             ₹{store.emi.amount.toLocaleString()}/mo
                           </span>
                         </div>
-                        <div style={{ fontSize: 10.5, color: "#7B7E9A", marginTop: 1 }}>
+                        <div style={{ fontSize: 10.5, color: "#7B7E9A", marginTop: 2 }}>
                           for {store.emi.months} months · 0% interest
                         </div>
                       </div>
 
                       {/* Cashback + extra */}
                       <div>
-                        <div style={{ fontSize: 10, color: "#5A5D75", marginBottom: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.4px" }}>
+                        <div style={{ fontSize: 10, color: "#5A5D75", marginBottom: 5, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px" }}>
                           Best Cashback
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                           <CreditCard size={13} style={{ color: "#4EB5FF" }} />
                           <span style={{ fontSize: 12.5, fontWeight: 700, color: "white" }}>{store.cashback}</span>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 5 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 6 }}>
                           <Clock size={10} style={{ color: "#5A5D75" }} />
                           <span style={{ fontSize: 10.5, color: "#7B7E9A" }}>{store.extraOffer}</span>
                         </div>

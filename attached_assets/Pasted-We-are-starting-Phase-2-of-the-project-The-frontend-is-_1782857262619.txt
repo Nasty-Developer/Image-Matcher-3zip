@@ -1,0 +1,188 @@
+We are starting Phase 2 of the project.
+
+The frontend is already complete.
+
+Your task is ONLY to integrate Firebase Authentication.
+
+Do NOT redesign the UI.
+
+Do NOT modify the layout.
+
+Do NOT change the existing styling.
+
+====================================================
+GOAL
+====================================================
+
+Integrate Firebase Authentication into the existing application while keeping the UI exactly the same.
+
+====================================================
+AUTH PROVIDERS
+====================================================
+
+Support:
+
+1. Google Sign In
+2. Email & Password Sign Up
+3. Email & Password Sign In
+4. Sign Out
+5. Password Reset
+
+Use Firebase Authentication only.
+
+====================================================
+ARCHITECTURE
+====================================================
+
+Create a clean authentication architecture.
+
+Example structure:
+
+src/
+
+firebase/
+  firebase.ts
+
+context/
+  AuthContext.tsx
+
+hooks/
+  useAuth.ts
+
+services/
+  authService.ts
+
+components/
+  ProtectedRoute.tsx
+
+Do not hardcode Firebase calls inside UI components.
+
+====================================================
+AUTH CONTEXT
+====================================================
+
+Create a global Auth Context.
+
+It should provide:
+
+- currentUser
+- loading
+- signInWithGoogle()
+- signInWithEmail()
+- signUpWithEmail()
+- signOut()
+- resetPassword()
+
+====================================================
+PROTECTED ROUTES
+====================================================
+
+Protect these pages:
+
+Watchlist
+
+Notifications
+
+Saved Searches
+
+Profile
+
+If a guest opens these pages:
+
+Redirect to Sign In.
+
+====================================================
+AUTH MODAL
+====================================================
+
+When a guest clicks:
+
+Save Product
+
+Track Price
+
+Favorite
+
+Watchlist
+
+Show the existing Sign In modal instead of allowing the action.
+
+====================================================
+SESSION
+====================================================
+
+Persist login using Firebase Authentication.
+
+When the user refreshes the page:
+
+Keep them logged in.
+
+====================================================
+PROFILE
+====================================================
+
+After login:
+
+Display:
+
+User photo
+
+Display name
+
+Email
+
+Sign Out button
+
+====================================================
+ERROR HANDLING
+====================================================
+
+Show friendly messages for:
+
+Wrong password
+
+Email already exists
+
+Weak password
+
+User not found
+
+Network error
+
+====================================================
+LOADING
+====================================================
+
+Show loading indicators during:
+
+Login
+
+Signup
+
+Logout
+
+Password reset
+
+====================================================
+ENVIRONMENT VARIABLES
+====================================================
+
+Store Firebase configuration inside a .env file.
+
+Do not hardcode API keys inside components.
+
+Use Vite environment variables.
+
+====================================================
+IMPORTANT
+====================================================
+
+Wait for me to paste the Firebase configuration.
+
+Do not create placeholder Firebase credentials.
+
+Build the entire authentication architecture first, then connect it using my Firebase config.
+
+Keep the UI exactly the same.
+
+Only integrate authentication.

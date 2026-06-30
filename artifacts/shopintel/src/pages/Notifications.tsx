@@ -91,7 +91,7 @@ export default function Notifications() {
       />
 
       {/* Filter tabs */}
-      <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 6, marginBottom: 16, flexWrap: "wrap" }}>
         {filters.map((f) => (
           <button
             key={f}
@@ -110,7 +110,7 @@ export default function Notifications() {
       </div>
 
       {/* Notification list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <AnimatePresence>
           {filtered.map((notif, i) => (
             <motion.div
@@ -121,13 +121,13 @@ export default function Notifications() {
               transition={{ delay: i * 0.05 }}
               onClick={() => markRead(notif.id)}
               style={{
-                borderRadius: 13,
+                borderRadius: 14,
                 background: notif.read ? "rgba(11,15,30,0.92)" : "rgba(124,77,255,0.06)",
-                border: notif.read ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(124,77,255,0.2)",
-                padding: "13px 14px",
-                display: "flex", alignItems: "flex-start", gap: 12,
+                border: notif.read ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(124,77,255,0.22)",
+                padding: "15px 16px",
+                display: "flex", alignItems: "flex-start", gap: 14,
                 cursor: "pointer",
-                transition: "background 0.2s",
+                transition: "background 0.18s, border-color 0.18s",
               }}
             >
               {/* Icon */}

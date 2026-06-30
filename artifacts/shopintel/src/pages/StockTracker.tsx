@@ -112,7 +112,7 @@ export default function StockTracker() {
       />
 
       {/* Summary cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 14 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 16 }}>
         {[
           { label: "In Stock", count: totalIn, color: "#37D67A", bg: "rgba(55,214,122,0.12)", icon: CheckCircle },
           { label: "Low Stock", count: totalLow, color: "#F5A623", bg: "rgba(245,166,35,0.12)", icon: AlertTriangle },
@@ -124,9 +124,9 @@ export default function StockTracker() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.07 }}
             style={{
-              borderRadius: 13, background: "rgba(11,15,30,0.92)",
-              border: "1px solid rgba(255,255,255,0.07)", padding: "14px",
-              display: "flex", alignItems: "center", gap: 12,
+              borderRadius: 14, background: "rgba(11,15,30,0.92)",
+              border: "1px solid rgba(255,255,255,0.07)", padding: "18px 16px",
+              display: "flex", alignItems: "center", gap: 14,
             }}
           >
             <div style={{ width: 40, height: 40, borderRadius: 12, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -144,8 +144,8 @@ export default function StockTracker() {
       <div
         style={{
           display: "flex", alignItems: "center", gap: 10,
-          background: "rgba(11,15,30,0.92)", border: "1px solid rgba(255,255,255,0.07)",
-          borderRadius: 12, padding: "0 14px", height: 40, marginBottom: 12,
+          background: "rgba(11,15,30,0.92)", border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 11, padding: "0 14px", height: 42, marginBottom: 14,
         }}
       >
         <Search size={14} style={{ color: "#4A4D65" }} />
@@ -158,7 +158,7 @@ export default function StockTracker() {
       </div>
 
       {/* Product stock cards */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {isLoading || isRefreshing ? (
           <>
             <SkeletonCard height={90} />
@@ -192,7 +192,7 @@ export default function StockTracker() {
               }}
             >
               {/* Header */}
-            <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "15px 18px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               <div style={{ width: 42, height: 42, borderRadius: 11, fontSize: 20, background: "rgba(124,77,255,0.08)", border: "1px solid rgba(124,77,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {product.image}
               </div>
@@ -218,7 +218,7 @@ export default function StockTracker() {
                   <div
                     key={store.name}
                     style={{
-                      padding: "12px 14px",
+                      padding: "14px 16px",
                       borderRight: si < product.stores.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
                     }}
                   >

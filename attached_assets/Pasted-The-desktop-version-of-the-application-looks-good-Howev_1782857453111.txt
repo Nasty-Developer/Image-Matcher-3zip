@@ -1,0 +1,386 @@
+The desktop version of the application looks good.
+
+However, the responsive experience is not production-ready.
+
+I want you to completely review and rebuild the responsive layout of the ENTIRE application.
+
+DO NOT redesign the UI.
+
+DO NOT change the visual style.
+
+DO NOT change colors, typography, spacing system, branding, or layout hierarchy.
+
+Only improve responsiveness and adaptive behavior.
+
+====================================================
+GOAL
+====================================================
+
+The application should feel like a premium SaaS product on every screen size.
+
+Desktop
+
+Laptop
+
+Tablet
+
+Large Mobile
+
+Small Mobile
+
+No horizontal scrolling.
+
+No overlapping.
+
+No tiny unreadable components.
+
+No broken layouts.
+
+====================================================
+BREAKPOINTS
+====================================================
+
+Support:
+
+1920+
+
+1536
+
+1440
+
+1280
+
+1024
+
+992
+
+768
+
+640
+
+480
+
+390
+
+360
+
+320
+
+Every breakpoint should be reviewed individually.
+
+====================================================
+SIDEBAR
+====================================================
+
+Desktop:
+
+Keep current sidebar.
+
+Tablet:
+
+Collapse automatically.
+
+Mobile:
+
+Hide sidebar.
+
+Replace it with a hamburger menu.
+
+Opening the menu should display a smooth slide-out drawer.
+
+The drawer should close when:
+
+• Clicking outside
+• Selecting a menu item
+
+Prevent background scrolling while open.
+
+====================================================
+TOP NAVBAR
+====================================================
+
+Desktop:
+
+Keep current layout.
+
+Tablet:
+
+Reduce spacing.
+
+Mobile:
+
+Stack or intelligently compress elements.
+
+Search should remain usable.
+
+Buttons should never overlap.
+
+Profile should remain accessible.
+
+====================================================
+HERO SECTION
+====================================================
+
+Desktop:
+
+Current layout.
+
+Tablet:
+
+Reduce spacing.
+
+Mobile:
+
+Stack vertically.
+
+Text first.
+
+Illustration below.
+
+Store logos should reposition automatically.
+
+Nothing should overflow.
+
+====================================================
+PRODUCT TABLE
+====================================================
+
+Desktop:
+
+Keep table.
+
+Tablet:
+
+Allow controlled horizontal scrolling inside the table only.
+
+Mobile:
+
+Replace table with responsive product cards.
+
+Each product card should display:
+
+Store
+
+Price
+
+Rating
+
+Delivery
+
+Stock
+
+Best Offer
+
+View Deal Button
+
+This is much better than squeezing the table.
+
+====================================================
+RIGHT SIDEBAR
+====================================================
+
+Desktop:
+
+Current layout.
+
+Tablet:
+
+Move below hero.
+
+Mobile:
+
+Stack vertically.
+
+Cards should take full width.
+
+====================================================
+BOTTOM CARDS
+====================================================
+
+Desktop:
+
+Current grid.
+
+Tablet:
+
+2 columns.
+
+Mobile:
+
+1 column.
+
+Equal heights.
+
+Equal spacing.
+
+====================================================
+COUPONS
+====================================================
+
+Desktop:
+
+Current layout.
+
+Mobile:
+
+Cards stack vertically.
+
+Buttons remain full width.
+
+No clipping.
+
+====================================================
+CHARTS
+====================================================
+
+Charts should resize automatically.
+
+Never overflow.
+
+Maintain readability.
+
+====================================================
+PADDING
+====================================================
+
+Review every page.
+
+Reduce padding intelligently on smaller screens.
+
+Maintain breathing room.
+
+====================================================
+TYPOGRAPHY
+====================================================
+
+Scale headings.
+
+Scale paragraphs.
+
+Scale buttons.
+
+Maintain readability.
+
+Never allow text clipping.
+
+====================================================
+BUTTONS
+====================================================
+
+Buttons should resize.
+
+Never overflow.
+
+Maintain touch-friendly height.
+
+Minimum touch target: 44px.
+
+====================================================
+FORMS
+====================================================
+
+Inputs
+
+Search
+
+Authentication Forms
+
+Settings
+
+Everything should resize properly.
+
+====================================================
+MODALS
+====================================================
+
+Responsive width.
+
+Scrollable if content exceeds viewport.
+
+Centered correctly.
+
+====================================================
+DRAWERS
+====================================================
+
+Watchlist Drawer
+
+Notifications
+
+Profile Menu
+
+Responsive.
+
+====================================================
+THEME
+====================================================
+
+Ensure both Light and Dark mode work perfectly across every breakpoint.
+
+====================================================
+ACCESSIBILITY
+====================================================
+
+Large touch targets.
+
+Keyboard navigation.
+
+No inaccessible controls.
+
+====================================================
+PERFORMANCE
+====================================================
+
+Do not use JavaScript where CSS can solve the problem.
+
+Use responsive Tailwind utilities.
+
+Avoid layout shifts.
+
+====================================================
+QUALITY CHECK
+====================================================
+
+Review EVERY page.
+
+Dashboard
+
+Price Compare
+
+Price History
+
+Stock Tracker
+
+Coupons
+
+Watchlist
+
+AI Assistant
+
+Notifications
+
+Settings
+
+Authentication Pages
+
+Product Details
+
+Fix every responsive issue.
+
+====================================================
+FINAL RESULT
+====================================================
+
+The application should feel like a professionally built SaaS dashboard similar to:
+
+• Linear
+• Stripe Dashboard
+• Vercel
+• GitHub
+• Notion
+
+Every screen size should look intentional and production-ready.
+
+No horizontal scrolling except inside the desktop product table on tablets if necessary.
+
+Mobile users should have an equally premium experience, not just a scaled-down desktop version.

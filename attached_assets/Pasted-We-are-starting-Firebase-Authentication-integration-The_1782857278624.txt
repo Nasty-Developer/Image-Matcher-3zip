@@ -1,0 +1,123 @@
+We are starting Firebase Authentication integration.
+
+The frontend is already complete.
+
+Do NOT redesign the UI.
+
+Do NOT modify the existing layout.
+
+Keep the application visually identical.
+
+====================================================
+FIREBASE CONFIGURATION
+======================
+
+Use the following Firebase configuration:
+
+```ts
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyALnHhdSPJuI85dJKlC0zqW9gw6ZoAHfzs",
+  authDomain: "shopintel-ai.firebaseapp.com",
+  projectId: "shopintel-ai",
+  storageBucket: "shopintel-ai.firebasestorage.app",
+  messagingSenderId: "993188479424",
+  appId: "1:993188479424:web:fd75cc86ab390e323c4825",
+  measurementId: "G-NEKT2TLLSQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+```
+
+Create a proper Firebase architecture.
+
+Recommended structure:
+
+```
+src/
+├── firebase/
+│   └── firebase.ts
+├── context/
+│   └── AuthContext.tsx
+├── hooks/
+│   └── useAuth.ts
+├── services/
+│   └── authService.ts
+├── components/
+│   └── ProtectedRoute.tsx
+```
+
+====================================================
+AUTHENTICATION
+==============
+
+Implement Firebase Authentication with:
+
+* Google Sign In
+* Email & Password Sign Up
+* Email & Password Sign In
+* Forgot Password
+* Sign Out
+* Persistent Login
+
+====================================================
+PROTECTED FEATURES
+==================
+
+Guests can browse:
+
+* Dashboard
+* Price Compare
+* Coupons
+* Price History
+* Product Search
+
+Authentication is required for:
+
+* Watchlist
+* Saved Searches
+* Notifications
+* Favorites
+* Price Alerts
+* User Profile
+
+If a guest tries to access these features, redirect them to the Sign In page or show the existing authentication modal.
+
+====================================================
+PROFILE
+=======
+
+After login, display:
+
+* User Avatar
+* Display Name
+* Email
+* Sign Out Button
+
+====================================================
+ERROR HANDLING
+==============
+
+Display friendly error messages for:
+
+* Invalid Email
+* Wrong Password
+* User Not Found
+* Weak Password
+* Email Already Exists
+* Network Error
+
+====================================================
+IMPORTANT
+=========
+
+Keep the current UI exactly the same.
+
+Only integrate Firebase Authentication.
+
+Do not implement Firestore, backend APIs, MongoDB, or product search yet.
+
+The code should be clean, modular, reusable, and production-ready.

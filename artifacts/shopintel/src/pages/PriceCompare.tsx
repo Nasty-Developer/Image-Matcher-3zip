@@ -103,15 +103,15 @@ export default function PriceCompare() {
       <div
         style={{
           borderRadius: 14, background: "rgba(11,15,30,0.92)",
-          border: "1px solid rgba(255,255,255,0.07)", padding: "14px 16px",
-          marginBottom: 12, display: "flex", alignItems: "center", gap: 14,
+          border: "1px solid rgba(255,255,255,0.07)", padding: "16px 18px",
+          marginBottom: 14, display: "flex", alignItems: "center", gap: 16,
         }}
       >
         <div
           style={{
             flex: 1, display: "flex", alignItems: "center", gap: 10,
-            background: "rgba(15,20,40,0.8)", border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: 10, padding: "0 14px", height: 38,
+            background: "rgba(15,20,40,0.85)", border: "1px solid rgba(255,255,255,0.09)",
+            borderRadius: 11, padding: "0 14px", height: 40,
           }}
         >
           <Search size={14} style={{ color: "#4A4D65", flexShrink: 0 }} />
@@ -142,7 +142,7 @@ export default function PriceCompare() {
       </div>
 
       {/* Product cards */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {isLoading ? (
           <SkeletonRow count={4} height={78} />
         ) : (
@@ -156,16 +156,18 @@ export default function PriceCompare() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: pi * 0.06 }}
+                whileHover={{ borderColor: "rgba(124,77,255,0.2)", boxShadow: "0 8px 24px rgba(0,0,0,0.22)" }}
                 style={{
                   borderRadius: 14, background: "rgba(11,15,30,0.92)",
                   border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden",
+                  transition: "border-color 0.2s, box-shadow 0.2s",
                 }}
               >
                 {/* Header */}
                 <div
                   style={{
                     display: "flex", alignItems: "center", gap: 14,
-                    padding: "14px 16px", cursor: "pointer",
+                    padding: "16px 18px", cursor: "pointer",
                     borderBottom: isExpanded ? "1px solid rgba(255,255,255,0.05)" : "none",
                   }}
                   onClick={() => setLocation(`/product/${product.id}`)}
@@ -219,12 +221,13 @@ export default function PriceCompare() {
                       style={{
                         display: "grid",
                         gridTemplateColumns: "140px 1fr 100px 90px 80px",
-                        padding: "8px 16px",
+                        padding: "10px 18px",
                         borderBottom: "1px solid rgba(255,255,255,0.04)",
+                        background: "rgba(255,255,255,0.01)",
                       }}
                     >
                       {["Store", "Price", "Delivery", "Rating", ""].map((h) => (
-                        <span key={h} style={{ fontSize: 10.5, color: "#4A4D65", fontWeight: 600 }}>{h}</span>
+                        <span key={h} style={{ fontSize: 10.5, color: "#4A4D65", fontWeight: 600, letterSpacing: "0.03em" }}>{h}</span>
                       ))}
                     </div>
                     {product.stores.map((store, si) => {
@@ -236,7 +239,7 @@ export default function PriceCompare() {
                           style={{
                             display: "grid",
                             gridTemplateColumns: "140px 1fr 100px 90px 80px",
-                            padding: "10px 16px",
+                            padding: "13px 18px",
                             borderBottom: si < product.stores.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
                             alignItems: "center",
                             background: isBest ? "rgba(55,214,122,0.04)" : "transparent",
@@ -268,13 +271,14 @@ export default function PriceCompare() {
                             <span style={{ fontSize: 10, color: "#4A4D65" }}>({store.reviews})</span>
                           </div>
                           <motion.button
-                            whileHover={{ scale: 1.04 }}
+                            whileHover={{ scale: 1.04, boxShadow: "0 0 14px rgba(124,77,255,0.45)" }}
                             whileTap={{ scale: 0.96 }}
                             style={{
                               background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-                              padding: "5px 0", borderRadius: 7,
-                              color: "white", fontSize: 11, fontWeight: 600,
+                              padding: "7px 0", borderRadius: 8,
+                              color: "white", fontSize: 11.5, fontWeight: 600,
                               width: "100%", cursor: "pointer", border: "none",
+                              transition: "box-shadow 0.18s",
                             }}
                           >
                             Buy Now

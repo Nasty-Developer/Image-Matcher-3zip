@@ -40,15 +40,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return (
       <div
         style={{
-          background: "rgba(11,15,30,0.97)",
+          background: "rgba(8,11,26,0.97)",
           border: "1px solid rgba(124,77,255,0.4)",
-          borderRadius: 8,
-          padding: "5px 9px",
-          fontSize: 10,
+          borderRadius: 9,
+          padding: "7px 11px",
+          fontSize: 10.5,
           color: "white",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
         }}
       >
-        <div style={{ color: "#7B7E9A", marginBottom: 1 }}>{label}</div>
+        <div style={{ color: "#7B7E9A", marginBottom: 2 }}>{label}</div>
         <div style={{ fontWeight: 700 }}>₹{payload[0].value.toLocaleString()}</div>
       </div>
     );
@@ -65,40 +66,47 @@ export default function PriceHistoryCard() {
   const pad = Math.round((maxP - minP) * 0.4);
 
   return (
-    <div
+    <motion.div
+      whileHover={{
+        y: -2,
+        borderColor: "rgba(124,77,255,0.25)",
+        boxShadow: "0 10px 28px rgba(0,0,0,0.25), 0 0 0 1px rgba(124,77,255,0.08)",
+      }}
       style={{
         borderRadius: 14,
         background: "rgba(11,15,30,0.92)",
         border: "1px solid rgba(255,255,255,0.08)",
-        padding: "12px",
+        padding: "16px",
         overflow: "hidden",
+        transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
       }}
     >
-      {/* Header row — single line */}
+      {/* Header row */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          marginBottom: 8,
+          marginBottom: 10,
           gap: 6,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 7, flexShrink: 0 }}>
           <div
             style={{
-              width: 22,
-              height: 22,
-              borderRadius: 6,
+              width: 24,
+              height: 24,
+              borderRadius: 7,
               background: "rgba(124,77,255,0.18)",
+              border: "1px solid rgba(124,77,255,0.18)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <BarChart2 size={11} style={{ color: "#9D6CFF" }} />
+            <BarChart2 size={12} style={{ color: "#9D6CFF" }} />
           </div>
-          <span style={{ fontWeight: 600, color: "white", fontSize: 12, whiteSpace: "nowrap" }}>
+          <span style={{ fontWeight: 650, color: "white", fontSize: 12.5, whiteSpace: "nowrap" }}>
             Price History
           </span>
         </div>
@@ -109,8 +117,8 @@ export default function PriceHistoryCard() {
               key={tab}
               onClick={() => setActiveTab(tab)}
               style={{
-                padding: "2px 6px",
-                borderRadius: 5,
+                padding: "3px 7px",
+                borderRadius: 6,
                 fontSize: 9.5,
                 fontWeight: 600,
                 cursor: "pointer",
@@ -134,16 +142,16 @@ export default function PriceHistoryCard() {
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "space-between",
-          marginBottom: 6,
+          marginBottom: 8,
         }}
       >
         <div>
           <div style={{ fontSize: 21, fontWeight: 900, color: "white", lineHeight: 1 }}>
             ₹89,990
           </div>
-          <div style={{ fontSize: 9.5, color: "#4A4D65", marginTop: 2 }}>Current Price</div>
+          <div style={{ fontSize: 10, color: "#4A4D65", marginTop: 3 }}>Current Price</div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 2, color: "#37D67A" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 3, color: "#37D67A" }}>
           <TrendingDown size={11} />
           <span style={{ fontSize: 10.5, fontWeight: 600 }}>₹2,300 (2.5%)</span>
         </div>
@@ -187,6 +195,6 @@ export default function PriceHistoryCard() {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </motion.div>
   );
 }
