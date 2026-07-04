@@ -1,0 +1,246 @@
+I want to completely redesign the user entry experience while preserving the existing dashboard.
+
+DO NOT DELETE THE CURRENT DASHBOARD.
+
+Instead, make the dashboard the workspace that users enter AFTER searching.
+
+=========================================================
+NEW HOME PAGE
+=========================================================
+
+Create a completely new landing page for Prisma.
+
+The design should feel like a mix of:
+
+• Perplexity AI
+• ChatGPT
+• Apple
+• Linear
+• Arc Browser
+• Notion
+
+Extremely minimal.
+
+Premium.
+
+Modern.
+
+Luxury.
+
+Lots of breathing room.
+
+No unnecessary cards.
+
+=========================================================
+HERO
+=========================================================
+
+Center everything vertically.
+
+Display:
+
+Prisma
+
+Compare Smarter.
+Shop Better.
+
+Below that create one beautiful AI search bar.
+
+Placeholder:
+
+"Search any product across Amazon, Flipkart, Croma, Reliance Digital..."
+
+The search bar should feel premium.
+
+Rounded.
+
+Glassmorphism in Signature mode.
+
+Minimal in Minimal mode.
+
+=========================================================
+SEARCH EXPERIENCE
+=========================================================
+
+When the user searches:
+
+MacBook Air M4
+
+DO NOT immediately open comparison.
+
+Instead:
+
+Show a Search Results page.
+
+Display beautiful product cards.
+
+Each card should contain:
+
+• Product Image
+• Product Name
+• Brand
+• Storage / Variant
+• Starting Price
+• Available Stores
+• Quick Compare Button
+
+Clicking a card opens the Product Comparison Workspace.
+
+=========================================================
+TRENDING SEARCHES
+=========================================================
+
+Below the search box display:
+
+Trending Searches
+
+• iPhone 16 Pro
+• MacBook Air M4
+• PS5
+• RTX 5070
+• Nothing Phone 3
+• Samsung S26 Ultra
+
+Clickable chips.
+
+=========================================================
+POPULAR STORES
+=========================================================
+
+Display premium animated store logos.
+
+Amazon
+
+Flipkart
+
+Reliance Digital
+
+Croma
+
+Vijay Sales
+
+Tata CliQ
+
+Blinkit
+
+JioMart
+
+Animated softly.
+
+=========================================================
+FEATURES
+=========================================================
+
+Below the fold:
+
+Three premium feature cards.
+
+AI Shopping Assistant
+
+Real-Time Price Comparison
+
+Price Drop Alerts
+
+Glassmorphism.
+
+Hover animations.
+
+=========================================================
+AFTER SEARCH
+=========================================================
+
+User
+
+↓
+
+Searches
+
+↓
+
+Search Results
+
+↓
+
+Clicks Product
+
+↓
+
+Dashboard opens
+
+↓
+
+Real Comparison
+
+↓
+
+AI Recommendation
+
+This creates a premium user journey.
+
+=========================================================
+KEEP EXISTING DASHBOARD
+=========================================================
+
+Do NOT delete anything.
+
+Current Dashboard becomes:
+
+Product Comparison Workspace
+
+=========================================================
+ANIMATIONS
+=========================================================
+
+Use smooth page transitions.
+
+Fade animations.
+
+Blur transitions.
+
+Floating elements.
+
+Premium interactions.
+
+=========================================================
+QUALITY
+=========================================================
+
+This should feel like a premium AI startup.
+
+Not like an ecommerce website.
+
+Not like a shopping website.
+
+Think:
+
+Apple
+
+OpenAI
+
+Perplexity
+
+Linear
+
+Arc Browser
+
+Everything should feel minimal, elegant and futuristic.
+
+=========================================================
+WHEN COMPLETE
+=========================================================
+
+Run the development server.
+
+Open the preview automatically.
+
+Verify Desktop.
+
+Verify Tablet.
+
+Verify Mobile.
+
+Verify Dark Mode.
+
+Verify Light Mode.
+
+Fix build errors before finishing.

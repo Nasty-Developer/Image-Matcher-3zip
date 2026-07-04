@@ -1,0 +1,376 @@
+We are now entering the next major phase of the project.
+
+This project should now evolve from a frontend demo into a real production-ready AI shopping platform.
+
+DO NOT redesign the application.
+
+Preserve the existing premium UI, animations, layout, spacing and user experience.
+
+==========================================================
+PHASE 1 — REBRANDING
+==========================================================
+
+Rename the application from "ShopIntel AI" to "Prisma".
+
+Prisma should become the complete product identity.
+
+Update:
+
+• Logo
+• Browser Title
+• Meta Tags
+• Loading Screen
+• Sidebar Branding
+• Authentication Pages
+• Footer
+• Favicon
+• Manifest
+• PWA Metadata
+
+Suggested tagline:
+
+"Compare Smarter. Shop Better."
+
+==========================================================
+PHASE 2 — REMOVE UNUSED FEATURES
+==========================================================
+
+Remove Coupon Finder completely.
+
+Replace it with a new component called
+
+"Today's Best Deals"
+
+This section will later display real data.
+
+For now create a beautiful placeholder.
+
+Also remove duplicate Compare buttons and duplicate navigation.
+
+==========================================================
+PHASE 3 — COMPLETE THEME SYSTEM
+==========================================================
+
+Fix the Light Theme.
+
+The application currently has inconsistent colors.
+
+Requirements:
+
+Entire UI changes together.
+
+Sidebar
+
+Navbar
+
+Dashboard
+
+Cards
+
+Charts
+
+Buttons
+
+Tables
+
+Authentication
+
+Everything must support:
+
+Prisma Signature
+
+Prisma Minimal
+
+Each of those should support:
+
+Dark
+
+Light
+
+No mixed colors.
+
+==========================================================
+PHASE 4 — RESPONSIVENESS
+==========================================================
+
+Review every page.
+
+Desktop
+
+Laptop
+
+Tablet
+
+Mobile
+
+Convert the sidebar into a slide-out drawer on mobile.
+
+Convert product tables into mobile cards.
+
+No horizontal scrolling.
+
+No overlapping.
+
+Premium experience on every device.
+
+==========================================================
+PHASE 5 — FIREBASE
+==========================================================
+
+Complete Firebase Authentication.
+
+Support:
+
+Google Login
+
+Email Login
+
+Signup
+
+Forgot Password
+
+Persistent Login
+
+Logout
+
+Protect:
+
+Watchlist
+
+Notifications
+
+Saved Searches
+
+Profile
+
+==========================================================
+PHASE 6 — FIRESTORE
+==========================================================
+
+Create Firestore architecture.
+
+Collections:
+
+users
+
+watchlists
+
+savedSearches
+
+preferences
+
+notifications
+
+Do not store shopping prices inside Firestore.
+
+==========================================================
+PHASE 7 — EXPRESS BACKEND
+==========================================================
+
+Create a clean Express backend.
+
+Folder structure:
+
+backend/
+
+server.js
+
+routes/
+
+controllers/
+
+services/
+
+middleware/
+
+config/
+
+utils/
+
+==========================================================
+PHASE 8 — API ROUTES
+==========================================================
+
+Create clean REST APIs.
+
+GET /api/search
+
+GET /api/product/:id
+
+GET /api/compare
+
+GET /api/history
+
+POST /api/watchlist
+
+DELETE /api/watchlist/:id
+
+==========================================================
+PHASE 9 — PRODUCT SEARCH
+==========================================================
+
+The application must support REAL product search.
+
+Workflow:
+
+User searches:
+
+MacBook Air M2
+
+↓
+
+Backend
+
+↓
+
+Shopping provider (ZenRows integration or another supported provider)
+
+↓
+
+Return product results from multiple stores when available.
+
+Example:
+
+Amazon
+
+Flipkart
+
+Reliance Digital
+
+Croma
+
+Vijay Sales
+
+Normalize all returned data.
+
+Return:
+
+Product Name
+
+Product Image
+
+Store
+
+Current Price
+
+Original Price
+
+Availability
+
+Delivery
+
+Product URL
+
+==========================================================
+PHASE 10 — PRICE COMPARISON
+==========================================================
+
+Automatically compare every returned store.
+
+Highlight:
+
+Lowest Price
+
+Best Value
+
+Highest Discount
+
+Fastest Delivery
+
+Sort results automatically.
+
+==========================================================
+PHASE 11 — SEARCH EXPERIENCE
+==========================================================
+
+Do NOT directly open the comparison page.
+
+Instead:
+
+User searches
+
+↓
+
+Display matching products
+
+↓
+
+User selects one product
+
+↓
+
+Open Product Details page
+
+↓
+
+Display comparison across stores.
+
+==========================================================
+PHASE 12 — AI
+==========================================================
+
+Gemini must NOT search the internet for prices.
+
+Gemini only receives already-collected shopping data.
+
+Gemini explains:
+
+Cheapest Store
+
+Best Time to Buy
+
+Should Buy or Wait
+
+Why
+
+Price Summary
+
+Shopping Tips
+
+==========================================================
+PHASE 13 — QUALITY
+==========================================================
+
+Review the entire application.
+
+Remove dummy data wherever real data can be connected.
+
+Remove duplicate UI.
+
+Fix broken interactions.
+
+Fix theme bugs.
+
+Fix responsiveness.
+
+Fix animations.
+
+Fix accessibility.
+
+Fix loading states.
+
+Keep the architecture modular.
+
+Each service should live inside its own service file.
+
+ZenRows Service
+
+Gemini Service
+
+Firebase Service
+
+Price Comparison Service
+
+Authentication Service
+
+Build this like a production-ready SaaS platform that can scale in the future.
+
+When finished:
+
+• Fix build errors
+• Run the development server
+• Launch the preview
+• Verify every page
+• Verify responsive layouts
+• Verify authentication
+• Verify navigation

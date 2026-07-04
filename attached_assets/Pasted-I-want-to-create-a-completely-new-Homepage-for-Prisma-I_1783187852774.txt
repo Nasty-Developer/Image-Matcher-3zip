@@ -1,0 +1,292 @@
+I want to create a completely new Homepage for Prisma.
+
+IMPORTANT:
+
+Do NOT delete the existing Dashboard.
+
+The existing Dashboard should become the Product Workspace that users access AFTER selecting a product.
+
+The Homepage should become the first screen users see.
+
+=========================================================
+DESIGN STYLE
+=========================================================
+
+The Homepage should feel like a combination of:
+
+• Apple
+• OpenAI
+• Perplexity AI
+• Linear
+• Arc Browser
+• Notion
+
+Minimal.
+
+Luxury.
+
+Modern.
+
+Premium.
+
+AI-first.
+
+Lots of whitespace.
+
+Smooth animations.
+
+Beautiful typography.
+
+Professional spacing.
+
+=========================================================
+CENTER HERO
+=========================================================
+
+Place everything perfectly centered.
+
+Large Prisma logo.
+
+Below it:
+
+Compare Smarter.
+Shop Better.
+
+Below that:
+
+A beautiful AI-powered search bar.
+
+Placeholder:
+
+"Search any product across Amazon, Flipkart, Croma, Reliance Digital..."
+
+The search bar should have:
+
+• Glassmorphism (Signature Mode)
+• Minimal style (Minimal Mode)
+• Rounded corners
+• Search icon
+• Voice Search button (coming soon)
+• AI icon
+
+=========================================================
+TRENDING SEARCHES
+=========================================================
+
+Below the search bar create animated chips.
+
+Trending Searches
+
+• iPhone 16 Pro
+• MacBook Air M4
+• PS5 Slim
+• RTX 5070
+• Nothing Phone 3
+• Samsung Galaxy S26 Ultra
+
+Each chip should be clickable.
+
+Hover animation.
+
+=========================================================
+POPULAR STORES
+=========================================================
+
+Below Trending Searches display premium animated logos.
+
+Amazon
+
+Flipkart
+
+Reliance Digital
+
+Croma
+
+Vijay Sales
+
+Tata CliQ
+
+JioMart
+
+Blinkit
+
+Each logo should have a soft hover animation.
+
+=========================================================
+AI FEATURES
+=========================================================
+
+Create three premium feature cards.
+
+Card 1
+
+🤖 AI Shopping Assistant
+
+Find the cheapest price instantly.
+
+----------------------------------------------------
+
+Card 2
+
+📊 Smart Price Comparison
+
+Compare prices across every supported store.
+
+----------------------------------------------------
+
+Card 3
+
+🔔 Price Drop Alerts
+
+Track products and receive notifications automatically.
+
+=========================================================
+HOW IT WORKS
+=========================================================
+
+Create a beautiful timeline.
+
+1.
+
+Search Product
+
+↓
+
+2.
+
+Compare Prices
+
+↓
+
+3.
+
+AI Recommendation
+
+↓
+
+4.
+
+Buy from the Best Store
+
+=========================================================
+USER FLOW
+=========================================================
+
+User opens Homepage
+
+↓
+
+Searches Product
+
+↓
+
+Search Results Page opens
+
+↓
+
+Displays multiple matching products
+
+↓
+
+User selects one
+
+↓
+
+Open existing Dashboard
+
+↓
+
+Dashboard now becomes Product Comparison Workspace
+
+=========================================================
+BACKGROUND
+=========================================================
+
+Animated Aurora gradients.
+
+Soft particles.
+
+Very subtle glow.
+
+No distractions.
+
+Premium atmosphere.
+
+=========================================================
+ANIMATIONS
+=========================================================
+
+Fade Up
+
+Blur In
+
+Floating Background
+
+Smooth Hover
+
+Page Transition
+
+Premium motion throughout.
+
+=========================================================
+RESPONSIVE
+=========================================================
+
+Perfect Desktop.
+
+Perfect Laptop.
+
+Perfect Tablet.
+
+Perfect Mobile.
+
+=========================================================
+DO NOT CHANGE
+=========================================================
+
+Do NOT redesign Dashboard.
+
+Do NOT redesign Sidebar.
+
+Do NOT redesign Product Comparison Workspace.
+
+Only create this Homepage and connect it to the existing application.
+
+=========================================================
+FINAL QUALITY
+=========================================================
+
+The Homepage should feel like a billion-dollar AI startup.
+
+Not an ecommerce website.
+
+Not Amazon.
+
+Not Flipkart.
+
+Think:
+
+OpenAI
+
+Apple
+
+Perplexity
+
+Linear
+
+Arc Browser
+
+Premium.
+
+Elegant.
+
+Minimal.
+
+Futuristic.
+
+When finished:
+
+• Run the application.
+• Fix build errors.
+• Launch the preview.
+• Verify Desktop, Tablet and Mobile.
