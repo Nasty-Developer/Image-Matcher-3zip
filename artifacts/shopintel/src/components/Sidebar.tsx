@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from "wouter";
-import { ChevronDown, Zap, Sparkles, Plus } from "lucide-react";
+import { ChevronDown, Zap, Sparkles, Plus, X } from "lucide-react";
 import {
   sidebarSections,
   quickActions,
   type SidebarSection,
   type SidebarItem,
 } from "../config/sidebarConfig";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 
 /* ─── Single nav item ────────────────────────────────────────── */
 function NavItem({ item, active }: { item: SidebarItem; active: boolean }) {
@@ -268,28 +269,54 @@ function QuickActions() {
 }
 
 /* ─── Root Sidebar ───────────────────────────────────────────── */
-export default function Sidebar() {
+interface SidebarProps {
+  mobileOpen?: boolean;
+  onClose?: () => void;
+}
+
+export default function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
   const [location] = useLocation();
+  const { isDesktop } = useBreakpoint();
 
   return (
-    <aside style={{
-      position: "fixed", left: 0, top: 0, bottom: 0, width: 208, zIndex: 100,
-      display: "flex", flexDirection: "column",
-      background: [
-        "radial-gradient(ellipse 120% 60% at 50% 0%, rgba(124,77,255,0.07) 0%, transparent 70%)",
-        "radial-gradient(ellipse 80% 40% at 0% 100%, rgba(30,40,180,0.05) 0%, transparent 60%)",
-        "rgba(7,9,20,0.98)",
-      ].join(", "),
-      backdropFilter: "blur(28px) saturate(160%)",
-      WebkitBackdropFilter: "blur(28px) saturate(160%)",
-      borderRight: "1px solid rgba(255,255,255,0.07)",
-      boxShadow: "1px 0 0 0 rgba(124,77,255,0.06), 6px 0 28px rgba(0,0,0,0.3)",
-    }}>
+    <>
+      {!isDesktop && (
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={onClose}
+              style={{
+                position: "fixed", inset: 0, zIndex: 199,
+                background: "rgba(0,0,0,0.6)", backdropFilter: "blur(2px)",
+              }}
+            />
+          )}
+        </AnimatePresence>
+      )}
+      <aside style={{
+        position: "fixed", left: 0, top: 0, bottom: 0, width: 208, zIndex: 200,
+        display: "flex", flexDirection: "column",
+        background: [
+          "radial-gradient(ellipse 120% 60% at 50% 0%, rgba(124,77,255,0.07) 0%, transparent 70%)",
+          "radial-gradient(ellipse 80% 40% at 0% 100%, rgba(30,40,180,0.05) 0%, transparent 60%)",
+          "rgba(7,9,20,0.98)",
+        ].join(", "),
+        backdropFilter: "blur(28px) saturate(160%)",
+        WebkitBackdropFilter: "blur(28px) saturate(160%)",
+        borderRight: "1px solid rgba(255,255,255,0.07)",
+        boxShadow: "1px 0 0 0 rgba(124,77,255,0.06), 6px 0 28px rgba(0,0,0,0.3)",
+        transform: !isDesktop && !mobileOpen ? "translateX(-100%)" : "translateX(0)",
+        transition: "transform 0.24s cubic-bezier(0.4,0,0.2,1)",
+      }}>
 
       {/* ── Logo ── */}
       <div style={{
         padding: "20px 16px 16px", flexShrink: 0,
         borderBottom: "1px solid rgba(255,255,255,0.05)",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{
@@ -302,13 +329,26 @@ export default function Sidebar() {
           </div>
           <div>
             <div style={{ fontSize: 13.5, fontWeight: 700, color: "#F0EEFF", letterSpacing: "-0.025em", lineHeight: 1.2 }}>
-              ShopIntel
+              Prisma
             </div>
             <div style={{ fontSize: 10.5, color: "#505268", fontWeight: 450, letterSpacing: "0.01em", marginTop: 1 }}>
-              AI Shopping Assistant
+              Compare Smarter. Shop Better.
             </div>
           </div>
         </div>
+        {!isDesktop && (
+          <button
+            onClick={onClose}
+            aria-label="Close menu"
+            style={{
+              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 8, width: 28, height: 28, display: "flex", alignItems: "center",
+              justifyContent: "center", cursor: "pointer", color: "#B7B9C9", flexShrink: 0,
+            }}
+          >
+            <X size={14} />
+          </button>
+        )}
       </div>
 
       {/* ── Nav sections (scrollable) ── */}
@@ -373,9 +413,10 @@ export default function Sidebar() {
           </motion.button>
         </div>
         <div style={{ textAlign: "center", marginTop: 12, fontSize: 11, color: "#2E3148", letterSpacing: "0.01em" }}>
-          Why ShopIntel AI?
+          Why Prisma?
         </div>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }

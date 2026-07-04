@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, Heart, Star, ChevronDown, CreditCard, Smartphone, Clock } from "lucide-react";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 
 const stores = [
   {
@@ -59,6 +60,7 @@ export default function ProductCard() {
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
 
   const toggle = (logo: string) => setExpandedRow(expandedRow === logo ? null : logo);
+  const { isDesktop } = useBreakpoint();
 
   return (
     <div
@@ -153,7 +155,8 @@ export default function ProductCard() {
       </div>
 
       {/* Table */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", overflowX: isDesktop ? "visible" : "auto" }}>
+        <div style={{ minWidth: isDesktop ? "auto" : 720 }}>
         {/* Header */}
         <div
           style={{
@@ -301,6 +304,7 @@ export default function ProductCard() {
             </div>
           );
         })}
+        </div>
       </div>
     </div>
   );

@@ -7,11 +7,13 @@ import { SkeletonCard } from "./components/SkeletonLoader";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 
+const Home = React.lazy(() => import("./pages/Home"));
+const SearchResults = React.lazy(() => import("./pages/SearchResults"));
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const PriceCompare = React.lazy(() => import("./pages/PriceCompare"));
 const PriceHistory = React.lazy(() => import("./pages/PriceHistory"));
 const StockTracker = React.lazy(() => import("./pages/StockTracker"));
-const Coupons = React.lazy(() => import("./pages/Coupons"));
+const BestDeals = React.lazy(() => import("./pages/BestDeals"));
 const Watchlist = React.lazy(() => import("./pages/Watchlist"));
 const AIAssistant = React.lazy(() => import("./pages/AIAssistant"));
 const Notifications = React.lazy(() => import("./pages/Notifications"));
@@ -41,16 +43,18 @@ export default function App() {
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/forgot-password" component={ForgotPassword} />
-            
+            <Route path="/" component={Home} />
+            <Route path="/search" component={SearchResults} />
+
             <Route>
               <AppLayout>
                 <AnimatePresence mode="wait">
                   <Switch>
-                    <Route path="/" component={Dashboard} />
+                    <Route path="/dashboard" component={Dashboard} />
                     <Route path="/price-compare" component={PriceCompare} />
                     <Route path="/price-history" component={PriceHistory} />
                     <Route path="/stock-tracker" component={StockTracker} />
-                    <Route path="/coupons" component={Coupons} />
+                    <Route path="/best-deals" component={BestDeals} />
                     <Route path="/watchlist" component={Watchlist} />
                     <Route path="/ai-assistant" component={AIAssistant} />
                     <Route path="/notifications" component={Notifications} />

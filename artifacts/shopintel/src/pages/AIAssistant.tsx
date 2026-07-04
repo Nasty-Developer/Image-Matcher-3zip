@@ -14,7 +14,7 @@ interface Message {
 const suggestions = [
   "What's the best time to buy MacBook Air M2?",
   "Compare iPhone 15 vs Samsung S24",
-  "Find coupons for electronics",
+  "Show today's best deals on electronics",
   "Predict price drop for Sony headphones",
 ];
 
@@ -24,8 +24,8 @@ const conversations = [
     { id: 102, role: "assistant" as const, content: "Based on my analysis, the **Apple MacBook Air M2** is currently priced at ₹89,990 on Amazon. 📊\n\n**AI Recommendation:** Wait 3 days! Big Billion Days is approaching and the price is predicted to drop by ₹2,300–₹3,500.", time: "2:30 PM" }
   ]},
   { id: 2, title: "Best Deals This Week", time: "Yesterday", history: [
-    { id: 201, role: "user" as const, content: "Find coupons for electronics", time: "Yesterday" },
-    { id: 202, role: "assistant" as const, content: "I found **3 active coupons** for electronics right now! 🎫\n\n• **HDFC10** — 10% off up to ₹1,500\n• **SUPER2000** — Flat ₹2,000 off\n\nUse SUPER2000 + HDFC10 to save up to ₹3,500!", time: "Yesterday" }
+    { id: 201, role: "user" as const, content: "Show today's best deals on electronics", time: "Yesterday" },
+    { id: 202, role: "assistant" as const, content: "Here are today's **best deals** on electronics! 🔥\n\n• **MacBook Air M2** — ₹87,990 (lowest in 30 days)\n• **Sony WH-1000XM5** — ₹25,990\n\nI'll keep tracking these and alert you if they drop further.", time: "Yesterday" }
   ]},
   { id: 3, title: "Smartphone Comparison", time: "28 May", history: [
     { id: 301, role: "user" as const, content: "Compare iPhone 15 vs Samsung S24", time: "28 May" },
@@ -38,19 +38,19 @@ const getResponse = (msg: string): string => {
   if (lower.includes("macbook") || lower.includes("mac")) {
     return "Based on my analysis, the **Apple MacBook Air M2** is currently priced at ₹89,990 on Amazon. 📊\n\n**AI Recommendation:** Wait 3 days! Big Billion Days is approaching and the price is predicted to drop by ₹2,300–₹3,500.\n\n**Best deal right now:** Flipkart at ₹87,990 with ₹3,000 off via Axis Bank card.\n\nWould you like me to set a price alert at ₹86,000?";
   }
-  if (lower.includes("coupon") || lower.includes("deal")) {
-    return "I found **3 active coupons** for electronics right now! 🎫\n\n• **HDFC10** — 10% off up to ₹1,500 on HDFC cards\n• **SUPER2000** — Flat ₹2,000 off on orders above ₹50,000\n• **UPIBACK5** — 5% cashback via UPI (max ₹500)\n\nThe best combo for a purchase above ₹90,000 would be SUPER2000 + HDFC10, saving you up to ₹3,500!";
+  if (lower.includes("deal") || lower.includes("coupon")) {
+    return "Here are today's **best deals** across stores! 🔥\n\n• **MacBook Air M2** — ₹87,990 on Flipkart (lowest in 30 days)\n• **Sony WH-1000XM5** — ₹25,990 on Amazon\n• **Samsung S24 Ultra** — ₹1,07,999 on Flipkart\n\nWant me to set price alerts for any of these?";
   }
   if (lower.includes("iphone") || lower.includes("samsung") || lower.includes("compare")) {
     return "Comparing **iPhone 15** vs **Samsung Galaxy S24 Ultra**: 📱\n\n| Feature | iPhone 15 | S24 Ultra |\n|---|---|---|\n| Price | ₹79,900 | ₹1,09,999 |\n| Camera | 48MP | 200MP |\n| Battery | 3,877mAh | 5,000mAh |\n\n**AI Pick:** For photography, Samsung wins. For ecosystem & longevity, iPhone is the better investment.\n\nWant me to track prices for both?";
   }
-  return "Great question! 🤖 I'm analyzing real-time data across 5+ stores to give you the best recommendation.\n\nHere's what I found:\n• **Best price trend**: Prices are dropping 2–4% this week across major stores\n• **Recommended action**: It's a good time to buy electronics\n• **Top coupon**: Use SUPER2000 for ₹2,000 instant savings\n\nIs there a specific product you'd like me to analyze in detail?";
+  return "Great question! 🤖 I'm analyzing real-time data across 5+ stores to give you the best recommendation.\n\nHere's what I found:\n• **Best price trend**: Prices are dropping 2–4% this week across major stores\n• **Recommended action**: It's a good time to buy electronics\n• **Best deal today**: Check Today's Best Deals for the top AI-curated pick\n\nIs there a specific product you'd like me to analyze in detail?";
 };
 
 export default function AIAssistant() {
   const initialMessage: Message = {
     id: 1, role: "assistant",
-    content: "Hi Aryan! 👋 I'm your ShopIntel AI shopping assistant. I can help you find the best deals, predict price drops, compare products across stores, and find working coupons. What would you like to know today?",
+    content: "Hi Aryan! 👋 I'm Prisma, your AI shopping assistant. I can help you find the best deals, predict price drops, and compare products across stores. What would you like to know today?",
     time: "Just now",
   };
 
@@ -176,7 +176,7 @@ export default function AIAssistant() {
               <Bot size={18} style={{ color: "#9D6CFF" }} />
             </div>
             <div>
-              <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>ShopIntel AI</div>
+              <div style={{ fontWeight: 700, color: "white", fontSize: 14 }}>Prisma AI</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#37D67A" }} />
                 <span style={{ fontSize: 11, color: "#37D67A" }}>Online · Ready to help</span>

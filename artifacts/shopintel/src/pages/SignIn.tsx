@@ -29,7 +29,7 @@ export default function SignIn() {
     setIsLoading(true);
     try {
       await signIn(email, password);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError("Failed to sign in");
     } finally {
@@ -56,7 +56,7 @@ export default function SignIn() {
         
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-white mb-2">Welcome back</h1>
-          <p className="text-[#8385A0] text-[13.5px]">Enter your details to sign in to ShopIntel</p>
+          <p className="text-[#8385A0] text-[13.5px]">Enter your details to sign in to Prisma</p>
         </div>
 
         {error && (
@@ -132,7 +132,7 @@ export default function SignIn() {
           </p>
           
           <button 
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/dashboard")}
             className="text-[13px] font-medium text-[#5A5D75] hover:text-white transition-colors"
           >
             Continue as Guest

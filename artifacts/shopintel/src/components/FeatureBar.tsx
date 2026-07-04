@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Brain, Radio, Layers, Tag, Shield } from "lucide-react";
+import { Brain, Radio, Layers, Flame, Shield } from "lucide-react";
 
 const features = [
   { icon: Brain, title: "AI Price Prediction", desc: "99% Accuracy" },
   { icon: Radio, title: "Real-time Price Tracking", desc: "24/7 Monitoring" },
   { icon: Layers, title: "All-in-One Comparison", desc: "5+ Stores" },
-  { icon: Tag, title: "Smart Coupons", desc: "Auto Applied" },
+  { icon: Flame, title: "Today's Best Deals", desc: "Coming Soon" },
   { icon: Shield, title: "Secure & Private", desc: "Your Data, Your Control" },
 ];
 

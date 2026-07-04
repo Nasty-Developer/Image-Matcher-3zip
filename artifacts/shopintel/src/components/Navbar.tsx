@@ -1,19 +1,22 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Settings, Star, Bell, ChevronDown, User, LogOut, HelpCircle } from "lucide-react";
+import { Search, Settings, Star, Bell, ChevronDown, User, LogOut, HelpCircle, Menu } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "../context/AuthContext";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 
 interface NavbarProps {
   onOpenSearch: () => void;
   onOpenAuth: () => void;
+  onOpenMenu?: () => void;
 }
 
-export default function Navbar({ onOpenSearch, onOpenAuth }: NavbarProps) {
+export default function Navbar({ onOpenSearch, onOpenAuth, onOpenMenu }: NavbarProps) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [, navigate] = useLocation();
   const profileRef = useRef<HTMLDivElement>(null);
   const { user, isGuest, signOut } = useAuth();
+  const { isDesktop } = useBreakpoint();
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -41,12 +44,28 @@ export default function Navbar({ onOpenSearch, onOpenAuth }: NavbarProps) {
         boxShadow: "0 1px 0 0 rgba(255,255,255,0.03), 0 4px 20px rgba(0,0,0,0.2)",
       }}
     >
+      {!isDesktop && (
+        <motion.button
+          whileTap={{ scale: 0.92 }}
+          onClick={onOpenMenu}
+          aria-label="Open menu"
+          style={{
+            flexShrink: 0, width: 36, height: 36, borderRadius: 10,
+            background: "rgba(15,20,40,0.85)", border: "1px solid rgba(255,255,255,0.09)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: "#B7B9C9", cursor: "pointer",
+          }}
+        >
+          <Menu size={17} />
+        </motion.button>
+      )}
+
       {/* Search */}
-      <div className="flex items-center gap-2.5 flex-1" style={{ maxWidth: 480 }}>
+      <div className="flex items-center gap-2.5 flex-1 min-w-0" style={{ maxWidth: isDesktop ? 480 : undefined }}>
         <motion.button
           onClick={() => onOpenSearch()}
           whileHover={{ borderColor: "rgba(124,77,255,0.35)" }}
-          className="flex items-center justify-between flex-1 px-4 outline-none cursor-text"
+          className="flex items-center justify-between flex-1 px-4 outline-none cursor-text min-w-0"
           style={{
             background: "rgba(15,20,40,0.85)",
             border: "1px solid rgba(255,255,255,0.09)",
@@ -55,55 +74,63 @@ export default function Navbar({ onOpenSearch, onOpenAuth }: NavbarProps) {
             transition: "border-color 0.18s ease",
           }}
         >
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 min-w-0">
             <Search size={14} style={{ color: "#52556F", flexShrink: 0 }} />
-            <span style={{ fontSize: 13, color: "#B7B9C9" }}>Search for any product...</span>
+            <span className="truncate" style={{ fontSize: 13, color: "#B7B9C9" }}>
+              {isDesktop ? "Search for any product..." : "Search..."}
+            </span>
           </div>
-          <div
-            className="text-[10px] font-bold text-[#4A4D65]"
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              padding: "2px 6px",
-              borderRadius: 6,
-              border: "1px solid rgba(255,255,255,0.07)",
-              display: "flex", alignItems: "center", gap: 1, flexShrink: 0,
-            }}
-          >
-            <span>⌘</span>K
-          </div>
+          {isDesktop && (
+            <div
+              className="text-[10px] font-bold text-[#4A4D65]"
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                padding: "2px 6px",
+                borderRadius: 6,
+                border: "1px solid rgba(255,255,255,0.07)",
+                display: "flex", alignItems: "center", gap: 1, flexShrink: 0,
+              }}
+            >
+              <span>⌘</span>K
+            </div>
+          )}
         </motion.button>
       </div>
 
-      {/* Divider */}
-      <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
+      {isDesktop && (
+        <>
+          {/* Divider */}
+          <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
 
-      {/* Add to Watchlist */}
-      <motion.button
-        whileHover={{
-          scale: 1.02,
-          background: "rgba(20,26,48,0.95)",
-          borderColor: "rgba(255,255,255,0.14)",
-        }}
-        whileTap={{ scale: 0.97 }}
-        onClick={() => isGuest ? onOpenAuth() : navigate("/watchlist")}
-        className="flex items-center gap-1.5 px-3.5 flex-shrink-0 rounded-xl"
-        style={{
-          background: "rgba(15,20,40,0.85)",
-          border: "1px solid rgba(255,255,255,0.09)",
-          height: 40,
-          fontSize: 12.5,
-          fontWeight: 500,
-          color: "white",
-          cursor: "pointer",
-          transition: "all 0.18s ease",
-        }}
-      >
-        <Star size={13} style={{ color: "#9D6CFF" }} />
-        Add to Watchlist
-      </motion.button>
+          {/* Add to Watchlist */}
+          <motion.button
+            whileHover={{
+              scale: 1.02,
+              background: "rgba(20,26,48,0.95)",
+              borderColor: "rgba(255,255,255,0.14)",
+            }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => isGuest ? onOpenAuth() : navigate("/watchlist")}
+            className="flex items-center gap-1.5 px-3.5 flex-shrink-0 rounded-xl"
+            style={{
+              background: "rgba(15,20,40,0.85)",
+              border: "1px solid rgba(255,255,255,0.09)",
+              height: 40,
+              fontSize: 12.5,
+              fontWeight: 500,
+              color: "white",
+              cursor: "pointer",
+              transition: "all 0.18s ease",
+            }}
+          >
+            <Star size={13} style={{ color: "#9D6CFF" }} />
+            Add to Watchlist
+          </motion.button>
 
-      {/* Divider */}
-      <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
+          {/* Divider */}
+          <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.07)", flexShrink: 0 }} />
+        </>
+      )}
 
       {/* Notifications bell */}
       <motion.button

@@ -24,19 +24,6 @@ export interface Product {
   stores: StorePrice[];
 }
 
-export interface Coupon {
-  code: string;
-  category: string;
-  store: string;
-  discount: string;
-  desc: string;
-  minOrder: string;
-  validity: string;
-  color: string;
-  bg: string;
-  border: string;
-}
-
 export interface WatchlistItem {
   id: number;
   name: string;

@@ -5,7 +5,7 @@ import { Link, useParams, useLocation } from "wouter";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import PageTransition from "../components/PageTransition";
 import AIRecommendationCard from "../components/AIRecommendationCard";
-import CouponCard from "../components/CouponCard";
+import TodaysBestDeals from "../components/TodaysBestDeals";
 
 const historyData = [
   { date: "May 1", price: 94200 },
@@ -318,7 +318,7 @@ export default function ProductDetails() {
              </div>
           </div>
 
-          <CouponCard />
+          <TodaysBestDeals />
         </div>
 
       </div>

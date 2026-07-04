@@ -163,10 +163,6 @@ input::placeholder {
 .store-logo-croma { color: #00A63E; }
 .store-logo-vijay { color: #F5A623; }
 
-.coupon-tag-hdfc { background: rgba(29, 135, 219, 0.15); border-color: rgba(29, 135, 219, 0.3); color: #4EB5FF; }
-.coupon-tag-super { background: rgba(247, 148, 29, 0.15); border-color: rgba(247, 148, 29, 0.3); color: #F79420; }
-.coupon-tag-sbi { background: rgba(55, 214, 122, 0.15); border-color: rgba(55, 214, 122, 0.3); color: #37D67A; }
-
 .bg-main {
   background: 
     radial-gradient(ellipse at 20% 20%, rgba(124, 77, 255, 0.08) 0%, transparent 50%),
@@ -320,6 +316,22 @@ input:focus-visible {
   100% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0); }
 }
 
+/* ============================================================
+   PRISMA THEME SYSTEM
+   Two mode families: theme-signature (default, glass+purple glow)
+   and theme-minimal (flat, muted, no blur/glow). Each supports
+   dark (default) and light (.light-mode) color schemes.
+   Since most components use inline hex/rgba styles rather than
+   CSS vars, overrides are applied broadly via attribute selectors
+   that match the literal inline color strings used across the app.
+   ============================================================ */
+
+:root {
+  --p-accent: #7C4DFF;
+  --p-accent-2: #9D6CFF;
+}
+
+/* ---------- LIGHT COLOR SCHEME (applies to both theme modes) ---------- */
 .light-mode {
   --bg-main: #f0f2f8;
   --bg-card: #ffffff;
@@ -331,30 +343,155 @@ input:focus-visible {
   color: #0d0f1e;
 }
 .light-mode .app-shell {
-  background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(124,77,255,0.05) 0%, transparent 60%), 
+  background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(124,77,255,0.05) 0%, transparent 60%),
               radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30,60,200,0.03) 0%, transparent 60%),
               #f0f2f8 !important;
 }
+
+/* Card / panel surfaces — every dark rgba surface tone used across the app */
 .light-mode .glass,
+.light-mode .glass-light,
+.light-mode .analytics-card,
+.light-mode .skeleton-glass,
+.light-mode [style*="rgba(11, 15, 30"],
 .light-mode [style*="rgba(11,15,30"],
-.light-mode [style*="rgba(13,18,34"] {
-  background: rgba(255,255,255,0.9) !important;
+.light-mode [style*="rgba(13, 18, 34"],
+.light-mode [style*="rgba(13,18,34"],
+.light-mode [style*="rgba(15, 20, 38"],
+.light-mode [style*="rgba(15,20,38"],
+.light-mode [style*="rgba(15, 20, 40"],
+.light-mode [style*="rgba(15,20,40"],
+.light-mode [style*="rgba(10, 14, 28"],
+.light-mode [style*="rgba(10,14,28"],
+.light-mode [style*="rgba(18, 24, 44"],
+.light-mode [style*="rgba(18,24,44"],
+.light-mode [style*="rgba(20, 28, 50"],
+.light-mode [style*="rgba(20,28,50"],
+.light-mode [style*="rgba(20, 26, 48"],
+.light-mode [style*="rgba(20,26,48"] {
+  background: rgba(255,255,255,0.92) !important;
   border-color: rgba(0,0,0,0.08) !important;
   color: #0d0f1e;
 }
+
+/* Sidebar + Navbar chrome (rgba(7,9,20,*) / rgba(6,9,19,*)) */
+.light-mode aside,
+.light-mode header,
+.light-mode [style*="rgba(7, 9, 20"],
+.light-mode [style*="rgba(7,9,20"],
+.light-mode [style*="rgba(6, 9, 19"],
+.light-mode [style*="rgba(6,9,19"] {
+  background: rgba(255,255,255,0.96) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+
+/* Page root backgrounds */
+.light-mode [style*="#060913"],
+.light-mode [style*="background: rgb(6, 9, 19)"] {
+  background: #f0f2f8 !important;
+}
+.light-mode [style*="#0b0f1e"],
+.light-mode [style*="#0d1222"] {
+  background: #ffffff !important;
+}
+
+/* Borders */
+.light-mode [style*="rgba(255,255,255,0.0"],
+.light-mode [style*="rgba(255, 255, 255, 0.0"],
+.light-mode [style*="rgba(255,255,255,0.1"],
+.light-mode [style*="rgba(255, 255, 255, 0.1"] {
+  border-color: rgba(0,0,0,0.08) !important;
+}
+.light-mode [style*="borderTop: 1px solid rgba(255,255,255"],
+.light-mode [style*="borderBottom: 1px solid rgba(255,255,255"] {
+  border-color: rgba(0,0,0,0.07) !important;
+}
+
+/* Primary text (white) */
 .light-mode [style*="color: white"],
 .light-mode [style*='color: "white"'],
+.light-mode [style*="color:#fff"],
+.light-mode [style*="color: #fff"],
+.light-mode [style*="color: #F0EEFF"],
 .light-mode .text-white {
   color: #0d0f1e !important;
 }
-.light-mode [style*="color: #B7B9C9"],
-.light-mode [style*='color: "#B7B9C9"'],
-.light-mode [style*="color: #8385A0"],
-.light-mode [style*='color: "#8385A0"'] {
-  color: #5A5D75 !important;
+
+/* Secondary / muted text tones */
+.light-mode [style*="#B7B9C9"],
+.light-mode [style*="#8385A0"],
+.light-mode [style*="#7B7E9A"] {
+  color: #4B4E68 !important;
 }
-.light-mode [style*="background: #060913"],
-.light-mode [style*='background: "#060913"'] {
-  background: #f0f2f8 !important;
+.light-mode [style*="#4A4D65"],
+.light-mode [style*="#5A5D75"],
+.light-mode [style*="#606380"],
+.light-mode [style*="#52556F"],
+.light-mode [style*="#505268"],
+.light-mode [style*="#6B6E8A"] {
+  color: #7B7E9A !important;
+}
+.light-mode [style*="#2E3148"] {
+  color: #A0A3BD !important;
+}
+
+/* Inputs / placeholders */
+.light-mode input::placeholder {
+  color: #9698AD !important;
+}
+.light-mode input {
+  color: #0d0f1e !important;
+}
+
+/* Command palette footer + misc always-dark chips stay readable */
+.light-mode .bg-\[\#0b0f1e\] {
+  background: #eef0f7 !important;
+}
+
+/* Scrollbar */
+.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(124, 77, 255, 0.35);
+}
+
+/* ---------- THEME MODE: MINIMAL (flat, no blur, muted accents) ---------- */
+.theme-minimal .glass,
+.theme-minimal .glass-light,
+.theme-minimal .analytics-card,
+.theme-minimal [style*="rgba(11,15,30"],
+.theme-minimal [style*="rgba(13,18,34"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+.theme-minimal .card-hover:hover,
+.theme-minimal .analytics-card:hover {
+  box-shadow: none !important;
+  transform: none !important;
+  border-color: rgba(124,77,255,0.35) !important;
+}
+.theme-minimal .purple-glow,
+.theme-minimal .purple-glow-sm,
+.theme-minimal .pulse-glow,
+.theme-minimal .floating-btn-pulse {
+  box-shadow: none !important;
+  animation: none !important;
+}
+.theme-minimal header,
+.theme-minimal aside {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.theme-minimal .page-header-gradient {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: inherit !important;
+}
+.theme-minimal .hero-bg::before,
+.theme-minimal .hero-bg::after,
+.theme-minimal .neon-platform {
+  display: none !important;
+}
+.theme-minimal [style*="boxShadow"] {
+  box-shadow: none !important;
 }
 

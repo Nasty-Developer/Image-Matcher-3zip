@@ -1,0 +1,17 @@
+{
+  "name": "Prisma — Compare Smarter. Shop Better.",
+  "short_name": "Prisma",
+  "description": "AI shopping assistant that compares prices across every major store and tells you when to buy.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060913",
+  "theme_color": "#060913",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

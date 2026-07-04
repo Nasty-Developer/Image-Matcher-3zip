@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 
 /* Floating store badge */
 function Badge({
@@ -45,6 +46,7 @@ function Badge({
 }
 
 export default function HeroSection() {
+  const { isDesktop } = useBreakpoint();
   return (
     <div
       style={{
@@ -52,8 +54,9 @@ export default function HeroSection() {
         border: "1px solid rgba(255,255,255,0.07)",
         background:
           "linear-gradient(135deg, rgba(16,8,52,0.98) 0%, rgba(7,10,30,0.98) 100%)",
-        minHeight: 204,
+        minHeight: isDesktop ? 204 : 260,
         display: "flex",
+        flexDirection: isDesktop ? "row" : "column",
         alignItems: "stretch",
         overflow: "hidden",
         position: "relative",
@@ -91,8 +94,8 @@ export default function HeroSection() {
       {/* LEFT: Text content */}
       <div
         style={{
-          width: "50%",
-          padding: "30px 28px",
+          width: isDesktop ? "50%" : "100%",
+          padding: isDesktop ? "30px 28px" : "24px 20px 8px",
           position: "relative",
           zIndex: 3,
           display: "flex",
@@ -105,7 +108,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ fontSize: 38, fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.5px" }}
+          style={{ fontSize: isDesktop ? 38 : 28, fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.5px" }}
         >
           <span style={{ color: "#FFFFFF" }}>AI Shopping,</span>
           <br />
@@ -140,7 +143,7 @@ export default function HeroSection() {
           flex: 1,
           position: "relative",
           zIndex: 3,
-          minHeight: 200,
+          minHeight: isDesktop ? 200 : 140,
         }}
       >
         {/* Shopping cart — center of right half */}

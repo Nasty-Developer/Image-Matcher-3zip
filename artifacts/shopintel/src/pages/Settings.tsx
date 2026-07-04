@@ -81,7 +81,7 @@ function SettingRow({
 const languages = ["English", "Hindi", "Tamil", "Telugu", "Bengali", "Kannada"];
 
 export default function Settings() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, themeMode, setThemeMode } = useTheme();
   const { user, signOut } = useAuth();
   const [, navigate] = useLocation();
   const darkMode = theme === "dark";
@@ -193,9 +193,35 @@ export default function Settings() {
           {/* Appearance */}
           <Section title="Appearance">
             <SettingRow icon={Moon} color="#9D6CFF" label="Dark Mode" desc="Use dark theme across the app"
-              last
               right={<Toggle on={darkMode} onToggle={toggleTheme} />}
             />
+            <div style={{ padding: "15px 18px" }}>
+              <div style={{ fontWeight: 500, color: "white", fontSize: 13.5, marginBottom: 2 }}>Theme Style</div>
+              <div style={{ fontSize: 11.5, color: "#5A5D75", marginBottom: 12 }}>
+                Choose between the full Prisma experience or a flattened, minimal look
+              </div>
+              <div style={{ display: "flex", gap: 10 }}>
+                {(["signature", "minimal"] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => setThemeMode(mode)}
+                    style={{
+                      flex: 1, padding: "10px 12px", borderRadius: 10, cursor: "pointer",
+                      textAlign: "left",
+                      background: themeMode === mode ? "rgba(124,77,255,0.16)" : "rgba(255,255,255,0.03)",
+                      border: themeMode === mode ? "1px solid rgba(139,92,246,0.5)" : "1px solid rgba(255,255,255,0.07)",
+                    }}
+                  >
+                    <div style={{ fontSize: 12.5, fontWeight: 600, color: themeMode === mode ? "#C4B5FD" : "#D6D8E5", marginBottom: 2 }}>
+                      {mode === "signature" ? "Prisma Signature" : "Prisma Minimal"}
+                    </div>
+                    <div style={{ fontSize: 10.5, color: "#5A5D75" }}>
+                      {mode === "signature" ? "Rich gradients, glow & depth" : "Flat, clean & distraction-free"}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </Section>
 
           {/* Notifications */}
@@ -206,7 +232,7 @@ export default function Settings() {
             <SettingRow icon={Bell} color="#37D67A" label="Stock Alerts" desc="Notify when out-of-stock items return"
               right={<Toggle on={stockAlerts} onToggle={() => setStockAlerts(!stockAlerts)} />}
             />
-            <SettingRow icon={Bell} color="#4EB5FF" label="Deal Alerts" desc="Coupons and limited-time offers"
+            <SettingRow icon={Bell} color="#4EB5FF" label="Deal Alerts" desc="Best deals and limited-time offers"
               right={<Toggle on={dealAlerts} onToggle={() => setDealAlerts(!dealAlerts)} />}
             />
             <SettingRow icon={Bell} color="#FF6B9D" label="AI Insights" desc="Weekly AI shopping recommendations"

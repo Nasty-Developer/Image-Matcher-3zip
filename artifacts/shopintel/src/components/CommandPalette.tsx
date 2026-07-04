@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Monitor, BarChart2, Tag, Bookmark, Bot, Bell, Clock, PackageSearch, X } from "lucide-react";
+import { Search, Monitor, BarChart2, Flame, Bookmark, Bot, Bell, Clock, PackageSearch, X } from "lucide-react";
 import { useLocation } from "wouter";
 
 interface CommandPaletteProps {
@@ -33,11 +33,11 @@ export default function CommandPalette({ open, onOpenChange }: CommandPalettePro
   };
 
   const pages = [
-    { name: "Dashboard", icon: Monitor, path: "/" },
+    { name: "Dashboard", icon: Monitor, path: "/dashboard" },
     { name: "Price Compare", icon: BarChart2, path: "/price-compare" },
     { name: "Price History", icon: Clock, path: "/price-history" },
     { name: "Stock Tracker", icon: PackageSearch, path: "/stock-tracker" },
-    { name: "Coupons & Deals", icon: Tag, path: "/coupons" },
+    { name: "Today's Best Deals", icon: Flame, path: "/best-deals" },
     { name: "Watchlist", icon: Bookmark, path: "/watchlist" },
     { name: "AI Assistant", icon: Bot, path: "/ai-assistant" },
     { name: "Notifications", icon: Bell, path: "/notifications" },

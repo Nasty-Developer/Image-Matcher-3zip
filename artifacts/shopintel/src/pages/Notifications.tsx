@@ -12,9 +12,9 @@ const allNotifications = [
     time: "5 min ago", icon: TrendingDown, color: "#37D67A", bg: "rgba(55,214,122,0.12)",
   },
   {
-    id: 2, type: "coupon", read: false,
-    title: "New Coupon Available",
-    body: "BBDEAL coupon is now live — up to 30% off on Flipkart. Valid until 5 Jul.",
+    id: 2, type: "deal", read: false,
+    title: "New Best Deal Live",
+    body: "A new AI-curated deal just went live on Flipkart — up to 30% off. Valid until 5 Jul.",
     time: "30 min ago", icon: Tag, color: "#9D6CFF", bg: "rgba(124,77,255,0.12)",
   },
   {
@@ -43,11 +43,11 @@ const allNotifications = [
   },
 ];
 
-const filters = ["All", "Price Drops", "Coupons", "Stock", "AI Insights"];
+const filters = ["All", "Price Drops", "Best Deals", "Stock", "AI Insights"];
 const filterMap: Record<string, string[]> = {
   "All": [],
   "Price Drops": ["price_drop"],
-  "Coupons": ["coupon"],
+  "Best Deals": ["deal"],
   "Stock": ["stock"],
   "AI Insights": ["ai"],
 };

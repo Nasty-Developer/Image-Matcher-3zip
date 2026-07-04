@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "ShopIntel AI Dashboard"
+title = "Prisma"
 version = "1.0.0"
 id = "artifacts/shopintel"
 router = "path"

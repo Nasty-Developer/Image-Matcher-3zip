@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, BarChart2, Clock,
   Bot, Sparkles, Zap as ZapIcon,
-  PackageSearch, Tag, Bookmark,
+  PackageSearch, Flame, Bookmark,
   Bell, Settings,
   BarChart, FileText, Search, AlertCircle, Heart, TrendingDown,
   Globe, Cpu, Share2, Key, Code2, DollarSign, MessageSquare, HelpCircle, Map,
@@ -39,7 +39,7 @@ export const sidebarSections: SidebarSection[] = [
     title: "Main",
     defaultOpen: true,
     items: [
-      { id: "dashboard",     label: "Dashboard",     icon: LayoutDashboard, href: "/"              },
+      { id: "dashboard",     label: "Dashboard",     icon: LayoutDashboard, href: "/dashboard"     },
       { id: "price-compare", label: "Price Compare",  icon: BarChart2,       href: "/price-compare" },
       { id: "price-history", label: "Price History",  icon: Clock,           href: "/price-history" },
     ],
@@ -59,9 +59,9 @@ export const sidebarSections: SidebarSection[] = [
     title: "Product Tools",
     defaultOpen: true,
     items: [
-      { id: "stock-tracker", label: "Stock Tracker", icon: PackageSearch, href: "/stock-tracker" },
-      { id: "coupons",       label: "Coupons",       icon: Tag,           href: "/coupons"       },
-      { id: "watchlist",     label: "Watchlist",     icon: Bookmark,      href: "/watchlist"     },
+      { id: "stock-tracker", label: "Stock Tracker",     icon: PackageSearch, href: "/stock-tracker" },
+      { id: "best-deals",    label: "Today's Best Deals", icon: Flame,        href: "/best-deals"     },
+      { id: "watchlist",     label: "Watchlist",          icon: Bookmark,      href: "/watchlist"     },
     ],
   },
   {
@@ -100,7 +100,7 @@ export const sidebarSections: SidebarSection[] = [
 
 export const quickActions: QuickAction[] = [
   { id: "add-product",      label: "Add Product",       icon: PackageSearch, href: "/price-compare" },
-  { id: "compare",          label: "Compare Products",  icon: BarChart2,     href: "/price-compare" },
+  { id: "best-deals",       label: "Best Deals",        icon: Flame,         href: "/best-deals"    },
   { id: "new-watchlist",    label: "New Watchlist",     icon: Bookmark,      href: "/watchlist"     },
   { id: "ai-search",        label: "AI Search",         icon: Bot,           href: "/ai-assistant"  },
 ];

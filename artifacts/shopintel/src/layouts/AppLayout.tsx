@@ -5,11 +5,14 @@ import FloatingActions from "../components/FloatingActions";
 import CommandPalette from "../components/CommandPalette";
 import AuthModal from "../components/AuthModal";
 import { useTheme } from "../context/ThemeContext";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   const [cmdOpen, setCmdOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const { theme } = useTheme();
+  const { isDesktop } = useBreakpoint();
 
   return (
     <div
@@ -23,12 +26,16 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     >
       <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
       <AuthModal open={authModalOpen} onClose={() => setAuthModalOpen(false)} feature="create watchlists" />
-      <Sidebar />
-      <div className="flex flex-col min-w-0" style={{ marginLeft: 208, flex: 1 }}>
-        <Navbar onOpenSearch={() => setCmdOpen(true)} onOpenAuth={() => setAuthModalOpen(true)} />
+      <Sidebar mobileOpen={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
+      <div className="flex flex-col min-w-0" style={{ marginLeft: isDesktop ? 208 : 0, flex: 1, minWidth: 0 }}>
+        <Navbar
+          onOpenSearch={() => setCmdOpen(true)}
+          onOpenAuth={() => setAuthModalOpen(true)}
+          onOpenMenu={() => setMobileNavOpen(true)}
+        />
         <main
-          className="flex-1 overflow-auto"
-          style={{ padding: "22px 22px 28px 22px" }}
+          className="flex-1 overflow-auto overflow-x-hidden"
+          style={{ padding: isDesktop ? "22px 22px 28px 22px" : "16px 14px 90px 14px" }}
         >
           {children}
         </main>
@@ -37,4 +44,3 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     </div>
   );
 }
-
