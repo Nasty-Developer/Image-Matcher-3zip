@@ -1,0 +1,163 @@
+==========================================================
+APPEARANCE TOGGLE
+==========================================================
+
+Improve the appearance controls.
+
+The current Light/Dark mode is not fully consistent.
+
+Requirements:
+
+1. Add a dedicated Appearance section in the lower part of the left sidebar.
+
+2. Include:
+
+• Design Mode
+
+   ○ Prisma Signature
+
+   ○ Prisma Minimal
+
+• Theme
+
+   🌙 Dark
+
+   ☀️ Light
+
+3. Both toggles should remain visible without opening Settings.
+
+4. Save both preferences using localStorage.
+
+5. Restore preferences automatically after refresh.
+
+==========================================================
+LIGHT MODE FIX
+==========================================================
+
+Completely fix the Light Theme.
+
+Currently some components remain dark or use mixed colors.
+
+Review EVERY component.
+
+Sidebar
+
+Navbar
+
+Search Bar
+
+Cards
+
+Dashboard
+
+Tables
+
+Charts
+
+Dropdowns
+
+Dialogs
+
+Buttons
+
+Forms
+
+Inputs
+
+Authentication Pages
+
+Landing Page
+
+Product Workspace
+
+Search Results
+
+Settings
+
+Notifications
+
+Footer
+
+Every component must fully switch to Light Mode.
+
+No mixed dark backgrounds.
+
+No unreadable text.
+
+No inconsistent borders.
+
+No random purple backgrounds.
+
+No leftover dark cards.
+
+Light Mode should feel clean, elegant and premium.
+
+Use:
+
+White
+
+Off White
+
+Light Grey
+
+Soft Shadows
+
+Minimal Borders
+
+Dark text
+
+Purple only as the accent color.
+
+==========================================================
+DARK MODE
+==========================================================
+
+Dark Mode should remain premium.
+
+Deep black background.
+
+Glassmorphism.
+
+Purple accents.
+
+Soft glow.
+
+Everything must switch together.
+
+==========================================================
+ANIMATIONS
+==========================================================
+
+Theme switching should animate smoothly.
+
+No flashing.
+
+No flickering.
+
+No layout shift.
+
+==========================================================
+QUALITY CHECK
+==========================================================
+
+Before finishing:
+
+Review every page in both themes.
+
+Verify:
+
+Desktop
+
+Tablet
+
+Mobile
+
+Prisma Signature
+
+Prisma Minimal
+
+Dark
+
+Light
+
+Every combination should look intentional and production-ready.

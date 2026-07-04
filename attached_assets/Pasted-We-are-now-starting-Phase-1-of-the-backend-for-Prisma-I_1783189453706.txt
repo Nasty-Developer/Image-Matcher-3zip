@@ -1,0 +1,573 @@
+We are now starting Phase 1 of the backend for Prisma.
+
+
+
+IMPORTANT:
+
+
+
+Do NOT create the Express backend yet.
+
+
+
+Do NOT integrate ZenRows.
+
+
+
+Do NOT integrate Gemini.
+
+
+
+Do NOT redesign the UI.
+
+
+
+Only integrate Firebase properly while keeping the current frontend unchanged.
+
+
+
+==========================================================
+
+FIREBASE CONFIGURATION
+
+==========================================================
+
+
+
+Use the Firebase configuration that I have already provided.
+
+
+
+Do NOT hardcode Firebase credentials inside components.
+
+
+
+Move every Firebase value into Vite environment variables (.env).
+
+
+
+Use:
+
+
+
+VITE_FIREBASE_API_KEY
+
+
+
+VITE_FIREBASE_AUTH_DOMAIN
+
+
+
+VITE_FIREBASE_PROJECT_ID
+
+
+
+VITE_FIREBASE_STORAGE_BUCKET
+
+
+
+VITE_FIREBASE_MESSAGING_SENDER_ID
+
+
+
+VITE_FIREBASE_APP_ID
+
+
+
+VITE_FIREBASE_MEASUREMENT_ID
+
+
+
+Read every value from import.meta.env. - const firebaseConfig = {
+
+  apiKey: "AIzaSyANtZkfDq3GVPyjCglY4XHlrI_48GW0xz8",
+
+  authDomain: "pris-1bc02.firebaseapp.com",
+
+  projectId: "pris-1bc02",
+
+  storageBucket: "pris-1bc02.firebasestorage.app",
+
+  messagingSenderId: "462328308630",
+
+  appId: "1:462328308630:web:5482bcd6b0ee422ff3f3b7",
+
+  measurementId: "G-YKDGMB5YNL" 
+
+
+
+==========================================================
+
+PROJECT STRUCTURE
+
+==========================================================
+
+
+
+Create:
+
+
+
+src/
+
+
+
+firebase/
+
+    firebase.ts
+
+
+
+services/
+
+    auth.service.ts
+
+    firestore.service.ts
+
+    storage.service.ts
+
+
+
+context/
+
+    AuthContext.tsx
+
+
+
+hooks/
+
+    useAuth.ts
+
+
+
+components/
+
+    ProtectedRoute.tsx
+
+
+
+==========================================================
+
+INITIALIZE FIREBASE
+
+==========================================================
+
+
+
+Initialize:
+
+
+
+• Firebase App
+
+
+
+• Firebase Authentication
+
+
+
+• Firestore Database
+
+
+
+• Firebase Storage
+
+
+
+==========================================================
+
+AUTHENTICATION
+
+==========================================================
+
+
+
+Support:
+
+
+
+Google Login
+
+
+
+Email Login
+
+
+
+Signup
+
+
+
+Forgot Password
+
+
+
+Logout
+
+
+
+Persistent Login
+
+
+
+==========================================================
+
+AUTH CONTEXT
+
+==========================================================
+
+
+
+Provide:
+
+
+
+currentUser
+
+
+
+loading
+
+
+
+login()
+
+
+
+signup()
+
+
+
+googleLogin()
+
+
+
+logout()
+
+
+
+forgotPassword()
+
+
+
+==========================================================
+
+GUEST EXPERIENCE
+
+==========================================================
+
+
+
+Guests should still be able to use the application.
+
+
+
+Dashboard must continue working exactly like it works today.
+
+
+
+Searching products should still work.
+
+
+
+Browsing should still work.
+
+
+
+Comparison pages should still work.
+
+
+
+Guests should NOT be forced to sign in just to explore Prisma.
+
+
+
+==========================================================
+
+PROTECTED FEATURES
+
+==========================================================
+
+
+
+Authentication should ONLY be required for:
+
+
+
+Watchlist
+
+
+
+Saved Searches
+
+
+
+Notifications
+
+
+
+User Profile
+
+
+
+Future Price Alerts
+
+
+
+If a guest clicks one of these features,
+
+
+
+show the Sign In / Sign Up modal.
+
+
+
+==========================================================
+
+PROFILE SECTION
+
+==========================================================
+
+
+
+Currently the UI shows a hardcoded user name such as "Aryan".
+
+
+
+Remove all hardcoded user information.
+
+
+
+If NO user is logged in:
+
+
+
+Replace the profile area with:
+
+
+
+Sign In
+
+
+
+Sign Up
+
+
+
+No fake user.
+
+
+
+No placeholder names.
+
+
+
+No placeholder avatar.
+
+
+
+When a user signs in successfully:
+
+
+
+Display:
+
+
+
+Profile Photo
+
+
+
+Display Name
+
+
+
+Email
+
+
+
+Settings
+
+
+
+Logout
+
+
+
+Everything should update automatically from Firebase Authentication.
+
+
+
+==========================================================
+
+FIRESTORE
+
+==========================================================
+
+
+
+Prepare collections:
+
+
+
+users
+
+
+
+watchlists
+
+
+
+savedSearches
+
+
+
+preferences
+
+
+
+notifications
+
+
+
+Do not implement business logic yet.
+
+
+
+Only prepare clean reusable services.
+
+
+
+==========================================================
+
+STORAGE
+
+==========================================================
+
+
+
+Prepare Firebase Storage service.
+
+
+
+No upload functionality yet.
+
+
+
+Only initialize it properly.
+
+
+
+==========================================================
+
+CODE QUALITY
+
+==========================================================
+
+
+
+Use reusable services.
+
+
+
+Keep Firebase logic outside UI components.
+
+
+
+Use React Context.
+
+
+
+Use custom hooks.
+
+
+
+Make the project production-ready.
+
+
+
+==========================================================
+
+DO NOT CHANGE
+
+==========================================================
+
+
+
+Do NOT redesign the Dashboard.
+
+
+
+Do NOT redesign the Landing Page.
+
+
+
+Do NOT redesign the Sidebar.
+
+
+
+Do NOT redesign the Product Workspace.
+
+
+
+Only replace authentication and user management.
+
+
+
+==========================================================
+
+FINAL CHECKLIST
+
+==========================================================
+
+
+
+✓ Application builds successfully.
+
+
+
+✓ No console errors.
+
+
+
+✓ Dashboard works without login.
+
+
+
+✓ Search works without login.
+
+
+
+✓ Guest users see Sign In / Sign Up instead of fake user names.
+
+
+
+✓ Logged-in users see their real Firebase profile.
+
+
+
+✓ Authentication state persists after refresh.
+
+
+
+✓ Code is modular and ready for Express integration.
+
+
+
+When finished:
+
+
+
+Run the application.
+
+
+
+Fix build errors.
+
+
+
+Launch the preview.
+
+
+
+Verify everything works before finishing.
