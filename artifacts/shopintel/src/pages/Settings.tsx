@@ -82,7 +82,7 @@ const languages = ["English", "Hindi", "Tamil", "Telugu", "Bengali", "Kannada"];
 
 export default function Settings() {
   const { theme, toggleTheme, themeMode, setThemeMode } = useTheme();
-  const { user, signOut } = useAuth();
+  const { user, isGuest, signOut } = useAuth();
   const [, navigate] = useLocation();
   const darkMode = theme === "dark";
 
@@ -123,71 +123,127 @@ export default function Settings() {
         <div style={{ flex: 1 }}>
           {/* Account */}
           <Section title="Account">
-            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-              <div
-                style={{
-                  width: 52, height: 52, borderRadius: "50%",
-                  background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontWeight: 900, color: "white", fontSize: 20,
-                  border: "2px solid rgba(124,77,255,0.5)",
-                }}
-              >
-                {user?.avatar || "A"}
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 700, color: "white", fontSize: 15 }}>{user?.name || "User"}</div>
-                <div style={{ fontSize: 12, color: "#5A5D75" }}>{user?.email || "user@example.com"}</div>
-              </div>
-              <div className="relative">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  onClick={handleEditProfile}
+            {isGuest ? (
+              <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px" }}>
+                <div
                   style={{
-                    padding: "6px 14px", borderRadius: 8,
-                    background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
-                    color: "#9D6CFF", fontSize: 12, fontWeight: 600, cursor: "pointer",
+                    width: 52, height: 52, borderRadius: "50%",
+                    background: "rgba(255,255,255,0.06)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    border: "1px dashed rgba(255,255,255,0.15)",
                   }}
                 >
-                  Edit Profile
-                </motion.button>
-                <AnimatePresence>
-                  {showProfileToast && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-[#7C4DFF] text-white text-[11px] font-medium py-1.5 px-3 rounded-lg shadow-lg"
-                    >
-                      Profile editing coming soon
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
-            <SettingRow icon={CreditCard} color="#9D6CFF" label="Subscription" desc="Pro plan · Renews 1 Aug 2026"
-              right={
-                <span style={{ fontSize: 11.5, color: "#37D67A", fontWeight: 600 }}>Active</span>
-              }
-            />
-            <div className="relative" onClick={handlePrivacy}>
-              <SettingRow icon={Shield} color="#4EB5FF" label="Privacy & Security" desc="Manage data and permissions"
-                last
-                right={<ChevronRight size={14} style={{ color: "#4A4D65" }} />}
-              />
-              <AnimatePresence>
-                {showPrivacyToast && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#7C4DFF] text-white text-[11px] font-medium py-1.5 px-3 rounded-lg shadow-lg z-10"
+                  <User size={20} style={{ color: "#5A5D75" }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 700, color: "white", fontSize: 15 }}>You're browsing as a guest</div>
+                  <div style={{ fontSize: 12, color: "#5A5D75" }}>Sign in to save your profile & preferences</div>
+                </div>
+                <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    onClick={() => navigate("/signin")}
+                    style={{
+                      padding: "8px 14px", borderRadius: 8,
+                      background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
+                      color: "#9D6CFF", fontSize: 12, fontWeight: 600, cursor: "pointer",
+                    }}
                   >
-                    Privacy settings coming soon
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                    Sign In
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    onClick={() => navigate("/signup")}
+                    style={{
+                      padding: "8px 14px", borderRadius: 8,
+                      background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)", border: "none",
+                      color: "white", fontSize: 12, fontWeight: 600, cursor: "pointer",
+                    }}
+                  >
+                    Sign Up
+                  </motion.button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                  {user?.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.name}
+                      style={{
+                        width: 52, height: 52, borderRadius: "50%", objectFit: "cover",
+                        border: "2px solid rgba(124,77,255,0.5)",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: 52, height: 52, borderRadius: "50%",
+                        background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontWeight: 900, color: "white", fontSize: 20,
+                        border: "2px solid rgba(124,77,255,0.5)",
+                      }}
+                    >
+                      {user?.avatar || "U"}
+                    </div>
+                  )}
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 700, color: "white", fontSize: 15 }}>{user?.name}</div>
+                    <div style={{ fontSize: 12, color: "#5A5D75" }}>{user?.email}</div>
+                  </div>
+                  <div className="relative">
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      onClick={handleEditProfile}
+                      style={{
+                        padding: "6px 14px", borderRadius: 8,
+                        background: "rgba(124,77,255,0.14)", border: "1px solid rgba(124,77,255,0.3)",
+                        color: "#9D6CFF", fontSize: 12, fontWeight: 600, cursor: "pointer",
+                      }}
+                    >
+                      Edit Profile
+                    </motion.button>
+                    <AnimatePresence>
+                      {showProfileToast && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-[#7C4DFF] text-white text-[11px] font-medium py-1.5 px-3 rounded-lg shadow-lg"
+                        >
+                          Profile editing coming soon
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+                <SettingRow icon={CreditCard} color="#9D6CFF" label="Subscription" desc="Pro plan · Renews 1 Aug 2026"
+                  right={
+                    <span style={{ fontSize: 11.5, color: "#37D67A", fontWeight: 600 }}>Active</span>
+                  }
+                />
+                <div className="relative" onClick={handlePrivacy}>
+                  <SettingRow icon={Shield} color="#4EB5FF" label="Privacy & Security" desc="Manage data and permissions"
+                    last
+                    right={<ChevronRight size={14} style={{ color: "#4A4D65" }} />}
+                  />
+                  <AnimatePresence>
+                    {showPrivacyToast && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#7C4DFF] text-white text-[11px] font-medium py-1.5 px-3 rounded-lg shadow-lg z-10"
+                      >
+                        Privacy settings coming soon
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </>
+            )}
           </Section>
 
           {/* Appearance */}

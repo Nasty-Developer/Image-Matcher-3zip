@@ -4,9 +4,18 @@ import { useLocation, Link } from "wouter";
 import { Eye, EyeOff, Zap, AlertCircle } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
+function getFirebaseErrorMessage(err: unknown): string {
+  const code = (err as { code?: string })?.code || "";
+  if (code.includes("email-already-in-use")) return "An account with this email already exists";
+  if (code.includes("invalid-email")) return "Please enter a valid email address";
+  if (code.includes("weak-password")) return "Password is too weak";
+  if (code.includes("popup-closed-by-user")) return "Google sign-in was cancelled";
+  return "Failed to create account. Please try again.";
+}
+
 export default function SignUp() {
   const [, navigate] = useLocation();
-  const { signUp } = useAuth();
+  const { signup, googleLogin } = useAuth();
   
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,6 +23,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
 
   const getPasswordStrength = () => {
@@ -42,12 +52,25 @@ export default function SignUp() {
     setError("");
     setIsLoading(true);
     try {
-      await signUp(name, email, password);
+      await signup(name, email, password);
       navigate("/dashboard");
     } catch (err) {
-      setError("Failed to create account");
+      setError(getFirebaseErrorMessage(err));
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError("");
+    setGoogleLoading(true);
+    try {
+      await googleLogin();
+      navigate("/dashboard");
+    } catch (err) {
+      setError(getFirebaseErrorMessage(err));
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
@@ -177,6 +200,35 @@ export default function SignUp() {
             )}
           </motion.button>
         </form>
+
+        <div className="flex items-center gap-3 my-5">
+          <div className="flex-1 h-px bg-white/10" />
+          <span className="text-[11px] font-medium text-[#5A5D75] uppercase tracking-wider">or</span>
+          <div className="flex-1 h-px bg-white/10" />
+        </div>
+
+        <motion.button
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          type="button"
+          disabled={googleLoading}
+          onClick={handleGoogleLogin}
+          className="w-full rounded-xl bg-white/[0.04] border border-white/10 py-3 text-[13.5px] font-semibold text-white flex justify-center items-center gap-2.5 h-[48px] hover:bg-white/[0.07] disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
+        >
+          {googleLoading ? (
+            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          ) : (
+            <>
+              <svg width="16" height="16" viewBox="0 0 48 48">
+                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6 29.6 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.7-.4-3.5z"/>
+                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 15.1 18.9 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+                <path fill="#4CAF50" d="M24 44c5.5 0 10.5-2.1 14.3-5.6l-6.6-5.6C29.6 34.6 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.6 39.6 16.3 44 24 44z"/>
+                <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.3-4 5.8l6.6 5.6C41.4 36 44 30.6 44 24c0-1.3-.1-2.7-.4-3.5z"/>
+              </svg>
+              Continue with Google
+            </>
+          )}
+        </motion.button>
 
         <div className="mt-6 text-center space-y-4">
           <p className="text-[13.5px] text-[#8385A0]">

@@ -198,18 +198,31 @@ export default function Navbar({ onOpenSearch, onOpenAuth, onOpenMenu }: NavbarP
             style={{ padding: "4px 6px", borderRadius: 11 }}
             onClick={() => setProfileOpen(!profileOpen)}
           >
-            <div
-              className="rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
-              style={{
-                width: 34, height: 34,
-                background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
-                border: "2px solid rgba(124,77,255,0.55)",
-                fontSize: 13,
-                boxShadow: "0 0 12px rgba(124,77,255,0.3)",
-              }}
-            >
-              {user?.avatar || "A"}
-            </div>
+            {user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt={user.name}
+                className="rounded-full flex-shrink-0 object-cover"
+                style={{
+                  width: 34, height: 34,
+                  border: "2px solid rgba(124,77,255,0.55)",
+                  boxShadow: "0 0 12px rgba(124,77,255,0.3)",
+                }}
+              />
+            ) : (
+              <div
+                className="rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+                style={{
+                  width: 34, height: 34,
+                  background: "linear-gradient(135deg, #7C4DFF, #9D6CFF)",
+                  border: "2px solid rgba(124,77,255,0.55)",
+                  fontSize: 13,
+                  boxShadow: "0 0 12px rgba(124,77,255,0.3)",
+                }}
+              >
+                {user?.avatar || "U"}
+              </div>
+            )}
             <div className="flex items-center gap-2">
               <span className="text-white font-semibold" style={{ fontSize: 13 }}>
                 Hi, {user?.name.split(' ')[0] || "User"}

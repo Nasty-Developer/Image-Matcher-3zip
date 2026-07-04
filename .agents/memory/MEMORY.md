@@ -1,2 +1,3 @@
 - [ShopIntel singleton state pattern](shopintel-singleton-state.md) — global overlays (CommandPalette) must live in AppLayout only; pass callbacks down to Navbar/FloatingActions, never re-mount independently.
 - [Fixed-width grid tables on mobile](shopintel-mobile-overflow.md) — wrap fixed-px inline-style grids/tables in their own overflowX:auto container to avoid page-level horizontal scroll.
+- [ShopIntel auth context shape](shopintel-auth-context.md) — AuthContext exposes both Firebase-native and legacy-aliased fields; prefer currentUser/isGuest going forward.

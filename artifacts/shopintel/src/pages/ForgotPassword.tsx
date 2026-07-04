@@ -1,23 +1,32 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link } from "wouter";
-import { Zap, Mail, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { Zap, Mail, ArrowLeft, CheckCircle2, AlertCircle } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 export default function ForgotPassword() {
   const [, navigate] = useLocation();
+  const { forgotPassword } = useAuth();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.includes("@")) return;
-    
+
+    setError("");
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      await forgotPassword(email);
       setSuccess(true);
-    }, 1000);
+    } catch (err) {
+      const code = (err as { code?: string })?.code || "";
+      setError(code.includes("user-not-found") ? "No account found with this email" : "Failed to send reset link. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -64,6 +73,13 @@ export default function ForgotPassword() {
                     />
                   </div>
                 </div>
+
+                {error && (
+                  <div className="flex items-center gap-2 text-[#FF6B6B] text-[12.5px] bg-[#FF6B6B]/10 border border-[#FF6B6B]/20 rounded-lg px-3 py-2">
+                    <AlertCircle size={14} className="shrink-0" />
+                    {error}
+                  </div>
+                )}
 
                 <motion.button
                   whileHover={{ scale: 1.01 }}

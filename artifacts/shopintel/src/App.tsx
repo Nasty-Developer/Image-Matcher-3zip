@@ -6,6 +6,7 @@ import "./index.css";
 import { SkeletonCard } from "./components/SkeletonLoader";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const SearchResults = React.lazy(() => import("./pages/SearchResults"));
@@ -55,9 +56,13 @@ export default function App() {
                     <Route path="/price-history" component={PriceHistory} />
                     <Route path="/stock-tracker" component={StockTracker} />
                     <Route path="/best-deals" component={BestDeals} />
-                    <Route path="/watchlist" component={Watchlist} />
+                    <Route path="/watchlist">
+                      <ProtectedRoute><Watchlist /></ProtectedRoute>
+                    </Route>
                     <Route path="/ai-assistant" component={AIAssistant} />
-                    <Route path="/notifications" component={Notifications} />
+                    <Route path="/notifications">
+                      <ProtectedRoute><Notifications /></ProtectedRoute>
+                    </Route>
                     <Route path="/settings" component={Settings} />
                     <Route path="/product/:id" component={ProductDetails} />
                   </Switch>
